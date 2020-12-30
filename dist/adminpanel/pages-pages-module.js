@@ -73604,7 +73604,7 @@ let DashboardComponent = class DashboardComponent {
         console.log('hover', e);
     }
     onSendInvitation() {
-        alert(this.username);
+        // alert(this.username);
         console.log("onSendInvitation", this.username);
     }
     getUSerlist() {

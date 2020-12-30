@@ -16,6 +16,6 @@ export class SidebarComponent implements OnInit {
 getUser(){
   this.firstName=localStorage.getItem("firstName")
   this.lastName=localStorage.getItem("lastName")
-alert(this.firstName)
+// alert(this.firstName)
 }
 }
