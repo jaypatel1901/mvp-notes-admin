@@ -1,0 +1,408 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Page Content  -->
+  <div id="content" style="background: #F7F9FC;">
+
+
+    <div class="container-fluid">
+
+      <!-- <button type="button" id="sidebarCollapse" class="btn text-sidebar bg-turbo-yellow">
+                        <i class="fas fa-align-left"></i>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button> -->
+
+      <div class="row d-flex justify-content-between mr-0">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="section-heading">Dashboard</p>
+              <p class="section-subheading">Let's start the day!</p>
+            </div>
+            <div class="col-md-6 text-right">
+              <button class="color-button" data-toggle="modal" data-target="#myModal">Invite Users</button>
+            </div>
+
+            <div class="overflow-div" style="height: 86vh;">
+              <div class="col-md-12">
+
+                <div class="bg-white curved p-4">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p class="text_head">Total Sales</p>
+                      <p class="chart_subhead">01 October, 2020</p>
+                      <div style="position: relative; width: 100%;">
+                        <div style="display: block;">
+                          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                            [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                            [colors]="barChartColors" [chartType]="barChartType">
+                          </canvas>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="col-md-4">
+                      <div class="bg-light p-4 curved">
+                        <p class="report-head pb-3">Sales Report!</p>
+                        <div class="d-flex pb-1">
+                          <div class="p-0 m-0">
+                            <img src="assets/images/Sales Report.png" class="report-color-img">
+                          </div>
+                          <div>
+                            <p class="report-head">${{paymentData.montlyPayment}}</p>
+                            <p class="report-subhead">Monthly</p>
+                          </div>
+                        </div>
+                        <div class="d-flex pb-1">
+                          <div class="p-0 m-0">
+                            <img src="assets/images/Sales Report.png" class="report-color-img">
+                          </div>
+                          <div>
+                            <p class="report-head">${{paymentData.quarterPayment}}</p>
+                            <p class="report-subhead">Quaterly</p>
+                          </div>
+                        </div>
+                        <div class="d-flex">
+                          <div class="p-0 m-0">
+                            <img src="assets/images/Sales Report.png" class="report-color-img">
+                          </div>
+                          <div>
+                            <p class="report-head">${{paymentData.yearlyPayment}}</p>
+                            <p class="report-subhead">Anually</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-12">
+                <div class="bg-white curved mt-3 p-4" style="height: 330px;">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p class="text_head">Total Subscriptions</p>
+                      <p class="chart_subhead">01 October, 2020</p>
+
+                      <div style="position: relative; width: 100%;">
+                        <canvas baseChart [datasets]="lineChartData" [labels]="barChartLabels"
+                          [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                          [colors]="lineChartColors" [chartType]="lineChartType">
+                        </canvas>
+                      </div>
+                      <script language="JavaScript">
+                        function drawChart() {
+                          // Define the chart to be drawn.
+                          var data = new google.visualization.DataTable();
+                          data.addColumn('string', '');
+                          data.addColumn('number', '');
+                          data.addColumn('number', '');
+                          data.addColumn('number', '');
+                          data.addColumn('number', '');
+                          data.addRows([
+                            ['Jan2020', 9.0, -0.2, -0.9, 3.9],
+                            ['Feb2020', 6.9, 0.8, 0.6, 4.2],
+                            ['Mar2020', 9.5, 5.7, 3.5, 5.7],
+                            ['Apr2020', 14.5, 11.3, 8.4, 8.5],
+                            ['May2020', 18.2, 17.0, 13.5, 11.9],
+                            ['Jun2020', 21.5, 22.0, 17.0, 15.2],
+                            ['Jul2020', 25.2, 24.8, 18.6, 17.0],
+                            ['Aug2020', 26.5, 24.1, 17.9, 16.6]
+                          ]);
+
+                          // Set chart options
+                          var options = {
+                            'title': '',
+                            hAxis: {
+                              title: ''
+                            },
+                            vAxis: {
+                              title: ''
+                            },
+                            'width': 500,
+                            'height': 200
+                          };
+
+                          // Instantiate and draw the chart.
+                          var chart = new google.visualization.LineChart(document.getElementById('container'));
+                          chart.draw(data, options);
+                        }
+                        google.charts.setOnLoadCallback(drawChart);
+                      </script>
+
+
+
+
+
+
+                    </div>
+                    <div class="col-md-4">
+                      <div class="bg-light p-4 curved">
+                        <p class="report-head pb-3">Subscription Report!</p>
+                        <div class="d-flex pb-1">
+                          <div class="p-0 m-0">
+                            <img src="assets/images/blue.png" class="report-color-img">
+                          </div>
+                          <div>
+                            <p class="report-head">{{subscriptionSales.Silver_Plan}}</p>
+                            <p class="report-subhead">Silver plan</p>
+                          </div>
+                        </div>
+                        <div class="d-flex pb-1">
+                          <div class="p-0 m-0">
+                            <img src="assets/images/red.png" class="report-color-img">
+                          </div>
+                          <div>
+                            <p class="report-head">{{subscriptionSales.Gold_Plan}}</p>
+                            <p class="report-subhead">Gold plan</p>
+                          </div>
+                        </div>
+                        <div class="d-flex">
+                          <div class="p-0 m-0">
+                            <img src="assets/images/green.png" class="report-color-img">
+                          </div>
+                          <div>
+                            <p class="report-head">{{subscriptionSales.Trial_Plan}}</p>
+                            <p class="report-subhead">Trial plan</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+              </div>
+
+              <div class="row p-3">
+                <div class="col-md-6">
+                  <div class="bg-white curved mt-3 p-4">
+                    <div class="d-flex justify-content-between">
+                      <p class="text_head pb-3">Subscribed Users</p>
+                      <img src="assets/images/Filter icon.png" class="setting-icon">
+                    </div>
+                    <div class="overflow-user-cont">
+                      <table class="w-100">
+                        <tr class="" *ngFor='let item of userList'>
+                          <td><img src="assets/images/user circle.png" class="profile-tab-img"></td>
+                          <td>
+                            <div class="pl-2">
+                              <p class="tab-name">{{item.firstName}} {{item.lastName}}</p>
+                              <p class="tab-subname">2.54PM| 01 October, 2020</p>
+                            </div>
+                          </td>
+                          <td class="">
+                            <p class="tab-name last">{{item.subscriptionHistory[0].subscriptionId.planName}}</p>
+                          </td>
+                        </tr>
+
+
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-6">
+                  <div class="bg-white curved mt-3 p-4">
+                    <div class="d-flex justify-content-between">
+                      <p class="text_head pb-3">Recent Transections</p>
+                      <img src="assets/images/Filter icon.png" class="setting-icon">
+                    </div>
+                    <div class="overflow-user-cont">
+                      <table class="w-100">
+                        <tr class="" *ngFor='let item of userList'>
+                          <td><img src="assets/images/Group 3128.png" class="profile-tab-img"></td>
+                          <td>
+                            <div class="pl-2">
+                              <p class="tab-name">{{item.firstName}} {{item.lastName}}</p>
+                              <p class="tab-subname">2.54PM| 01 October, 2020</p>
+                            </div>
+                          </td>
+                          <td>
+                            <p class="proccessing  m-auto mr-0">proccessing</p>
+                          </td>
+                          <!-- <td class="">
+                            <p class="tab-name last skin-color">$ {{item.subscriptionHistory[0].subscriptionId.planPrice}}  </p>
+                          </td> -->
+                          <td class="">
+                            <p class="tab-name last ">${{item.subscriptionHistory[0].subscriptionId.planPrice}}</p>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 bg-white curved p-0">
+          <div class="overflow-div" style="height: 91vh;padding: 15px;">
+            <div class="py-3">
+              <div class="row">
+                <div class="col-sm-12 d-flex align-items-center">
+                  <img src="assets/images/avtar.png" class="profile-img">
+                  <div class="pl-3">
+                    <p class="profile-name">Hello, Summar Anand!</p>
+                    <p class="profile-sub mb-0">summaranand@mvpn.com</p>
+                  </div>
+                  <a href=""><img src="assets/images/notif.png" class="prof-icon pl-3"></a>
+                  <a href="index.html"><img src="assets/images/logout.png" class="prof-icon"></a>
+                </div>
+                <div class="col-md-12 my-4">
+                  <p class="profile-name">Usage Statistics</p>
+                  <p class="profile-sub mb-0">Lorem Ipsum is a dummt text.</p>
+                </div>
+                <div class="col-md-12">
+                  <div class="bg-light curved p-4">
+                    <div class="row">
+                      <div class="col-sm-2 p-0 m-0">
+                        <img src="assets/images/total notes.png" class="w-100">
+                      </div>
+                      <div class="col-sm-4 ml-0 pl-0">
+                        <p class="text_head">{{totalUsage.totalNotes}}</p>
+                        <p class="chart_subhead">Total Notes Created</p>
+                      </div>
+                      <div class="col-sm-6 d-flex align-items-end flex-column">
+                        <div class="ml-auto mt-auto">
+                          <p class="chart_subhead">Aug 25 - Sep 25</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bg-light curved p-4 mt-3">
+                    <div class="row">
+                      <div class="col-sm-2 p-0 m-0">
+                        <img src="assets/images/total subjects.png" class="w-100">
+                      </div>
+                      <div class="col-sm-4 ml-0 pl-0">
+                        <p class="text_head">{{totalUsage.totelSubject}}</p>
+                        <p class="chart_subhead">Total Subjects Created</p>
+                      </div>
+                      <div class="col-sm-6 d-flex align-items-end flex-column">
+                        <div class="ml-auto mt-auto">
+                          <p class="chart_subhead">Aug 25 - Sep 25</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bg-light curved p-4 mt-3">
+                    <div class="row">
+                      <div class="col-sm-2 p-0 m-0">
+                        <img src="assets/images/server space used.png" class="w-100">
+                      </div>
+                      <div class="col-sm-4 ml-0 pl-0">
+                        <p class="text_head">2.K</p>
+                        <p class="chart_subhead">Total Server Space Used</p>
+                      </div>
+                      <div class="col-sm-6 d-flex align-items-end flex-column">
+                        <div class="ml-auto mt-auto">
+                          <p class="chart_subhead">Aug 25 - Sep 25</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="col-md-12 blue-bg p-4 mt-3">
+                  <p class="profile-name">Total Engagement Rate</p>
+                  <p class="profile-sub mb-0">We analyzed 7,000 MVP Users</p>
+
+                  <div class="bg-light curved p-4 mt-3">
+                    <div class="row">
+                      <div class="col-sm-2 p-0 m-0">
+                        <img src="assets/images/Users using mvp notes.png" class="w-100">
+                      </div>
+                      <div class="col-sm-4 ml-0 pl-0">
+                        <p class="text_head">55%</p>
+                        <p class="chart_subhead">Users using MVP Notes</p>
+                      </div>
+                      <div class="col-sm-6 d-flex align-items-end flex-column">
+                        <div class="ml-auto">
+                          <p class="chart_subhead">Aug 25 - Sep 25</p>
+                        </div>
+                      </div>
+                      <div class="col-sm-12">
+                        <div class="progress">
+                          <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog" style="margin-top: 15%;">
+    <div class="modal-content  curved p-3" style="width: 88%;">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <p class="profile-name">Invite New User</p>
+        <button type="button" class="modal-close" data-dismiss="modal">close</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="form_login w-100">
+          <div class="form-group dash-form">
+            <input type="name" class="form_login_n dash-form-input" placeholder="Username"
+              [(ngModel)]='username' />{{username}}
+            <div class="alert- mt-2"></div>
+          </div>
+          <div class="form-group dash-form">
+            <input [(ngModel)]='email' type="email" class="form_login_n dash-form-input"
+              placeholder="User Email Address" />
+          </div>
+          <div class="form-group dash-form">
+            <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose">
+              <option value="">Choose Subscriptions</option>
+              <option *ngFor='let item of planList' value='item._id'>{{item.planName}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <button class="color-button" type="submit" (click)="onSendInvitation()">Send Invitation</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

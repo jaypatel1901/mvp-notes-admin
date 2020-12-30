@@ -1,0 +1,463 @@
+<div class="wrapper">
+  <!-- Sidebar  -->
+  <app-sidebar></app-sidebar>
+
+
+  <!--sidebar ends----->
+
+  <!-- Page Content  -->
+  <div id="content" style="background: #F7F9FC;">
+
+
+    <div class="container-fluid">
+
+      <!-- <button type="button" id="sidebarCollapse" class="btn text-sidebar bg-turbo-yellow">
+                    <i class="fas fa-align-left"></i>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button> -->
+
+      <div class="row d-flex justify-content-between mr-0">
+        <div class="col-md-6">
+          <p class="section-heading">Subscription Management</p>
+          <p class="section-subheading">Good Morning, Summer</p>
+        </div>
+        <div class="col-md-4 d-flex justify-content-end mb-auto">
+
+          <div class="search-box">
+            <i class="fa fa-search positio_icon1"></i>
+            <input type="text" name="" placeholder="What are you searching for...?" class="input_header1">
+          </div>
+
+        </div>
+        <div class="col-md-2 text-right mb-auto">
+          <div class="d-flex justify-content-end">
+            <img src="assets/images/notif.png" class="header-icon">
+            <img src="assets/images/logout.png" class="header-icon">
+          </div>
+        </div>
+        <!-- <div class="col-md-6 text-right">
+                          <button class="color-button" data-toggle="modal" data-target="#myModal">Invite Users</button>
+                       </div> -->
+      </div>
+
+      <div class="overflow-div" style="height: 86vh;">
+
+
+
+
+        <ul class="nav nav-tabs toggle-nav">
+          <li class="active">
+            <a data-toggle="tab" href="#home" class="toggle-header active show">Subscription Plans</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu1" (click)="allSubscriber()" class="toggle-header">All Subscribers</a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#menu2" class="toggle-header">Subscription History</a>
+          </li>
+        </ul>
+
+        <div class="container-fluid bg-white right-main-container">
+
+          <!--content start---->
+
+          <div class="bg-white">
+            <div class="tab-content">
+              <div id="home" class="tab-pane fade show active">
+                <div class="">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-12 px-4">
+                      <p class="subs-light-heading mb-0">All Plans</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 px-4 text-right mb-3">
+                      <button class="color-button" data-toggle="modal" data-target="#CreatePlan">Create new
+                        plan</button>
+                    </div>
+                    <div class="col-md-12 px-4 mb-2" *ngFor="let plan of plans;">
+                      <div class="d-flex justify-content-around shadow-box py-3">
+                        <div class="trial-section">
+                          <p class="subs-bold-text">{{plan.planName}}</p>
+                        </div>
+                        <div>
+                          <p class="subs-bold-text">${{plan.planPrice}} <span class="subs-month p-0 m-0"> /month</span>
+                          </p>
+                        </div>
+                        <div>
+                          <p class="subs-para-light">For most of the business that<br> want to optimize web queries</p>
+                        </div>
+                        <div>
+                          <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
+                                class="px-2 mb-1"></span>{{plan.configration.dataUsage}} Data</p>
+                          <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
+                        </div>
+                        <div>
+                          <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
+                        </div>
+                        <div class="d-flex mt-auto mb-auto">
+                          <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
+                            data-target="#EditPlan">Edit</button>
+                        </div>
+                      </div>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+              <!--second tab---->
+              <div id="menu1" class="tab-pane fade">
+                <div class="">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                      <div class="dataTables_length dataTables_length1 d-flex" id="example_length">
+                        <label class="d-flex">
+                          <p class="pt-1 registerd-user">SortBy:</p> <select name="example_length"
+                            aria-controls="example"
+                            class="custom-select custom-select-sm form-control form-control-sm head-select-div">
+                            <option value="10">All users</option>
+                            <option value="25">Trial Plan</option>
+                            <option value="50">Subscribe Plan</option>
+                          </select>
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <table id="example" class="table table-striped" style="width:100%">
+
+                  <thead>
+                    <tr class="admin_table table-style table-style-subscription">
+                      <th style="padding-left: 6%;">Name</th>
+                      <th>Email Address</th>
+                      <th>Subscription Plan</th>
+                      <th>Subscription Date</th>
+                      <!-- <th>Expiry Date</th> -->
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="admin_table table-style table-style-subscription-head"
+                      *ngFor="let subscriber of isSubscriptionHistory;">
+                      <td>
+                        <div class="d-flex align-items-center table-image-div h-100 sec">
+                          <img class="pro_icon1" src="assets/images/contact_person.png">
+                          <p class="mb-0">{{subscriber.fullName}}</p>
+                        </div>
+                      </td>
+                      <td>
+                        <p>{{subscriber.email}}</p>
+                      </td>
+                      <td>
+                        <p>{{subscriber.Subscription_Plan}}</p>
+                      </td>
+                      <td>
+                        <p>{{subscriber.Subscription_Date | date}}</p>
+                      </td>
+                      <!-- <td><p>01-01-2020</p></td> -->
+                      <td>
+                        <p class="status-text" *ngIf=subscriber.userId.subscriptionHistory[0].isActive>
+                          {{subscriber.Status}}</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!--3rd content start-------->
+
+
+              <div id="menu2" class="tab-pane fade">
+                <div class="">
+                  <div class="row">
+                    <div class="col-sm-12 col-md-6 py-2">
+                      <div class="d-flex">
+                        <button class="color-button mr-4 ">Active</button>
+                        <button class="white-button">Expired</button>
+
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <table id="example" class="table table-striped" style="width:100%">
+
+                  <thead>
+                    <tr class="admin_table table-style">
+                      <th style="padding-left: 5%;">Name & Email Address</th>
+                      <th>Subscription Plan</th>
+                      <th>Subscription Date</th>
+                      <!-- <th>Expiry Date</th> -->
+                      <th>Price</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr class="admin_table table-style table-style-subscription-head"
+                      *ngFor="let item of isSubscriptionHistory;">
+                      <td>
+                        <div class="d-flex align-items-center table-image-div">
+                          <img class="pro_icon1" src="assets/images/contact_person.png">
+                          <div class="pl-4 pt-2">
+                            <p class="subscriber-name mb-0">{{item.fullName}} </p>
+                            <p class="subscriber-email">{{item.email}}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <p>{{item.Subscription_Plan}}</p>
+                      </td>
+                      <td>
+                        <p>{{item.Subscription_Date | date}}</p>
+                      </td>
+                      <!-- <td><p>{{subscriber.createdAt}}</p></td> -->
+                      <td>
+                        <p>${{item.Price}}.00</p>
+                      </td>
+                      <td>
+                        <p class="status-text purple">Active</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+      <!--overflow div ends---->
+
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- The Modal -->
+<div class="modal" id="CreatePlan">
+  <div class="modal-dialog">
+    <div class="modal-content  curved p-3" style="width: 88%;margin-top: -18%;">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <p class="Modal-heading">Create New Plan</p>
+        <button type="button" class="modal-close" data-dismiss="modal">close</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="form_login w-100" (ngSubmit)="savePlan()">
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Plan Name</p>
+              <div class="form-group dash-form">
+                <input type="name" name="planName" class="form_login_n1 dash-form-input" placeholder="Plan Name"
+                  [(ngModel)]="planName" />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Plan Price</p>
+              <div class="form-group dash-form">
+                <input type="name" name="plan price" class="form_login_n1 dash-form-input" placeholder="Plan Price"
+                  [(ngModel)]="planPrice" />
+              </div>
+            </div>
+            <div class="col">
+              <p class="plan-form-label">Plan Duration</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="duration"
+                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">Choose Subscriptions</option>
+                  <option value="30">30 Days</option>
+                  <option value="60">60 Days</option>
+                  <option value="90">90 Days</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Plan Description</p>
+              <div class="form-group dash-form">
+                <input type="text" name=description class="form_login_n1 dash-form-input" placeholder=""
+                  style="height: 100px !important;" [(ngModel)]="description" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Data Usage</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="dataUsage"
+                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">choose option</option>
+                  <option value="1">1 GB</option>
+                  <option value="10">10 GB</option>
+                  <option value="15">15 GB</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <p class="plan-form-label">Subject Usage</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="subjectUsage"
+                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">choose subject</option>
+                  <option value="10">10 Subjects</option>
+                  <option value="20">20 Subjects</option>
+                  <option value="100">100 Subjects</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <p class="plan-form-label">Note Usage</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="noteUsage"
+                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">Choose an option</option>
+                  <option value="100">100 Notes</option>
+                  <option value="500">500 Notes</option>
+                  <option value="1000">1000 Notes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group text-center">
+            <button class="color-button" type="submit">Save Plan</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- The Modal -->
+<div class="modal" id="EditPlan">
+  <div class="modal-dialog">
+    <div class="modal-content  curved p-3" style="width: 88%;margin-top: -18%;">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <p class="Modal-heading">Edit Plan</p>
+        <button type="button" class="modal-close" (click)="close()">close</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form class="form_login w-100" (ngSubmit)="update()">
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Plan Name</p>
+              <div class="form-group dash-form">
+                <input type="name" name="plan name" class="form_login_n1 dash-form-input" [(ngModel)]="planName"
+                  placeholder="Plan Name" />
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Plan Price{{planPrice}}</p>
+              <div class="form-group dash-form">
+                <input type="name" name="plan price" class="form_login_n1 dash-form-input" [(ngModel)]="planPrice"
+                  placeholder="Plan Price" />
+              </div>
+            </div>
+            <div class="col">
+              <p class="plan-form-label">Plan Duration</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
+                  style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">{{planDuration}}</option>
+                  <option value="">Monthly</option>
+                  <option value="">Quarterly</option>
+                  <option value="">Yearly</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Plan Description</p>
+              <div class="form-group dash-form">
+                <input type="text" class="form_login_n1 dash-form-input" name="description" placeholder=""
+                  style="height: 100px !important;" [(ngModel)]="description" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col">
+              <p class="plan-form-label">Data Usage</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
+                  style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">{{dataUsage}}</option>
+
+                  <option value="">1 GB</option>
+                  <option value="">10 GB</option>
+                  <option value="">15 GB</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <p class="plan-form-label">Subject Usage</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
+                  style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">{{subjectUsage}}</option>
+                  <option value="">100</option>
+                  <option value="">1000</option>
+                  <option value="">15000</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <p class="plan-form-label">Note Usage</p>
+              <div class="form-group dash-form">
+                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
+                  style="border: 1px solid #979797; box-shadow: none;">
+                  <option value="">{{noteUsage}}</option>
+                  <option value="">100</option>
+                  <option value="">1000</option>
+                  <option value="">10000</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group text-center">
+            <button class="color-button" type="submit">Save Plan</button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
