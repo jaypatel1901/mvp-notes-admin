@@ -10,12 +10,12 @@ const routes: Routes = [
   },
 
   {
-    path: '',
+    path: 'login',
     loadChildren: () => import('./auth/auth.module')
       .then(m => m.AuthModule),
   },
   {
-    path: '',
+    path: '**',
     redirectTo: 'login',
     pathMatch: 'full',
   }

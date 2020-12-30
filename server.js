@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/dist/adminpanel'));
 
 // Send all requests to index.html
 console.log("im here")
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/dist/adminpanel/index.html'));
 });
 
