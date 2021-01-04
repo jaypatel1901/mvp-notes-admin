@@ -810,6 +810,8 @@ input.form_login_n1:focus {
 .user-toggle-div{
     background-color: #f7f7f7;
     border-radius: 20px;
+    width: 280px;
+    padding-left: 56px;
 }
 .user-toggle-div>p{
         font-size: 10px;

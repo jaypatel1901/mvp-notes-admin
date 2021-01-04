@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   List = []
   p: number = 1;
   filter = ''
-  isDetails = false
+  isDetails = true
   Registered:string
   constructor(private commonService: CommonService) {
 
@@ -44,13 +44,16 @@ export class UsersComponent implements OnInit {
         this.userList = data.result
         this.Registered =data.result.length
         this.List = data.result
-        console.log("Registered",this.Registered)
       } else {
         this.error = data.message
         alert(this.error)
       }
     })
   }
+  changeDetails(){
+    this.isDetails = !this.isDetails
+  }
+
   deleteUser(id) {
     alert(id)
     this.commonService.delete('deleteUser', id).subscribe((data: any) => {

@@ -117,12 +117,13 @@
                     <div class="col-sm-12 col-md-6">
                       <div class="dataTables_length dataTables_length1 d-flex" id="example_length">
                         <label class="d-flex">
-                          <p class="pt-1 registerd-user">SortBy:</p> <select name="example_length"
+                          <p class="pt-1 registerd-user">SortBy:</p>
+                           <select name="example_length"
                             aria-controls="example"
+                            (change)="onChange($event)"
                             class="custom-select custom-select-sm form-control form-control-sm head-select-div">
-                            <option value="10">All users</option>
-                            <option value="25">Trial Plan</option>
-                            <option value="50">Subscribe Plan</option>
+                            <option value="All users">All users</option>
+                            <option *ngFor='let item of planList'  value={{item.planName}}>{{item.planName}}</option>
                           </select>
                         </label>
                       </div>
@@ -145,8 +146,9 @@
                   </thead>
                   <tbody>
                     <tr class="admin_table table-style table-style-subscription-head"
-                      *ngFor="let subscriber of isSubscriptionHistory;">
+                      *ngFor="let subscriber of isSubscriptionHistory | paginate: { itemsPerPage: 5, currentPage: p }">
                       <td>
+                        <!-- {{console.log(item)}} -->
                         <div class="d-flex align-items-center table-image-div h-100 sec">
                           <img class="pro_icon1" src="assets/images/contact_person.png">
                           <p class="mb-0">{{subscriber.fullName}}</p>
@@ -163,12 +165,14 @@
                       </td>
                       <!-- <td><p>01-01-2020</p></td> -->
                       <td>
-                        <p class="status-text" *ngIf=subscriber.userId.subscriptionHistory[0].isActive>
-                          {{subscriber.Status}}</p>
+                        <!-- <p class="status-text" *ngIf=subscriber.userId.subscriptionHistory[0].isActive>-->
+                          {{subscriber.Status}}
                       </td>
                     </tr>
                   </tbody>
                 </table>
+                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
               </div>
 
               <!--3rd content start-------->
@@ -179,32 +183,28 @@
                   <div class="row">
                     <div class="col-sm-12 col-md-6 py-2">
                       <div class="d-flex">
-                        <button class="color-button mr-4 ">Active</button>
-                        <button class="white-button">Expired</button>
-
+                        <button class="my-class" [ngClass]="isStatus ? 'success' : 'danger'" (click)="onActive()" >Active</button>
+                        <button class="white-button" [ngClass]="isStatus ? 'success' : 'danger'" (click)="onExpired()">Expired</button>
+                        <button class="white-button" (click)="onAllHisotry()">All History</button>
 
                       </div>
                     </div>
-
                   </div>
                 </div>
-
                 <table id="example" class="table table-striped" style="width:100%">
-
-                  <thead>
+                 <thead>
                     <tr class="admin_table table-style">
                       <th style="padding-left: 5%;">Name & Email Address</th>
                       <th>Subscription Plan</th>
                       <th>Subscription Date</th>
-                      <!-- <th>Expiry Date</th> -->
+                      <th>Expiry Date</th>
                       <th>Price</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
-
                     <tr class="admin_table table-style table-style-subscription-head"
-                      *ngFor="let item of isSubscriptionHistory;">
+                      *ngFor="let item of SubscriptionHistoryList | paginate: { itemsPerPage: 5, currentPage: p } ">
                       <td>
                         <div class="d-flex align-items-center table-image-div">
                           <img class="pro_icon1" src="assets/images/contact_person.png">
@@ -218,31 +218,25 @@
                         <p>{{item.Subscription_Plan}}</p>
                       </td>
                       <td>
-                        <p>{{item.Subscription_Date | date}}</p>
+                        <p>{{item.date | date}}</p>
                       </td>
-                      <!-- <td><p>{{subscriber.createdAt}}</p></td> -->
+                      <td><p>{{item.Expiry_Date | date}}</p></td>
                       <td>
                         <p>${{item.Price}}.00</p>
                       </td>
                       <td>
-                        <p class="status-text purple">Active</p>
+                        <p class="status-text purple">{{item.Status}}</p>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
           </div>
         </div>
-
-
-
-
-
       </div>
       <!--overflow div ends---->
-
-
     </div>
   </div>
 </div>
@@ -450,14 +444,13 @@
               </div>
             </div>
           </div>
-
-
           <div class="form-group text-center">
             <button class="color-button" type="submit">Save Plan</button>
-
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+

@@ -23,12 +23,21 @@ export class SubscriptionComponent implements OnInit {
   description:string
   subscriptionHistory:any;
   isSubscriptionHistory:any=[]
+  planList:any=[]
+  filter = 'All users'
+  isSubHistory:any=[]
+  p: number = 1;
+  SubscriptionHistoryList:any=[]
+  isSubscriptionHistoryList:any=[]
+  isStatus: boolean = false;
   constructor(private commonService: CommonService,private _router: Router,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getPlans();
     this.allSubscriber()
     this.getsubscriptionHistory()
+    this.getSubscriptionPlanList()
+    this.getSubscriptionHistory()
   }
 
   getPlans(){
@@ -43,6 +52,7 @@ export class SubscriptionComponent implements OnInit {
     })
 
   }
+  
 
   editplan(id){
     this.planId=id;
@@ -148,14 +158,62 @@ export class SubscriptionComponent implements OnInit {
   }
 
   getsubscriptionHistory(){
-    this.commonService.get(`getsubscriptionHistory`).subscribe((data: any)=>{
+    this.commonService.get(`getSubscribers`).subscribe((data: any)=>{
       if(data.data.length>0){
-        this.isSubscriptionHistory=data.data
-        console.log(this.isSubscriptionHistory)
-      }else{
+        this.isSubHistory=data.data
+        this.isSubscriptionHistory =this.isSubHistory
+          }else{
         this.isSubscriptionHistory=[]
       }
     })
   }
+  onChange(event) {
+    this.isSubscriptionHistory = []
+    this.filter = event.target.value
+    this.isSubHistory.map((item, index) => {
+      if (item.Subscription_Plan === this.filter) {
+        this.isSubscriptionHistory.push(item)
+      }
+      if (this.filter === 'All users') {
+        this.isSubscriptionHistory = this.isSubHistory
+      }
+    })
+  }
+  getSubscriptionPlanList() {
+    this.commonService.get('getSubscriptionPlan').subscribe((data: any) => {
+      if (data.status == 200) {
+        this.planList = data.result
+      } else {
+        alert(data.message)
+      }
+    })
+  }
+  getSubscriptionHistory  () {
+    this.commonService.get('getSubscriptionHistory').subscribe((data: any) => {
+      if (data.status == 200) {
+        this.SubscriptionHistoryList=data.data
+        this.isSubscriptionHistoryList=data.data
+      } else {
+        alert(data.message)
+      }
+    })
+  }
+  onActive(){   
+     this.isStatus = !this.isStatus;       
 
+   this.SubscriptionHistoryList=[]
+    const result = this.isSubscriptionHistoryList.filter(item => item.Status==='Active');
+    console.log("result",result)
+    this.SubscriptionHistoryList=result
+  }
+  onExpired(){
+   this.SubscriptionHistoryList=[]
+    const result = this.isSubscriptionHistoryList.filter(item => item.Status==='Expired');
+    console.log("result",result)
+    this.SubscriptionHistoryList=result
+  }
+  onAllHisotry(){
+    this.SubscriptionHistoryList=[]
+    this.SubscriptionHistoryList=this.isSubscriptionHistoryList
+  }
 }

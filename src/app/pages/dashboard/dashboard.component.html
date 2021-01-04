@@ -89,11 +89,13 @@
                       <p class="text_head">Total Subscriptions</p>
                       <p class="chart_subhead">01 October, 2020</p>
 
-                      <div style="position: relative; width: 100%;">
-                        <canvas baseChart [datasets]="lineChartData" [labels]="barChartLabels"
+                      <div style="position: relative; width: 100%; height: 227px !important;">
+                        <!-- <div style="display: block;"> -->
+                        <canvas baseChart [datasets]="lineChartData" [labels]="barChartLabels" style='height: 227px  !important'
                           [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
                           [colors]="lineChartColors" [chartType]="lineChartType">
                         </canvas>
+                        <!-- </div> -->
                       </div>
                       <script language="JavaScript">
                         function drawChart() {
@@ -382,24 +384,28 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="form_login w-100">
+        <form [formGroup]="invitationForm"  class="form_login w-100">
           <div class="form-group dash-form">
-            <input type="name" class="form_login_n dash-form-input" placeholder="Username"
-              [(ngModel)]='username' />{{username}}
-            <div class="alert- mt-2"></div>
+            <input formControlName="username" type="name" class="form_login_n dash-form-input" placeholder="Username"
+               /> 
+            <div  *ngIf='invitationFormError.username' class="alert- mt-2">{{invitationFormError.username}}</div>
           </div>
           <div class="form-group dash-form">
-            <input [(ngModel)]='email' type="email" class="form_login_n dash-form-input"
+            <input formControlName="email"  type="email" class="form_login_n dash-form-input"
               placeholder="User Email Address" />
+              <div  *ngIf='invitationFormError.email' class="alert- mt-2">{{invitationFormError.email}}</div>
+
           </div>
           <div class="form-group dash-form">
-            <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose">
-              <option value="">Choose Subscriptions</option>
-              <option *ngFor='let item of planList' value='item._id'>{{item.planName}}</option>
+            <select formControlName="subscriptionId"  id="Choose Subscriptions" name="Subscriptions" class="popup-choose">
+              <option value=''>Choose Subscriptions</option>
+              <option *ngFor='let item of planList'  value={{item._id}}>{{item.planName}}</option>
             </select>
+            <div  *ngIf='invitationFormError.subscriptionId' class="alert- mt-2">{{invitationFormError.subscriptionId}}</div>
+
           </div>
           <div class="form-group">
-            <button class="color-button" type="submit" (click)="onSendInvitation()">Send Invitation</button>
+            <button class="color-button" type="submit" [disabled]='invitationForm.invalid' (click)="onSendInvitation()">Send Invitation</button>
           </div>
         </form>
       </div>

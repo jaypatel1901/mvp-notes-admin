@@ -54,8 +54,7 @@
                     <div class="dataTables_length dataTables_length1 d-flex m-auto" id="example_length">
                       <label class="d-flex mb-0">
                         <p class=" pt-2 registerd-user mb-0">SortBy:</p>
-                        <select name="example_length" aria-controls="example"
-                        (change)="onChange($event)"
+                        <select name="example_length" aria-controls="example" (change)="onChange($event)"
                           class="custom-select custom-select-sm form-control form-control-sm head-select-div">
                           <option value="All users" class="head-option">All users</option>
                           <option value="Trial Plan" class="head-option">Trial Plan</option>
@@ -70,7 +69,8 @@
                   <div class="col-sm-12 col-md-6 d-flex justify-content-end position-relative" style="top: -7px">
 
                     <button class="color-button" data-toggle="modal" data-target="#myModal">Invite Users</button>
-                    <p class="registerd-user pl-3 position-relative" style="top: 10px;">{{Registered}} Registered Users</p>
+                    <p class="registerd-user pl-3 position-relative" style="top: 10px;">{{Registered}} Registered Users
+                    </p>
 
                   </div>
                 </div>
@@ -85,7 +85,6 @@
                 <div class="modal-dialog" role="document">
                   <div class="modal-content p-4 ">
                     <div class="modal-header">
-
                       <h1 class="head_top-custoimer head_top-custoimer head_top-custoimer1" id="exampleModalLabel">
                         Invite New User</h1>
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -156,7 +155,10 @@
                 </thead>
                 <tbody>
 
-                  <tr *ngFor='let item of userList | paginate: { itemsPerPage: 5, currentPage: p }' class="admin_table table-style table-style-subscription-head">
+                  <tr *ngFor='let item of userList | paginate: { itemsPerPage: 5, currentPage: p }'
+                    class="admin_table table-style table-style-subscription-head">
+                    <!-- <div *ngIf="isDetails;else other_content"> -->
+
                     <td>
                       <div class="d-flex align-items-center table-image-div h-100">
                         <img class="pro_icon1" src="assets/images/contact_person.png">
@@ -166,94 +168,123 @@
                     <td>
                       <p>{{item.email}}</p>
                     </td>
-                    <td><button class="gold-subscription" data-toggle="modal" data-target="#SubscriptionModal">{{item.subscriptionHistory[0].subscriptionId.planName}}</button></td>
+                    <td><button class="gold-subscription" data-toggle="modal"
+                        data-target="#SubscriptionModal">{{item.subscriptionHistory[0].subscriptionId.planName}}</button>
+                    </td>
                     <td>
                       <p>{{item.subscriptionHistory[0].date | date}}</p>
                     </td>
                     <td>
                       <p>{{item.subscriptionHistory[0].expiryDate |date}}</p>
                     </td>
-                    <td>
-                      <div class="d-flex p-0 m-0">
-                        <div class="right-icon">
-                          <a href="user-detailed-screen.html"><img src="assets/images/Group 2892.png"></a>
-                        </div>
-                        <div class=" right-icon" (click)="deleteUser(item._id)">
+                    <!-- </div> -->
 
-                          <img src="assets/images/Group 2893.png">
+                      <td>
+                        <div class="d-flex p-0 m-0">
+                          <div (click)="changeDetails()" class="right-icon">
+                            <img src="assets/images/Group 2892.png">
+                          </div>
+                          <div class=" right-icon" (click)="deleteUser(item._id)">
+
+                            <img src="assets/images/Group 2893.png">
+                          </div>
+                        </div>
+                      </td>
+                      <br/>
+<!-- <div>
+hello
+</div> -->
+                      
+                    <!--  -->
+                  </tr>
+                  <tr *ngIf='isDetails===false'>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
+                            class="user-toggle-img"></button>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
                         </div>
                       </div>
                     </td>
-<!--
                     <td>
                       <div class="d-flex align-items-center">
-                      <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png" class="user-toggle-img"></button>
-                      <div class="user-toggle-div">
-                        <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
                       </div>
-                    </div>
                     </td>
                     <td>
                       <div class="d-flex align-items-center">
-                      <div class="user-toggle-div">
-                        <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
                       </div>
-                    </div>
                     </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                      <div class="user-toggle-div">
-                        <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                      <td>
+                      <div class="d-flex justify-content-between w-75">
+                        <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
+                            class="user-toggle-img"></button>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
                       </div>
-                    </div>
-                    </td> -->
-                    <!--  -->
-
-                    <!--  -->
+                    </td>
                   </tr>
                 </tbody>
               </table>
+
+              
+
+
             </div>
 
           </div>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
 
-        <!-- The Modal -->
-        <div class="modal" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content  curved p-3" style="width: 88%;">
+          <!-- The Modal -->
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content  curved p-3" style="width: 88%;">
 
-              <!-- Modal Header -->
-              <div class="modal-header">
-                <p class="profile-name">Invite New User</p>
-                <button type="button" class="modal-close" data-dismiss="modal">close</button>
-              </div>
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <p class="profile-name">Invite New User</p>
+                  <button type="button" class="modal-close" data-dismiss="modal">close</button>
+                </div>
 
-              <!-- Modal body -->
-              <div class="modal-body">
-                <form class="form_login w-100">
-                  <div class="form-group dash-form">
-                    <input type="name" class="form_login_n dash-form-input" formControlName="name"
-                      placeholder="Username" />
-                    <div class="alert- mt-2"></div>
-                  </div>
-                  <div class="form-group dash-form">
-                    <input type="email" class="form_login_n dash-form-input" placeholder="User Email Address"
-                      formControlName="email" />
-                  </div>
-                  <div class="form-group dash-form">
-                    <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose">
-                      <option value="">Choose Subscriptions</option>
-                      <option value=""></option>
-                      <option value=""></option>
-                      <option value=""></option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <button class="color-button" type="submit">Send Invitation</button>
-                  </div>
-                </form>
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form class="form_login w-100">
+                    <div class="form-group dash-form">
+                      <input type="name" class="form_login_n dash-form-input" formControlName="name"
+                        placeholder="Username" />
+                      <div class="alert- mt-2"></div>
+                    </div>
+                    <div class="form-group dash-form">
+                      <input type="email" class="form_login_n dash-form-input" placeholder="User Email Address"
+                        formControlName="email" />
+                    </div>
+                    <div class="form-group dash-form">
+                      <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose">
+                        <option value="">Choose Subscriptions</option>
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <button class="color-button" type="submit">Send Invitation</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -261,225 +292,224 @@
       </div>
     </div>
   </div>
-</div>
 
 
-<!--subscription model----------->
-<!-- Modal -->
-<div class="modal fade" id="SubscriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog1" role="document">
-    <div class="modal-content modal-content2 p-2 " style="margin-top: -9%;">
+  <!--subscription model----------->
+  <!-- Modal -->
+  <div class="modal fade" id="SubscriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog1" role="document">
+      <div class="modal-content modal-content2 p-2 " style="margin-top: -9%;">
 
-      <div class="modal-header">
-        <p class="profile-name">Subscription History</p>
-        <button type="button" class="modal-close" data-dismiss="modal">close</button>
-      </div>
+        <div class="modal-header">
+          <p class="profile-name">Subscription History</p>
+          <button type="button" class="modal-close" data-dismiss="modal">close</button>
+        </div>
 
-      <div class="modal-body pt-0">
-        <!--modal body start--->
+        <div class="modal-body pt-0">
+          <!--modal body start--->
 
-        <table id="example" class="table table-striped" style="width:100%">
+          <table id="example" class="table table-striped" style="width:100%">
 
-          <thead>
-            <tr class="admin_table table-style table-style-subscription table-style1">
-              <th>Name & Email Address</th>
-              <th>Subscription Plan</th>
-              <th>Subscription Date</th>
-              <th>Expiry Date</th>
-              <th>Price</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-primary">Active</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-            <tr class="admin_table table-style table-style1">
-              <td>
-                <div class="d-flex align-items-center table-image-div">
-                  <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">Eugene Vyborov</p>
-                </div>
-              </td>
-              <td>
-                <p>Gold Subscription</p>
-              </td>
-              <td>
-                <p>01-01-2020</p>
-              </td>
-              <td>
-                <p>31-12-2020</p>
-              </td>
-              <td>
-                <p>$199.00</p>
-              </td>
-              <td>
-                <p class="text-danger">Expired</p>
-              </td>
-            </tr>
-
-
-          </tbody>
-        </table>
+            <thead>
+              <tr class="admin_table table-style table-style-subscription table-style1">
+                <th>Name & Email Address</th>
+                <th>Subscription Plan</th>
+                <th>Subscription Date</th>
+                <th>Expiry Date</th>
+                <th>Price</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-primary">Active</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
+              <tr class="admin_table table-style table-style1">
+                <td>
+                  <div class="d-flex align-items-center table-image-div">
+                    <img class="pro_icon1" src="assets/images/contact_person.png">
+                    <p class="mb-0">Eugene Vyborov</p>
+                  </div>
+                </td>
+                <td>
+                  <p>Gold Subscription</p>
+                </td>
+                <td>
+                  <p>01-01-2020</p>
+                </td>
+                <td>
+                  <p>31-12-2020</p>
+                </td>
+                <td>
+                  <p>$199.00</p>
+                </td>
+                <td>
+                  <p class="text-danger">Expired</p>
+                </td>
+              </tr>
 
 
-        <!--modal body ends--->
+            </tbody>
+          </table>
+
+
+          <!--modal body ends--->
