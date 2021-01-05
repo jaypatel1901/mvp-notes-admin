@@ -150,6 +150,9 @@
                     <th>Subscription Plan</th>
                     <th>Subscription Date</th>
                     <th>Expiry Date</th>
+                    <th>Data Usage</th>
+                    <th>Note Usage</th>
+                    <th>Subject Usage</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -177,31 +180,12 @@
                     <td>
                       <p>{{item.subscriptionHistory[0].expiryDate |date}}</p>
                     </td>
-                    <!-- </div> -->
 
-                      <td>
-                        <div class="d-flex p-0 m-0">
-                          <div (click)="changeDetails()" class="right-icon">
-                            <img src="assets/images/Group 2892.png">
-                          </div>
-                          <div class=" right-icon" (click)="deleteUser(item._id)">
-
-                            <img src="assets/images/Group 2893.png">
-                          </div>
-                        </div>
-                      </td>
-                      <br/>
-<!-- <div>
-hello
-</div> -->
-                      
-                    <!--  -->
-                  </tr>
-                  <tr *ngIf='isDetails===false'>
+                  
                     <td>
                       <div class="d-flex align-items-center">
-                        <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
-                            class="user-toggle-img"></button>
+                        <!-- <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
+                            class="user-toggle-img"></button> -->
                         <div class="user-toggle-div">
                           <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
                         </div>
@@ -221,18 +205,13 @@ hello
                         </div>
                       </div>
                     </td>
-                      <td>
-                      <div class="d-flex justify-content-between w-75">
-                        <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
-                            class="user-toggle-img"></button>
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                    <td>
+                      <div class="d-flex p-0 m-0">
+                        <!-- <div (click)="changeDetails()" class="right-icon">
+                          <img src="assets/images/Group 2892.png">
+                        </div> -->
+                        <div class=" right-icon" (click)="deleteUser(item._id)">
+                          <img src="assets/images/Group 2893.png">
                         </div>
                       </div>
                     </td>

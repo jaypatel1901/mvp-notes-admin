@@ -4,11 +4,13 @@ import { Label, Color } from 'ng2-charts';
 import { CommonService } from '../../core/services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit {
+  
   error: any;
   invitationFormError = {
     "username": '',
@@ -26,6 +28,11 @@ export class DashboardComponent implements OnInit {
   isSilver_Plan: any = []
   isTrial_Plan: any = []
   subscriptionSales: any = {}
+  RecentTransactionsList:any=[]
+  isSubscribers:any=[]
+  filter=''
+  isTotalUsage ={}
+  TotalEngagementRate:number=0
   // paymentData:any =[]
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -76,6 +83,9 @@ export class DashboardComponent implements OnInit {
     this.saleReportChart()
     this.getSubscriptionReportChart()
     this.SubscriptionsaleReportChart()
+    this.getRecentTransactions()
+    this.getSubscribers()
+    this.getTotalEngagementRate()
   }
   inviationvalidationMessages = {
     'username': {
@@ -137,13 +147,12 @@ export class DashboardComponent implements OnInit {
       if (data.status == 200) {
         // this.userList = data.result
         console.log("user inviatation",data)
-        alert(data.message)
+        // alert(data.message)
       } else {
         // this.error = data.message
         alert(data.message)
       }
     })
-
   }
   getUSerlist() {
     this.commonService.get('getsubscriptionUser').subscribe((data: any) => {
@@ -159,9 +168,26 @@ export class DashboardComponent implements OnInit {
     this.commonService.get('getUsageStatistics').subscribe((data: any) => {
       if (data.status == 200) {
         this.totalUsage = data.data
-      } else {
+        this.totalUsage.map((item,i)=>{
+          if(item.lable ==="totaldata"){
+            this.isTotalUsage = item
+          }
+        })
+             } else {
         this.error = data.message
         alert(this.error)
+      }
+    })
+  }
+  onChange(event){
+    this.isTotalUsage = {}
+    this.filter = event.target.value
+    this.totalUsage.map((item, index) => {
+      if (item.lable=== this.filter) {
+        this.isTotalUsage =item
+      }
+      if (this.filter === 'totaldata') {
+        this.isTotalUsage =item
       }
     })
   }
@@ -218,11 +244,41 @@ export class DashboardComponent implements OnInit {
     this.commonService.get('subscriptionReport_data').subscribe((data: any) => {
       if (data.status == 200) {
         this.subscriptionSales = data.data
-        console.log("subscriptionSales", this.subscriptionSales)
       } else {
         this.error = data.message
         alert(this.error)
       }
     })
   }
+  getSubscribers(){
+    this.commonService.get(`getSubscribers`).subscribe((data: any)=>{
+      if(data.data.length>0){
+        this.isSubscribers=data.data
+          }else{
+        this.isSubscribers=[]
+      }
+    })
+  }
+  getRecentTransactions  () {
+    this.commonService.get('getSubscriptionHistory').subscribe((data: any) => {
+      if (data.status == 200) {
+        this.RecentTransactionsList=data.data
+      } else {
+        alert(data.message)
+      }
+    })
+  }
+  getTotalEngagementRate  () {
+    this.commonService.get('engagementRate').subscribe((data: any) => {
+      if (data.status == 200) {
+        this.TotalEngagementRate=data.data
+        console.log("TotalEngagementRate",data)
+      } else {
+        alert(data.message)
+      }
+    })
+  }
+
+
+  
 }

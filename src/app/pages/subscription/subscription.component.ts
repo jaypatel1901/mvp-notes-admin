@@ -27,15 +27,17 @@ export class SubscriptionComponent implements OnInit {
   filter = 'All users'
   isSubHistory:any=[]
   p: number = 1;
+  p1: number = 1;
   SubscriptionHistoryList:any=[]
   isSubscriptionHistoryList:any=[]
   isStatus: boolean = false;
+
   constructor(private commonService: CommonService,private _router: Router,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getPlans();
     this.allSubscriber()
-    this.getsubscriptionHistory()
+    this.getSubscribers()
     this.getSubscriptionPlanList()
     this.getSubscriptionHistory()
   }
@@ -44,13 +46,10 @@ export class SubscriptionComponent implements OnInit {
     this.commonService.get(`getSubscriptionPlan`).subscribe((data: any)=>{
       if(data.result.length>0){
         this.plans=data.result
-
       }else{
         this.plans=[];
       }
-
     })
-
   }
   
 
@@ -157,7 +156,7 @@ export class SubscriptionComponent implements OnInit {
     })
   }
 
-  getsubscriptionHistory(){
+  getSubscribers(){
     this.commonService.get(`getSubscribers`).subscribe((data: any)=>{
       if(data.data.length>0){
         this.isSubHistory=data.data
@@ -199,20 +198,24 @@ export class SubscriptionComponent implements OnInit {
     })
   }
   onActive(){   
-     this.isStatus = !this.isStatus;       
-
+  document.getElementById("activeButton").setAttribute('style','background-color :#009DE9 !important') 
    this.SubscriptionHistoryList=[]
     const result = this.isSubscriptionHistoryList.filter(item => item.Status==='Active');
-    console.log("result",result)
     this.SubscriptionHistoryList=result
   }
   onExpired(){
+    document.getElementById("activeButton").removeAttribute('style') 
+    document.getElementById("allButton").removeAttribute('style') 
+    document.getElementById("expiredButton").setAttribute('style','background-color :#009DE9 !important') 
+
    this.SubscriptionHistoryList=[]
     const result = this.isSubscriptionHistoryList.filter(item => item.Status==='Expired');
-    console.log("result",result)
     this.SubscriptionHistoryList=result
   }
   onAllHisotry(){
+    document.getElementById("activeButton").removeAttribute('style') 
+    document.getElementById("expiredButton").removeAttribute('style') 
+    document.getElementById("allButton").setAttribute('style','background-color :#009DE9 !important') 
     this.SubscriptionHistoryList=[]
     this.SubscriptionHistoryList=this.isSubscriptionHistoryList
   }

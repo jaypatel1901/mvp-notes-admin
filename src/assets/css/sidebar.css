@@ -57,8 +57,12 @@ a:focus {
 }
 
 #sidebar .sidebar-header {
-  padding: 20px;
+  padding: 5px 20px 20px 20px;
   background: transparent;
+ 
+}
+.sidebar-header img{
+  width:70%;
 }
 
 #sidebar ul.components {
@@ -68,6 +72,7 @@ a:focus {
 #sidebar ul p {
   color: #6b6b6b;
   padding: 10px;
+  cursor: pointer;
 }
 
 #sidebar ul li a {

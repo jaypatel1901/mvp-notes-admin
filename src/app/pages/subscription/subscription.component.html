@@ -43,7 +43,7 @@
                        </div> -->
       </div>
 
-      <div class="overflow-div" style="height: 86vh;">
+      <div class="overflow-div" style="height:auto;">
 
 
 
@@ -171,7 +171,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
               </div>
 
@@ -183,9 +183,9 @@
                   <div class="row">
                     <div class="col-sm-12 col-md-6 py-2">
                       <div class="d-flex">
-                        <button class="my-class" [ngClass]="isStatus ? 'success' : 'danger'" (click)="onActive()" >Active</button>
-                        <button class="white-button" [ngClass]="isStatus ? 'success' : 'danger'" (click)="onExpired()">Expired</button>
-                        <button class="white-button" (click)="onAllHisotry()">All History</button>
+                        <button class="white-button mr-3" id='activeButton' (click)="onActive()"  >Active</button>
+                        <button class="white-button mr-3" id='expiredButton' (click)="onExpired()">Expired</button>
+                        <button class="white-button" id='allButton' (click)="onAllHisotry()">All History</button>
 
                       </div>
                     </div>
@@ -230,8 +230,8 @@
                     </tr>
                   </tbody>
                 </table>
+                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
               </div>
-              <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
           </div>
         </div>

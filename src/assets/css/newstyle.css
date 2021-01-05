@@ -445,10 +445,16 @@ button:focus{
 	background: #009DE9;
 	font-weight: lighter;
 	color: white;
-	border-radius: 14px;
+	border-radius: 8px;
 	font-size: 12px;
 	padding: 10px 36px;
-	border:none;
+    border:none;
+    cursor: pointer;
+    transition: .2s;
+}
+.color-button:hover{
+    transform: scale(1.05);
+    transition: .2s;
 }
 .white-button{
     background: white;
@@ -477,8 +483,7 @@ button:focus{
 	line-height: 15px;
 }
 .profile-img{
-	width: 11%;
-	height:
+	width: 11%;:
 }
 .profile-name{
 	font-family: ProductSansBold;
@@ -497,7 +502,11 @@ button:focus{
 }
 
 .prof-icon{
-	width: 75%;
+    width: 95%;
+    margin-top: -10px;
+}
+.prof-icon:hover{
+    transform: scale(1.10);
 }
 .progress-bar{
 	background-color: #009DE9 !important;
@@ -670,6 +679,12 @@ border-radius: 5px;
     background: transparent;
     font-size: 10px;
     width: 145px;
+    background-image: url('../images/iconfinder_icon-111-search_314807.png');
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    background-size: 20px 20px;
+    padding-left: 40px;
+
 }
 .input_header1:focus{
     border: none;
@@ -696,6 +711,11 @@ border-radius: 5px;
     height: 31px;
     font-family: 'SF-Bold';
     font-weight: 300;
+    cursor: pointer;
+}
+.edit-button:hover{
+    transform: scale(1.05);
+    transition: .3s;
 }
 .Modal-heading{
     font-size: 22px;
@@ -882,7 +902,6 @@ transition: .5s;}
     border: none !Important;
     font-family: 'ProductSansBold' !important;
     background-color: transparent !Important;
-    color: !Important;
     font-size: 14px;
 }
 .noti-icon{
@@ -994,7 +1013,6 @@ font-family: 'SF-light';
  ul.list-unstyled.components li a{
     font-size: 13.5px !important;
     color: #979797;
-    font-family: ;
     text-decoration: none;
     font-weight: 600;
     transition: all 500ms ease 0s;
@@ -1023,6 +1041,7 @@ font-family: 'SF-light';
     border: none;
     padding: 12px 38px;
     background-color: transparent;
+
 }
 .input_header1:focus{
     box-shadow: 0px 0px 5px #0000001A;
@@ -1062,9 +1081,9 @@ font-family: 'SF-Bold';
 .table-style{
     background-color: white !Important;
 }
-.table-style>td{
+/* .table-style>td{
     background-color: ;
-}
+} */
 .table-style>td>p{
     font-family: 'SF-Light';
     padding:8px 0;
@@ -1214,6 +1233,11 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     color: #979797 !Important;
     border: 1px solid #E6E6E6 !important;
     background-color: white !Important;
+    cursor: pointer;
+ }
+ .white-button:hover{
+     transform: scale(1.05);
+     transition: .3s;
  }
  .edit-plan-text{
     font-weight: 600;
@@ -1384,7 +1408,7 @@ button:focus {
     font-family: 'ProductSansBold';
     padding-left: 14px !important;
 }
-}
+
 /*style items (options):*/
 .select-items {
   position: absolute;
@@ -1509,12 +1533,11 @@ button:focus {
   padding: 10px 15px;
   display: flex;
   vertical-align: baseline;
-  background:;
   transition: .3s ease;
 }
-.friend-drawer--grey {
+/* .friend-drawer--grey {
   background:;
-}
+} */
 .friend-drawer .text {
   margin-left: 12px;
   width: 70%;
@@ -1589,7 +1612,6 @@ button:focus {
 }
 
 .chat-box-tray {
-  background:;
   display: flex;
   align-items: baseline;
   padding: 10px 15px;
