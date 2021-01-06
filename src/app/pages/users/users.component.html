@@ -63,7 +63,6 @@
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6 d-flex justify-content-end position-relative" style="top: -7px">
-
                     <button class="color-button" data-toggle="modal" data-target="#myModal">Invite Users</button>
                     <p class="registerd-user pl-3 position-relative" style="top: 10px;">{{Registered}} Registered Users
                     </p>
@@ -89,47 +88,38 @@
                     </div>
                     <div class="modal-body pt-0">
                       <div class="modal-form-div">
-                        <form id="materialForm" class="form" action="">
-                          <div class="form-group form-group1 mt-0">
-                            <div class="col-xs-12">
-                              <label class="labels" for="Email"></label>
-                              <input type="text" class="formInput2 formInput1" id="Email" name="Email"
-                                placeholder="Name">
+                        <form [formGroup]="invitationForm" class="form_login w-100">
+                          <div class="form-group dash-form">
+                            <input formControlName="firstName" type="name" class="form_login_n dash-form-input"
+                              placeholder="First Name" />
+                            <div *ngIf='invitationFormError.firstName' class="alert- mt-2">{{invitationFormError.firstName}}</div>
+                          </div>
+                          <div class="form-group dash-form">
+                            <input formControlName="lastName" type="name" class="form_login_n dash-form-input"
+                              placeholder="Last Name" />
+                            <div *ngIf='invitationFormError.lastName' class="alert- mt-2">{{invitationFormError.lastName}}</div>
+                          </div>
+                          <div class="form-group dash-form">
+                            <input formControlName="email" type="email" class="form_login_n dash-form-input"
+                              placeholder="User Email Address" />
+                            <div *ngIf='invitationFormError.email' class="alert- mt-2">{{invitationFormError.email}}</div>
+                          </div>
+                          <div class="form-group dash-form">
+                            <select formControlName="subscriptionId" id="Choose Subscriptions" name="Subscriptions"
+                              class="popup-choose">
+                              <option value=''>Choose Subscriptions</option>
+                              <option *ngFor='let item of planList' value={{item._id}}>{{item.planName}}</option>
+                            </select>
+                            <div *ngIf='invitationFormError.subscriptionId' class="alert- mt-2">{{invitationFormError.subscriptionId}}
                             </div>
                           </div>
-                          <div class="form-group form-group1">
-                            <div class="col-xs-12">
-                              <label class="labels" for="Email"></label>
-                              <input type="email" class="formInput2 formInput1" id="Email" name="Email"
-                                placeholder="User Email Address">
-                            </div>
-                          </div>
-
-                          <div class="form-group form-group1">
-                            <div class="col-xs-12 select-div">
-                              <select id="inputState" class="form-control formInput2 formInput1">
-                                <option selected>Choose Subscriptions</option>
-                                <option>...</option>
-                              </select>
-                            </div>
-                          </div>
-                          <!--<div class="form-group form-group1">
-                        <div class="col-xs-12">
-                            <label class="labels" for="lastName"></label>
-                            <input type="password" class="formInput2 formInput1" id="Password" name="Password" placeholder="Password">
-                        </div>
-                    </div>
-                          -->
-                          <div class="form-group mt-4">
-                            <div class="col-md-6 p-0">
-                              <button type="button" class="btn_login small-button-text" id="submit">Add New
-                                User</button>
-                            </div>
+                          <div class="form-group">
+                            <button class="color-button" type="submit" [disabled]='invitationForm.invalid'
+                              (click)="onSendInvitation()">Send Invitation</button>
                           </div>
                         </form>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
