@@ -3,7 +3,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
 import { CommonService } from '../../core/services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,8 @@ export class DashboardComponent implements OnInit {
   
   error: any;
   invitationFormError = {
-    "username": '',
+    "firstName": '',
+    "lastName":'',
     "email": '',
     "subscriptionsId": ''
   }
@@ -57,7 +58,7 @@ export class DashboardComponent implements OnInit {
       backgroundColor: '#009DE9',
     },
   ];
-  public barChartLabels: Label[] = ['Jan 2020', 'Feb 2020', 'Mar 2020', 'Apr 2020', 'May 2020', 'Jun 2020', 'Jul 2020', 'Aug 2020', 'Oct 2020', 'Nov 2020', 'Dec 2020'];
+  public barChartLabels: Label[] = ['Jan 2021', 'Feb 2021', 'Mar 2021', 'Apr 2021', 'May 2021', 'Jun 2021', 'Jul 2021', 'Aug 2021', 'Oct 2021', 'Nov 2021', 'Dec 2021'];
   public barChartType: ChartType = 'bar';
   public lineChartType: ChartType = 'line';
   public barChartLegend = true;
@@ -71,7 +72,7 @@ export class DashboardComponent implements OnInit {
     // { data: [], label: 'Silver Plan' },
     // { data: [], label: 'Trial Plan' },
   ];
-  constructor(private commonService: CommonService, private fb: FormBuilder) {
+  constructor(private commonService: CommonService, private fb: FormBuilder,private spinner: NgxSpinnerService) {
     this.createInvitation()
   }
 
@@ -88,8 +89,12 @@ export class DashboardComponent implements OnInit {
     this.getTotalEngagementRate()
   }
   inviationvalidationMessages = {
-    'username': {
-      'required': 'username is required',
+    'firstName': {
+      'required': 'First Name is required',
+      'minlength': 'minimum 3 characters required'
+    },
+    'lastName': {
+      'required': 'Last Name is required',
       'minlength': 'minimum 3 characters required'
     },
     'email': {
@@ -97,13 +102,14 @@ export class DashboardComponent implements OnInit {
       'pattern': 'email not in valid format'
     },
     'subscriptionId': {
-      'required': 'subscriptionId is required',
+      'required': 'subscription Plan is required',
     }
   }
   createInvitation() {
 
     this.invitationForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      firstName: ['', [Validators.required, Validators.minLength(3)]],
+      lastName: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
       subscriptionId: ['', [Validators.required]]
     })
@@ -115,7 +121,6 @@ export class DashboardComponent implements OnInit {
     const form = this.invitationForm;
     for (const field in this.invitationFormError) {
       if (this.invitationFormError.hasOwnProperty(field)) {
-        // clear previous error messages (if any)
         this.invitationFormError[field] = '';
         const control = form.get(field);
         if (control && control.dirty && !control.valid) {
@@ -137,19 +142,20 @@ export class DashboardComponent implements OnInit {
   }
 
   onSendInvitation() {
+    this.spinner.show();
     let userData = {
-      username: this.invitationForm.value.username,
+      firstName: this.invitationForm.value.firstName,
+      lastName: this.invitationForm.value.lastName,
       email: this.invitationForm.value.email,
       subscriptionId: this.invitationForm.value.subscriptionId
     }
     console.log("onSendInvitation", userData)
     this.commonService.post('invatationUser',userData).subscribe((data: any) => {
       if (data.status == 200) {
-        // this.userList = data.result
-        console.log("user inviatation",data)
-        // alert(data.message)
+        this.spinner.hide();
+        alert("Invitation sent successfully!")
       } else {
-        // this.error = data.message
+        this.spinner.hide();
         alert(data.message)
       }
     })
@@ -215,7 +221,10 @@ export class DashboardComponent implements OnInit {
     this.commonService.get('getsaleChart').subscribe((data: any) => {
       if (data.status == 200) {
         let newData = data.data
+      console.log("dataa in chart",newData)
         this.barChartData[0].data = newData.map(v => parseInt((v).toString()))
+        console.log("dataa in chart",this.barChartData)
+
       } else {
         this.error = data.message
         alert(this.error)
