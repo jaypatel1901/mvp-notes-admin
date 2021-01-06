@@ -39,6 +39,16 @@ button:focus
 {
     height: 75px;
 }
+:focus{
+    outline: none !important;
+}
+button:hover{
+    transform: scale(1.05);
+    transition: .2s;
+}
+button{
+    transition: .2s;
+}
 
 input.search_input {
     border: 1px solid var(--unnamed-color-2b50ed);
@@ -832,5 +842,50 @@ img.img_plus {
     margin-top: 9px;
     margin-right: 7px;
     cursor: pointer;
+}
+.sidebox-height{
+    min-height: 13vh;
+    transition: .2s;
+    cursor: pointer;
+}
+.sidebox-height1{
+    min-height: 29vh;
+    transition: .2s;
+    cursor: pointer;
+}
+.sidebox-height1:hover{
+    transform: scale(1.02);
+    transition: .2s;
+}
+.sidebox-height:hover{
+    transform: scale(1.02);
+    transition: .2s;
+}
+
+.side-dot{
+ width:7px !important;
+ height: 7px !important;
+ background-color: black !important;
+ border-radius: 50% !important;
+ position: relative !important;
+ top: -15px !important;
+ left: 170px !important;
+ display: none ;
+}
+#sidebar ul li.active > a >.side-dot{
+display: flex !important;
+margin-bottom: -10px !important;
+}
+
+li.active a span .side-dot{
+ display: block !important;
+}
+
+.table tbody+tbody{
+    border-top: none;
+}
+
+.slim-container{
+    width: 40%;
 }
 

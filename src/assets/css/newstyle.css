@@ -517,8 +517,8 @@ button:focus{
 }
 .blue-bg{
 	background-color: #e6f5fd;
-	border-top-left-radius: 40px;
-	border-bottom-left-radius: 40px;
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
 }
 
 .report-head{
@@ -851,6 +851,7 @@ input.form_login_n1:focus {
     border: none;
     background-color: transparent;
     transition: .2s;
+    cursor: pointer;
 }
 .trans-button:focus{
     border: none;
@@ -1116,6 +1117,7 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     padding-right: 10px;
 }
 
+
 .dataTables_length{
     display: none;
 }
@@ -1259,7 +1261,18 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
  }
  .right-icon>a>img{
     width: 80%;
+    transition:.2s;
+    
  }
+ .right-icon{
+    filter: brightness(90%);
+ }
+ .right-icon:hover{
+    transform: scale(1.05);
+    transition:.2s;
+    filter: brightness(100%);
+    cursor: pointer;
+}
  .checkbox-text{
     font-size: 12px;
     font-weight: 600;
@@ -1792,6 +1805,10 @@ transition: .4s;
 }
 .user-drop-menu li {
     padding: 4%;
+}
+
+.data-row{
+    transition: .2s;
 }
 
 

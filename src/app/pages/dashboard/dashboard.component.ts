@@ -192,9 +192,9 @@ export class DashboardComponent implements OnInit {
       if (item.lable=== this.filter) {
         this.isTotalUsage =item
       }
-      if (this.filter === 'totaldata') {
-        this.isTotalUsage =item
-      }
+      // if (this.filter === 'totaldata') {
+      //   this.isTotalUsage =item
+      // }
     })
   }
   getSubscriptionPlanList() {

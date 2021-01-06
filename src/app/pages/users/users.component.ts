@@ -2,12 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../../core/services/common.service';
 import { NgxPaginationModule } from 'ngx-pagination';
 
+import SlimSelect from 'slim-select'
+
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  showTr:boolean=false
   error: any;
   user: any;
   userList: any = []
@@ -16,25 +20,42 @@ export class UsersComponent implements OnInit {
   filter = ''
   isDetails = true
   Registered:string
+  planList:any=[]
   constructor(private commonService: CommonService) {
 
   }
 
   ngOnInit(): void {
     this.getUSerlist()
+    this.getSubscriptionPlanList()
+    new SlimSelect({
+      select: '#user-toggle',
+      showSearch: false,
+    })
+
   }
   onUserDetails = () => {
     this.isDetails = !this.isDetails
   }
-  onChange(event) {
+  onChange(filter) {
+    console.log('clicked',filter)
     this.userList = []
-    this.filter = event.target.value
+    this.filter = filter
     this.List.map((item, index) => {
       if (item.subscriptionHistory[0].subscriptionId.planName === this.filter) {
         this.userList.push(item)
       }
       if (this.filter === 'All users') {
         this.userList = this.List
+      }
+    })
+  }
+  getSubscriptionPlanList() {
+    this.commonService.get('getSubscriptionPlan').subscribe((data: any) => {
+      if (data.status == 200) {
+        this.planList = data.result
+      } else {
+        alert(data.message)
       }
     })
   }
@@ -52,6 +73,11 @@ export class UsersComponent implements OnInit {
   }
   changeDetails(){
     this.isDetails = !this.isDetails
+    this.showTr=true
+  }
+
+  hideTr(){
+    this.showTr=false
   }
 
   deleteUser(id) {

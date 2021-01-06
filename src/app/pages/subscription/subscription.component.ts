@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from '../../core/services/common.service';
+import SlimSelect from 'slim-select'
+
 declare var $: any;
 
 @Component({
@@ -40,6 +42,11 @@ export class SubscriptionComponent implements OnInit {
     this.getSubscribers()
     this.getSubscriptionPlanList()
     this.getSubscriptionHistory()
+
+    new SlimSelect({
+      select: '#Subscription-filter',
+      showSearch: false,
+    })
   }
 
   getPlans(){

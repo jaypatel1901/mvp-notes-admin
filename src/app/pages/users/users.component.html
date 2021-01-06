@@ -53,17 +53,13 @@
                   <div class="col-sm-12 col-md-6">
                     <div class="dataTables_length dataTables_length1 d-flex m-auto" id="example_length">
                       <label class="d-flex mb-0">
-                        <p class=" pt-2 registerd-user mb-0">SortBy:</p>
-                        <select name="example_length" aria-controls="example" (change)="onChange($event)"
-                          class="custom-select custom-select-sm form-control form-control-sm head-select-div">
+                        <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                        <select name="example_length" aria-controls="example" (change)="onChange($event)" id="user-toggle" style="width: 150px;"> 
                           <option value="All users" class="head-option">All users</option>
-                          <option value="Trial Plan" class="head-option">Trial Plan</option>
-                          <option value="Standard Subscription" class="head-option">Standard Subscription</option>
-                          <option value="Silver Subscription" class="head-option">Silver Subscription</option>
-                          <option value="Gold Subscription" class="head-option">Gold Subscription</option>
-
+                          <option *ngFor='let item of planList'  value={{item.planName}}>{{item.planName}}</option>
                         </select>
                       </label>
+                      
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6 d-flex justify-content-end position-relative" style="top: -7px">
@@ -150,18 +146,17 @@
                     <th>Subscription Plan</th>
                     <th>Subscription Date</th>
                     <th>Expiry Date</th>
-                    <th>Data Usage</th>
+                    <!-- <th>Data Usage</th>
                     <th>Note Usage</th>
-                    <th>Subject Usage</th>
+                    <th>Subject Usage</th> -->
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
-
-                  <tr *ngFor='let item of userList | paginate: { itemsPerPage: 5, currentPage: p }'
+                <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 5, currentPage: p }'>
+<!-- Table row start -->
+                  <tr 
                     class="admin_table table-style table-style-subscription-head">
                     <!-- <div *ngIf="isDetails;else other_content"> -->
-
                     <td>
                       <div class="d-flex align-items-center table-image-div h-100">
                         <img class="pro_icon1" src="assets/images/contact_person.png">
@@ -172,7 +167,7 @@
                       <p>{{item.email}}</p>
                     </td>
                     <td><button class="gold-subscription" data-toggle="modal"
-                        data-target="#SubscriptionModal">{{item.subscriptionHistory[0].subscriptionId.planName}}</button>
+                        data-target="#SubscriptionModal">{{item.subscriptionHistory[0].subscriptionId.planName}} subscription</button>
                     </td>
                     <td>
                       <p>{{item.subscriptionHistory[0].date | date}}</p>
@@ -180,50 +175,50 @@
                     <td>
                       <p>{{item.subscriptionHistory[0].expiryDate |date}}</p>
                     </td>
-
-                  
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <!-- <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
-                            class="user-toggle-img"></button> -->
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                      </div>
-                    </td>
                     <td>
                       <div class="d-flex p-0 m-0">
-                        <!-- <div (click)="changeDetails()" class="right-icon">
+                        <div (click)="changeDetails()" class="right-icon">
                           <img src="assets/images/Group 2892.png">
-                        </div> -->
+                        </div>
                         <div class=" right-icon" (click)="deleteUser(item._id)">
                           <img src="assets/images/Group 2893.png">
                         </div>
                       </div>
                     </td>
                   </tr>
+<!-- table row end  -->
+<!-- Data row start -->
+                  <tr *ngIf='showTr'>
+                   <td class="data-row">
+                      <div class="d-flex align-items-center">
+                        <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
+                            class="user-toggle-img" (click)='hideTr()'></button>
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="user-toggle-div">
+                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
-
-              
+<!-- Table ends -->
 
 
             </div>
-
           </div>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
 

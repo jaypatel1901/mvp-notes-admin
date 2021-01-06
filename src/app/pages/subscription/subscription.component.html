@@ -117,11 +117,11 @@
                     <div class="col-sm-12 col-md-6">
                       <div class="dataTables_length dataTables_length1 d-flex" id="example_length">
                         <label class="d-flex">
-                          <p class="pt-1 registerd-user">SortBy:</p>
+                          <p class="pt-1 registerd-user mr-2">SortBy:</p>
                            <select name="example_length"
                             aria-controls="example"
                             (change)="onChange($event)"
-                            class="custom-select custom-select-sm form-control form-control-sm head-select-div">
+                             id="Subscription-filter" style="width: 150px;">
                             <option value="All users">All users</option>
                             <option *ngFor='let item of planList'  value={{item.planName}}>{{item.planName}}</option>
                           </select>
@@ -165,8 +165,7 @@
                       </td>
                       <!-- <td><p>01-01-2020</p></td> -->
                       <td>
-                        <!-- <p class="status-text" *ngIf=subscriber.userId.subscriptionHistory[0].isActive>-->
-                          {{subscriber.Status}}
+                        <p class="status-text purple">{{subscriber.Status}}</p>                          
                       </td>
                     </tr>
                   </tbody>

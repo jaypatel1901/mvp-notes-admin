@@ -1,4 +1,4 @@
-<div class="wrapper">
+<div class="wrapper">  
   <!-- Sidebar  -->
   <app-sidebar></app-sidebar>
 
@@ -7,6 +7,8 @@
 
 
     <div class="container-fluid">
+      <!-- <button (click)= "Testing()">display name</button>
+      <input id="txtName" type="text" /> -->
 
       <!-- <button type="button" id="sidebarCollapse" class="btn text-sidebar bg-turbo-yellow">
                         <i class="fas fa-align-left"></i>
@@ -33,8 +35,26 @@
                 <div class="bg-white curved p-4">
                   <div class="row">
                     <div class="col-md-8">
-                      <p class="text_head">Total Sales</p>
-                      <p class="chart_subhead">Jan 1, 2021</p>
+                      <div class="d-flex justify-content-between w-100">
+                        <div>
+                          <p class="text_head">Total Sales</p>
+                          <p class="chart_subhead">01 October, 2020</p>
+                        </div>
+                      <!-- <label class="d-flex mb-0 slim-container">
+                        <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                        <select id="Total-sales" name="example_length" aria-controls="example" (change)="onChange($event)">
+                          <option value="totaldata" class="head-option">All Time</option>
+                          <option value="currentWeekData" class="head-option">Current Week</option>
+                          <option value="last7DaysData" class="head-option">Last 7 days</option>
+                          <option value="currentMonthData" class="head-option">Current Month</option>
+                          <option value="" class="head-option">Last Month</option>
+                          <option value="days30Data" class="head-option">Last 30 days </option>
+                          <option value="currentWeekData" class="head-option">Current Year </option>
+                        </select>
+                      </label> -->
+                    </div>
+
+
                       <div style="position: relative; width: 100%;">
                         <div style="display: block;">
                           <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
@@ -86,8 +106,25 @@
                 <div class="bg-white curved mt-3 p-4" style="height: 330px;">
                   <div class="row">
                     <div class="col-md-8">
-                      <p class="text_head">Total Subscriptions</p>
-                      <p class="chart_subhead">Jan 1, 2021</p>
+                      <div class="d-flex justify-content-between w-100">
+                        <div>
+                          <p class="text_head">Total Subscriptions</p>
+                          <p class="chart_subhead">01 October, 2020</p>
+                        </div>
+                      <!-- <label class="d-flex mb-0 slim-container">
+                        <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                        <select id="Total-subscription" name="example_length" aria-controls="example" (change)="onChange($event)">
+                          <option value="totaldata" class="head-option">All Time</option>
+                          <option value="currentWeekData" class="head-option">Current Week</option>
+                          <option value="last7DaysData" class="head-option">Last 7 days</option>
+                          <option value="currentMonthData" class="head-option">Current Month</option>
+                          <option value="" class="head-option">Last Month</option>
+                          <option value="days30Data" class="head-option">Last 30 days </option>
+                          <option value="currentWeekData" class="head-option">Current Year </option>
+                        </select>
+                      </label> -->
+                    </div>
+                      
 
                       <div style="position: relative; width: 100%; height: 227px !important;">
                         <!-- <div style="display: block;"> -->
@@ -193,9 +230,9 @@
                     <div class="overflow-user-cont">
                       <table class="w-100">
                         <tr class="" *ngFor='let item of isSubscribers'>
-                          <td><img src="assets/images/user circle.png" class="profile-tab-img"></td>
+                          <td style="width: 55px;"><img src="assets/images/user circle.png" class="profile-tab-img"></td>
                           <td>
-                            <div class="pl-2">
+                            <div class="">
                               <p class="tab-name">{{item.fullName}}</p>
                               <p class="tab-subname">{{item.Subscription_Date | date:' h:mm: a | MMM d, y'}}</p>
                             </div>
@@ -221,9 +258,9 @@
                     <div class="overflow-user-cont">
                       <table class="w-100">
                         <tr class="" *ngFor='let item of RecentTransactionsList'>
-                          <td><img src="assets/images/Group 3128.png" class="profile-tab-img"></td>
+                          <td style="width: 55px;"><img src="assets/images/Group 3128.png" class="profile-tab-img"></td>
                           <td>
-                            <div class="pl-2">
+                            <div class="pl-0">
                               <p class="tab-name">{{item.fullName}}</p>
                               <p class="tab-subname">{{item.date | date:' h:mm: a | MMM d, y' }}</p>
                             </div>
@@ -248,10 +285,10 @@
         </div>
 
         <div class="col-md-4 bg-white curved p-0">
-          <div class="overflow-div" style="height:auto;padding: 15px;">
-            <div class="p-3">
+          <div class="overflow-div" style="height:auto;padding:15px 15px 0 15px;">
+            <div class="">
               <div class="row">
-                <div class="col-sm-12 d-flex justify-content-between border-bottom pb-2">
+                <div class="col-sm-12 d-flex justify-content-between border-bottom py-2">
                   <img src="assets/images/avtar.png" class="profile-img">
                   <div class="">
                     <p class="profile-name">Hello, Summar Anand!</p>
@@ -267,21 +304,20 @@
                 </div>
                 <div class="col-md-6 my-3">
                   <label class="d-flex mb-0">
-                    <p class=" pt-2 registerd-user mb-0">SortBy:</p>
-                    <select id="" name="example_length" aria-controls="example" (change)="onChange($event)"
-                      class="custom-select custom-select-sm form-control form-control-sm head-select-div">
-                      <option value="totaldata" class="head-option">Total</option>
+                    <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                    <select id="slim-select" name="example_length" aria-controls="example" (change)="onChange($event)">
+                      <option value="totaldata" class="head-option">All Time</option>
                       <option value="currentWeekData" class="head-option">Current Week</option>
                       <option value="last7DaysData" class="head-option">Last 7 days</option>
                       <option value="currentMonthData" class="head-option">Current Month</option>
-                      <!-- <option value="" class="head-option">Last Month</option> -->
+                      <option value="" class="head-option">Last Month</option>
                       <option value="days30Data" class="head-option">Last 30 days </option>
                       <option value="currentWeekData" class="head-option">Current Year </option>
                     </select>
                   </label>
                 </div>
                 <div class="col-md-12">
-                  <div class="bg-light curved px-4 py-2">
+                  <div class="bg-light curved px-4 py-2 sidebox-height">
                     <div class="row">
                       <div class="col-sm-2 p-0 m-0">
                         <img src="assets/images/total notes.png" class="w-100">
@@ -303,7 +339,7 @@
                       </div> -->
                     </div>
                   </div>
-                  <div class="bg-light curved px-4 py-2 mt-3">
+                  <div class="bg-light curved px-4 py-2 mt-3 sidebox-height">
                     <div class="row">
                       <div class="col-sm-2 p-0 m-0">
                         <img src="assets/images/total subjects.png" class="w-100">
@@ -325,7 +361,7 @@
                       </div> -->
                     </div>
                   </div>
-                  <div class="bg-light curved px-4 py-2 mt-3">
+                  <div class="bg-light curved px-4 py-2 mt-3 sidebox-height">
                     <div class="row">
                       <div class="col-sm-2 p-0 m-0">
                         <img src="assets/images/server space used.png" class="w-100">
@@ -350,9 +386,9 @@
                 </div>
 
 
-                <div class="col-md-12 blue-bg p-4 mt-3">
+                <div class="col-md-12 blue-bg p-4 mt-3 sidebox-height1">
                   <p class="profile-name">Total Engagement Rate</p>
-                  <p class="profile-sub mb-0">We analyzed 7,000 MVP Users</p>
+                  <p class="profile-sub mb-0">We analyzed {{TotalEngagementRate.totalUsers}} MVP Users</p>
 
                   <div class="bg-light curved p-4 mt-3">
                     <div class="row">
@@ -406,12 +442,12 @@
             <div class="form-group dash-form">
               <input formControlName="firstName" type="name" class="form_login_n dash-form-input"
                 placeholder="First Name" />
-              <div *ngIf='invitationFormError.firstName' class="alert- mt-2">{{invitationFormError.username}}</div>
+              <div *ngIf='invitationFormError.firstName' class="alert- mt-2">{{invitationFormError.firstName}}</div>
             </div>
             <div class="form-group dash-form">
               <input formControlName="lastName" type="name" class="form_login_n dash-form-input"
                 placeholder="Last Name" />
-              <div *ngIf='invitationFormError.lastName' class="alert- mt-2">{{invitationFormError.username}}</div>
+              <div *ngIf='invitationFormError.lastName' class="alert- mt-2">{{invitationFormError.lastName}}</div>
             </div>
             <div class="form-group dash-form">
               <input formControlName="email" type="email" class="form_login_n dash-form-input"
@@ -441,8 +477,4 @@
 
   </div>
 
-  <script>
-    new SlimSelect({
-      select: '#slim-select'
-    })
-  </script>
+
