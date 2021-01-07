@@ -4,10 +4,13 @@ import { Label, Color } from 'ng2-charts';
 import { CommonService } from '../../core/services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
+import SlimSelect from 'slim-select'
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
+
 })
 export class DashboardComponent implements OnInit {
   
@@ -87,6 +90,19 @@ export class DashboardComponent implements OnInit {
     this.getRecentTransactions()
     this.getSubscribers()
     this.getTotalEngagementRate()
+
+    new SlimSelect({
+      select: '#user-toggle',
+      showSearch: false,
+    })
+    new SlimSelect({
+      select: '#Total-subscription',
+      showSearch: false,
+    })
+    new SlimSelect({
+      select: '#slim-select',
+      showSearch: false,
+    })
   }
   inviationvalidationMessages = {
     'firstName': {
