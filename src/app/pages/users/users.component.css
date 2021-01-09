@@ -14,3 +14,13 @@
 li {
   margin-bottom: 5px;
 }
+
+.new-button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.new-button:focus{
+  border: none;
+  outline: none;
+}

@@ -54,12 +54,12 @@
                     <div class="dataTables_length dataTables_length1 d-flex m-auto" id="example_length">
                       <label class="d-flex mb-0">
                         <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
-                        <select name="example_length" aria-controls="example" (change)="onChange($event)" id="user-toggle" style="width: 150px;"> 
+                        <select name="example_length" aria-controls="example" (change)="onChange($event)"
+                          id="user-toggle" style="width: 150px;">
                           <option value="All users" class="head-option">All users</option>
-                          <option *ngFor='let item of planList'  value={{item.planName}}>{{item.planName}}</option>
+                          <option *ngFor="let item of planList;" value={{item.planName}}>{{item.planName}}</option>
                         </select>
                       </label>
-                      
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-6 d-flex justify-content-end position-relative" style="top: -7px">
@@ -87,7 +87,7 @@
                       </button>
                     </div>
                     <div class="modal-body pt-0">
-                      <div class="modal-form-div">
+                      <!-- <div class="modal-form-div">
                         <form [formGroup]="invitationForm" class="form_login w-100">
                           <div class="form-group dash-form">
                             <input formControlName="firstName" type="name" class="form_login_n dash-form-input"
@@ -117,135 +117,139 @@
                             <button class="color-button" type="submit" [disabled]='invitationForm.invalid'
                               (click)="onSendInvitation()">Send Invitation</button>
                           </div>
-                        </form>
-                      </div>
+                        </form> -->
                     </div>
                   </div>
                 </div>
               </div>
-              <!--modal ends--->
-
-              <table id="example" class="table table-striped" style="width:100%">
-
-                <thead>
-                  <tr class="admin_table table-style">
-                    <th>Name</th>
-                    <th>Email Address</th>
-                    <!--                 <th>Contact Number</th>
-                <th>Join Date</th> -->
-                    <th>Subscription Plan</th>
-                    <th>Subscription Date</th>
-                    <th>Expiry Date</th>
-                    <!-- <th>Data Usage</th>
-                    <th>Note Usage</th>
-                    <th>Subject Usage</th> -->
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 5, currentPage: p }'>
-<!-- Table row start -->
-                  <tr 
-                    class="admin_table table-style table-style-subscription-head">
-                    <!-- <div *ngIf="isDetails;else other_content"> -->
-                    <td>
-                      <div class="d-flex align-items-center table-image-div h-100">
-                        <img class="pro_icon1" src="assets/images/contact_person.png">
-                        <p class="mb-0">{{item.userName}}</p>
-                      </div>
-                    </td>
-                    <td>
-                      <p>{{item.email}}</p>
-                    </td>
-                    <td><button class="gold-subscription" data-toggle="modal"
-                        data-target="#SubscriptionModal">{{item.subscriptionHistory[0].subscriptionId.planName}} subscription</button>
-                    </td>
-                    <td>
-                      <p>{{item.subscriptionHistory[0].date | date}}</p>
-                    </td>
-                    <td>
-                      <p>{{item.subscriptionHistory[0].expiryDate |date}}</p>
-                    </td>
-                    <td>
-                      <div class="d-flex p-0 m-0">
-                        <div (click)="changeDetails()" class="right-icon">
-                          <img src="assets/images/Group 2892.png">
-                        </div>
-                        <div class=" right-icon" (click)="deleteUser(item._id)">
-                          <img src="assets/images/Group 2893.png">
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-<!-- table row end  -->
-<!-- Data row start -->
-                  <tr *ngIf='showTr'>
-                   <td class="data-row">
-                      <div class="d-flex align-items-center">
-                        <button id="hide" class="trans-button"><img src="assets/images/Group 2892.png"
-                            class="user-toggle-img" (click)='hideTr()'></button>
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="d-flex align-items-center">
-                        <div class="user-toggle-div">
-                          <p>Data Usage:<span class="font-weight-bold"> 11 GB Free of 15 GB</span></p>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-<!-- Table ends -->
-
-
             </div>
+            <!--modal ends--->
+
+            <table id="example" class="table table-striped" style="width:100%">
+              <thead>
+                <tr class="admin_table table-style">
+                  <th>Name</th>
+                  <th>Email Address</th>
+                  <th>Status</th>
+                  <th>Join Date</th>
+                  <th>Subscription Plan</th>
+                  <th>Subscription Date</th>
+                  <th>Expiry Date</th>
+                  <th>Data Usage</th>
+                  <th>Note Usage</th>
+                  <th>Subject Usage</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 5, currentPage: p }'>
+                <tr class="admin_table table-style table-style-subscription-head">
+                  <td>
+                    <div class="d-flex align-items-center table-image-div h-100">
+                      <img class="pro_icon1" src="assets/images/contact_person.png">
+                      <p class="mb-0">{{item.fullName}}</p>
+                    </div>
+                  </td>
+                  <td>
+                    <p>{{item.email}}</p>
+                  </td>
+                  <td>
+                    <p *ngIf="item.status==0; else templateName">Self invited </p>
+                    <ng-template #templateName>
+                      Admin invited
+                    </ng-template>
+                  </td>
+                  <td>
+                    <p>{{item.joinDate | date}}</p>
+                  </td>
+                  <td><button class="gold-subscription" data-toggle="modal"
+                      data-target="#SubscriptionModal">{{item.planName}}</button>
+                  </td>
+                  <td>
+                    <p *ngIf="item.subscriptionDate=='NA'; else templateName1">NA </p>
+                    <ng-template #templateName1>
+                      <p>{{item.subscriptionDate | date}}</p>
+                    </ng-template>
+                  </td>
+                  <td>
+                    <p *ngIf="item.expiryDate=='NA'; else templateName2">NA </p>
+                    <ng-template #templateName2>
+                      <p>{{item.expiryDate | date}}</p>
+                    </ng-template>
+                  </td>
+                  <td>
+                    <p>NA</p>
+                  </td>
+                  <td>
+                    <p>{{item.totalNotes}}</p>
+                  </td>
+                  <td>
+                    <p>{{item.totalSub}}</p>
+                  </td>
+                  <td>
+                    <div class="d-flex p-0 m-0">
+                      <!-- <div (click)="changeDetails()" class="right-icon">
+                        <img src="assets/images/Group 2892.png">
+                      </div> -->
+                      <!-- ondelete -->
+                      <div class=" right-icon" >
+                        <button  class=" right-icon new-button" data-toggle="modal" data-target="#ondelete"  (click)="deleteUser(item.userId)">
+                        <img src="assets/images/Group 2893.png">
+                      </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Table ends -->
           </div>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content  curved p-3" style="width: 88%;">
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <p class="profile-name">Invite New User</p>
+                <button type="button" class="modal-close" data-dismiss="modal">close</button>
+              </div>
 
-
-          <!-- The Modal -->
-          <div class="modal" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content  curved p-3" style="width: 88%;">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                  <p class="profile-name">Invite New User</p>
-                  <button type="button" class="modal-close" data-dismiss="modal">close</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                  <form class="form_login w-100">
+              <!-- Modal body -->
+              <div class="modal-body">
+                <div class="modal-form-div">
+                  <form [formGroup]="invitationForm" class="form_login w-100">
                     <div class="form-group dash-form">
-                      <input type="name" class="form_login_n dash-form-input" formControlName="name"
-                        placeholder="Username" />
-                      <div class="alert- mt-2"></div>
+                      <input formControlName="firstName" type="name" class="form_login_n dash-form-input"
+                        placeholder="First Name" />
+                      <div *ngIf='invitationFormError.firstName' class="alert- mt-2">{{invitationFormError.firstName}}
+                      </div>
                     </div>
                     <div class="form-group dash-form">
-                      <input type="email" class="form_login_n dash-form-input" placeholder="User Email Address"
-                        formControlName="email" />
+                      <input formControlName="lastName" type="name" class="form_login_n dash-form-input"
+                        placeholder="Last Name" />
+                      <div *ngIf='invitationFormError.lastName' class="alert- mt-2">{{invitationFormError.lastName}}
+                      </div>
                     </div>
                     <div class="form-group dash-form">
-                      <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose">
-                        <option value="">Choose Subscriptions</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
+                      <input formControlName="email" type="email" class="form_login_n dash-form-input"
+                        placeholder="User Email Address" />
+                      <div *ngIf='invitationFormError.email' class="alert- mt-2">{{invitationFormError.email}}</div>
+
+                    </div>
+                    <div class="form-group dash-form">
+                      <select formControlName="subscriptionId" id="Choose Subscriptions" name="Subscriptions"
+                        class="popup-choose">
+                        <option value=''>Choose Subscriptions</option>
+                        <option *ngFor='let item of planList' value={{item._id}}>{{item.planName}}</option>
                       </select>
+                      <div *ngIf='invitationFormError.subscriptionId' class="alert- mt-2">
+                        {{invitationFormError.subscriptionId}}
+                      </div>
+
                     </div>
                     <div class="form-group">
-                      <button class="color-button" type="submit">Send Invitation</button>
+                      <button class="color-button" type="submit" (click)="onSendInvitation()">Send Invitation</button>
                     </div>
                   </form>
                 </div>
@@ -256,8 +260,26 @@
       </div>
     </div>
   </div>
+<!-- delete model -->
 
+<div class="modal fade" id="ondelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog modal-dialog1" role="document">
+  <div class="modal-content modal-content2 p-4" style="margin-top: -9%;width: 104% !important;margin-left:45% ">
+    <div class="modal-body">
+      <button type="button" class="modal-close text-right position-relative" style="right: -92%;" data-dismiss="modal">close</button>
+      <h2 class="py-5">Do you really want to perform?</h2>
+      <div class="d-flex justify-content-between">
+        <button class="color-button bg-danger px-5" (click)="deleteUsers()">Delete</button>
+        <button class="color-button bg-info px-5"(click)="blockUser()">Block</button>
 
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- end -->
   <!--subscription model----------->
   <!-- Modal -->
   <div class="modal fade" id="SubscriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -475,5 +497,5 @@
             </tbody>
           </table>
 
-
+         
           <!--modal body ends--->

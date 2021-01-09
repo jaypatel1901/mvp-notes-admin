@@ -42,14 +42,14 @@
                         </div>
                       <label class="d-flex mb-0 slim-container">
                         <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
-                        <select id="user-toggle" name="example_length" aria-controls="example" (change)="onChange($event)">
-                          <option value="totaldata" class="head-option">All Time</option>
-                          <option value="currentWeekData" class="head-option">Current Week</option>
+                        <select id="user-toggle" name="example_length" aria-controls="example" (change)="onChangeSalefilter($event)">
+                          <option *ngFor='let item of filterData' value={{item.label}}  class="head-option">{{item.label}} ( {{item.startDate | date}}-{{item.endDate | date}})</option>
+                          <!-- <option value="currentWeekData" class="head-option">Current Week</option>
                           <option value="last7DaysData" class="head-option">Last 7 days</option>
                           <option value="currentMonthData" class="head-option">Current Month</option>
                           <option value="" class="head-option">Last Month</option>
                           <option value="days30Data" class="head-option">Last 30 days </option>
-                          <option value="currentWeekData" class="head-option">Current Year </option>
+                          <option value="currentWeekData" class="head-option">Current Year </option> -->
                         </select>
                       </label>
                     </div>
@@ -113,14 +113,13 @@
                         </div>
                       <label class="d-flex mb-0 slim-container">
                         <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
-                        <select id="Total-subscription" name="example_length" aria-controls="example" (change)="onChange($event)">
-                          <option value="totaldata" class="head-option">All Time</option>
-                          <option value="currentWeekData" class="head-option">Current Week</option>
-                          <option value="last7DaysData" class="head-option">Last 7 days</option>
+                        <select id="Total-subscription" name="example_length" aria-controls="example" (change)="onChangefilter($event)">
+                          <option *ngFor='let item of filterData' value={{item.label}}  class="head-option">{{item.label}} ( {{item.startDate | date}}-{{item.endDate | date}})</option>
+                          <!-- <option value="last7DaysData" class="head-option">Last 7 days</option>
                           <option value="currentMonthData" class="head-option">Current Month</option>
                           <option value="" class="head-option">Last Month</option>
                           <option value="days30Data" class="head-option">Last 30 days </option>
-                          <option value="currentWeekData" class="head-option">Current Year </option>
+                          <option value="currentWeekData" class="head-option">Current Year </option> -->
                         </select>
                       </label>
                     </div>
@@ -128,7 +127,7 @@
 
                       <div style="position: relative; width: 100%; height: 227px !important;">
                         <!-- <div style="display: block;"> -->
-                        <canvas baseChart [datasets]="lineChartData" [labels]="barChartLabels"
+                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
                           style='height: 227px  !important' [options]="barChartOptions" [plugins]="barChartPlugins"
                           [legend]="barChartLegend" [colors]="lineChartColors" [chartType]="lineChartType"
                           style="max-height: 214px !important;">
@@ -174,26 +173,20 @@
                         }
                         google.charts.setOnLoadCallback(drawChart);
                       </script>
-
-
-
-
-
-
                     </div>
                     <div class="col-md-4">
-                      <div class="bg-light p-4 curved">
+                      <div class="bg-light p-4 curved subs-flow" >
                         <p class="report-head pb-3">Subscription Report!</p>
-                        <div class="d-flex pb-1">
+                        <div class="d-flex pb-1"  *ngFor='let item of Plans'>
                           <div class="p-0 m-0">
                             <img src="assets/images/blue.png" class="report-color-img">
                           </div>
                           <div>
-                            <p class="report-head">{{subscriptionSales.Silver_Plan}}</p>
-                            <p class="report-subhead">Silver plan</p>
+                            <p class="report-head">{{item.count}}</p>
+                            <p class="report-subhead">{{item.name}}</p>
                           </div>
                         </div>
-                        <div class="d-flex pb-1">
+                        <!-- <div class="d-flex pb-1">
                           <div class="p-0 m-0">
                             <img src="assets/images/red.png" class="report-color-img">
                           </div>
@@ -210,7 +203,7 @@
                             <p class="report-head">{{subscriptionSales.Trial_Plan}}</p>
                             <p class="report-subhead">Trial plan</p>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                     </div>
                   </div>

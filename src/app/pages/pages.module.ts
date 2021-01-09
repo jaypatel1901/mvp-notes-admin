@@ -13,6 +13,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { RandomcolorModule } from 'angular-randomcolor';
 // import * as ChartAnnotation from 'chartjs-plugin-annotation';
 @NgModule({
   declarations: [
@@ -23,7 +24,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
     CMSComponent,
     SubscriptionComponent,
     SidebarComponent
-
   ],
   imports: [
     FormsModule,
@@ -33,8 +33,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     PagesRoutingModule,
     NgChartjsModule,
     ChartsModule,
-    NgxSpinnerModule
-
+    NgxSpinnerModule,
+    RandomcolorModule
   ]
 })
 export class PagesModule { }

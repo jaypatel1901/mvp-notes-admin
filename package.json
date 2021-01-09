@@ -19,6 +19,7 @@
     "@angular/platform-browser": "~10.0.9",
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
+    "angular-randomcolor": "^1.0.3",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "express": "*",
@@ -27,8 +28,8 @@
     "ngx-pagination": "^5.0.0",
     "ngx-spinner": "^10.0.1",
     "nodemon": "^2.0.6",
-    "slim-select": "^1.26.2",
     "rxjs": "~6.5.5",
+    "slim-select": "^1.26.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },

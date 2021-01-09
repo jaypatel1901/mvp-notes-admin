@@ -5,6 +5,7 @@ import { CommonService } from '../../core/services/common.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import SlimSelect from 'slim-select'
+import { RandomColor } from 'angular-randomcolor';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,11 +14,11 @@ import SlimSelect from 'slim-select'
 
 })
 export class DashboardComponent implements OnInit {
-  
+
   error: any;
   invitationFormError = {
     "firstName": '',
-    "lastName":'',
+    "lastName": '',
     "email": '',
     "subscriptionsId": ''
   }
@@ -32,11 +33,24 @@ export class DashboardComponent implements OnInit {
   isSilver_Plan: any = []
   isTrial_Plan: any = []
   subscriptionSales: any = {}
-  RecentTransactionsList:any=[]
-  isSubscribers:any=[]
-  filter=''
-  isTotalUsage ={}
-  TotalEngagementRate:number=0
+  RecentTransactionsList: any = []
+  isSubscribers: any = []
+  filter = ''
+  isTotalUsage = {}
+  TotalEngagementRate: number = 0
+  Plans: any = []
+  filterData = []
+  isfilterchangeSales=
+  {
+    label: 'All Time',
+    startDate: '2020-11-25T11:31:07.431Z',
+    endDate: '2021-01-08T14:00:30.813Z'
+  }
+  isfilterchange = {
+      label: 'All Time',
+      startDate: '2020-11-25T11:31:07.431Z',
+      endDate: '2021-01-08T14:00:30.813Z'
+    }
   // paymentData:any =[]
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -61,7 +75,9 @@ export class DashboardComponent implements OnInit {
       backgroundColor: '#009DE9',
     },
   ];
-  public barChartLabels: Label[] = ['Jan 2021', 'Feb 2021', 'Mar 2021', 'Apr 2021', 'May 2021', 'Jun 2021', 'Jul 2021', 'Aug 2021', 'Oct 2021', 'Nov 2021', 'Dec 2021'];
+  //  ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']
+  public barChartLabels: Label[] = []//['Jan 2021', 'Feb 2021', 'Mar 2021', 'Apr 2021', 'May 2021', 'Jun 2021', 'Jul 2021', 'Aug 2021', 'Oct 2021', 'Nov 2021', 'Dec 2021']
+  public lineChartLabels:Label[]=[]
   public barChartType: ChartType = 'bar';
   public lineChartType: ChartType = 'line';
   public barChartLegend = true;
@@ -71,11 +87,11 @@ export class DashboardComponent implements OnInit {
     { data: [], label: 'Total Sales' },
   ];
   public lineChartData: ChartDataSets[] = [
-    { data: [], label: 'Gold Plan' },
+    // { data: [], label: 'Gold Plan' },
     // { data: [], label: 'Silver Plan' },
     // { data: [], label: 'Trial Plan' },
   ];
-  constructor(private commonService: CommonService, private fb: FormBuilder,private spinner: NgxSpinnerService) {
+  constructor(private commonService: CommonService, private fb: FormBuilder, private spinner: NgxSpinnerService) {
     this.createInvitation()
   }
 
@@ -90,7 +106,7 @@ export class DashboardComponent implements OnInit {
     this.getRecentTransactions()
     this.getSubscribers()
     this.getTotalEngagementRate()
-
+    this.getChartFilter()
     new SlimSelect({
       select: '#user-toggle',
       showSearch: false,
@@ -166,7 +182,7 @@ export class DashboardComponent implements OnInit {
       subscriptionId: this.invitationForm.value.subscriptionId
     }
     console.log("onSendInvitation", userData)
-    this.commonService.post('invatationUser',userData).subscribe((data: any) => {
+    this.commonService.post('invatationUser', userData).subscribe((data: any) => {
       if (data.status == 200) {
         this.spinner.hide();
         alert("Invitation sent successfully!")
@@ -190,23 +206,23 @@ export class DashboardComponent implements OnInit {
     this.commonService.get('getUsageStatistics').subscribe((data: any) => {
       if (data.status == 200) {
         this.totalUsage = data.data
-        this.totalUsage.map((item,i)=>{
-          if(item.lable ==="totaldata"){
+        this.totalUsage.map((item, i) => {
+          if (item.lable === "totaldata") {
             this.isTotalUsage = item
           }
         })
-             } else {
+      } else {
         this.error = data.message
         alert(this.error)
       }
     })
   }
-  onChange(event){
+  onChange(event) {
     this.isTotalUsage = {}
     this.filter = event.target.value
     this.totalUsage.map((item, index) => {
-      if (item.lable=== this.filter) {
-        this.isTotalUsage =item
+      if (item.lable === this.filter) {
+        this.isTotalUsage = item
       }
       // if (this.filter === 'totaldata') {
       //   this.isTotalUsage =item
@@ -233,32 +249,83 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
+  onChangeSalefilter(event) {
+    console.log("chekcc itme", event.target.value)
+    let isFilter = event.target.value
+    if(isFilter !==null){
+    let  newdata=[]
+     newdata = this.filterData.filter((item) => {
+      return item.label === isFilter
+    });
+    console.log("new datata", newdata)
+    this.isfilterchangeSales = newdata[0]
+   this.saleReportChart()
+  }
+  }
   saleReportChart() {
-    this.commonService.get('getsaleChart').subscribe((data: any) => {
+    
+    this.commonService.post('getsaleChart',this.isfilterchangeSales).subscribe((data: any) => {
       if (data.status == 200) {
+        this.barChartData=[]
         let newData = data.data
-      console.log("dataa in chart",newData)
-        this.barChartData[0].data = newData.map(v => parseInt((v).toString()))
-        console.log("dataa in chart",this.barChartData)
-
+        console.log("dataa in chart", newData)
+        this.barChartLabels=newData.chartLabel
+        this.barChartData.push({ data: newData.total, label: 'Gold Plan' 
+      })
+        // this.barChartData[0].data = newData.map(v => parseInt((v).toString()))
+        console.log("dataa in chart1111", this.barChartData)
       } else {
         this.error = data.message
         alert(this.error)
       }
     })
   }
-  getSubscriptionReportChart() {
-    this.commonService.get('subscriptionReport').subscribe((data: any) => {
+  getChartFilter() {
+    this.commonService.get('chartFilter').subscribe((data: any) => {
       if (data.status == 200) {
-        let newData = data.data.Silver_Plan
-        let newData1 = data.data.Gold_Plan
-        let newData2 = data.data.Trial_Plan
-        this.lineChartData[0].data = newData1.map(v => parseInt((v).toString()))
-        let dataGold = newData1.map(v => parseInt((v).toString()))
-        let dataSilver = newData.map(v => parseInt((v).toString()))
-        let datatrial = newData2.map(v => parseInt((v).toString()))
-        this.lineChartData.push({ data: dataSilver, label: 'Silver Plan',borderColor: '#8E2AC0' })
-        this.lineChartData.push({ data: datatrial, label: 'Trial Plan',  borderColor: '#F9966D'})
+        this.filterData = data.data
+      } else {
+        this.error = data.message
+        alert(this.error)
+      }
+    })
+  }
+  onChangefilter(event) {
+    console.log("chekcc itme", event.target.value)
+    let isFilter = event.target.value
+    if(isFilter !==null){
+    let  newdata=[]
+     newdata = this.filterData.filter((item) => {
+      return item.label === isFilter
+    });
+    console.log("new datata", newdata)
+    this.isfilterchange = newdata[0]
+   this.getSubscriptionReportChart()
+  }
+  }
+  getSubscriptionReportChart() {
+    console.log("new isfilterchange", this.isfilterchange)
+    this.lineChartData=[]
+    this.commonService.post('subscriptionReport',this.isfilterchange).subscribe((data: any) => {
+      console.log("datada", data)
+      if (data.status == 200) {
+        console.log("datada", data)
+        this.Plans = data.data
+        data.data.map((item, i) => {
+          const newColor = RandomColor.generateColor()
+          this.lineChartLabels=item.chartLabel
+          this.lineChartData.push({ data: item.total, label: item.name, borderColor: newColor })
+        })
+        // let newData = data.data.Silver_Plan
+        // let newData1 = data.data.Gold_Plan
+        // let newData2 = data.data.Trial_Plan
+        // this.lineChartData[0].data = newData1.map(v => parseInt((v).toString()))
+        // let dataGold = newData1.map(v => parseInt((v).toString()))
+        // let dataSilver = newData.map(v => parseInt((v).toString()))
+        // let datatrial = newData2.map(v => parseInt((v).toString()))
+        // data.map
+        // this.lineChartData.push({ data: dataSilver, label: 'Silver Plan',borderColor: '#8E2AC0' })
+        // this.lineChartData.push({ data: datatrial, label: 'Trial Plan',  borderColor: '#F9966D'})
       } else {
         this.error = data.message
         alert(this.error)
@@ -275,29 +342,29 @@ export class DashboardComponent implements OnInit {
       }
     })
   }
-  getSubscribers(){
-    this.commonService.get(`getSubscribers`).subscribe((data: any)=>{
-      if(data.data.length>0){
-        this.isSubscribers=data.data
-          }else{
-        this.isSubscribers=[]
+  getSubscribers() {
+    this.commonService.get(`getSubscribers`).subscribe((data: any) => {
+      if (data.data.length > 0) {
+        this.isSubscribers = data.data
+      } else {
+        this.isSubscribers = []
       }
     })
   }
-  getRecentTransactions  () {
+  getRecentTransactions() {
     this.commonService.get('getSubscriptionHistory').subscribe((data: any) => {
       if (data.status == 200) {
-        this.RecentTransactionsList=data.data
+        this.RecentTransactionsList = data.data
       } else {
         alert(data.message)
       }
     })
   }
-  getTotalEngagementRate  () {
+  getTotalEngagementRate() {
     this.commonService.get('engagementRate').subscribe((data: any) => {
       if (data.status == 200) {
-        this.TotalEngagementRate=data.data
-        console.log("TotalEngagementRate",data)
+        this.TotalEngagementRate = data.data
+        console.log("TotalEngagementRate", data)
       } else {
         alert(data.message)
       }
@@ -305,5 +372,5 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  
+
 }

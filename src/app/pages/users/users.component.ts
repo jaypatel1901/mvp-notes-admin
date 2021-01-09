@@ -19,6 +19,7 @@ export class UsersComponent implements OnInit {
   List = []
   p: number = 1;
   filter = ''
+  userId=''
   isDetails = true
   Registered:string
   planList:any=[]
@@ -36,7 +37,6 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUSerlist()
-    this.getSubscriptionPlanList()
     new SlimSelect({
       select: '#user-toggle',
       showSearch: false,
@@ -46,12 +46,11 @@ export class UsersComponent implements OnInit {
   onUserDetails = () => {
     this.isDetails = !this.isDetails
   }
-  onChange(filter) {
-    console.log('clicked',filter)
+  onChange(event) {
     this.userList = []
-    this.filter = filter
+    this.filter = event.target.value
     this.List.map((item, index) => {
-      if (item.subscriptionHistory[0].subscriptionId.planName === this.filter) {
+      if (item.planName === this.filter) {
         this.userList.push(item)
       }
       if (this.filter === 'All users') {
@@ -117,7 +116,7 @@ onSendInvitation() {
   console.log("onSendInvitation", userData)
   this.commonService.post('invatationUser',userData).subscribe((data: any) => {
     if (data.status == 200) {
-      this.spinner.hide();
+      this.spinner.hide(); 
       alert("Invitation sent successfully!")
     } else {
       this.spinner.hide();
@@ -146,20 +145,22 @@ onSendInvitation() {
         this.error = data.message
         alert(this.error)
       }
+      this.getSubscriptionPlanList()
     })
+    // 
   }
   changeDetails(){
     this.isDetails = !this.isDetails
     this.showTr=true
   }
 
-  hideTr(){
-    this.showTr=false
-  }
 
   deleteUser(id) {
-    alert(id)
-    this.commonService.delete('deleteUser', id).subscribe((data: any) => {
+    // alert(id)
+   this.userId=id
+  }
+  deleteUsers(){
+    this.commonService.delete('deleteUser', this.userId).subscribe((data: any) => {
       if (data.status == 200) {
         alert(data.message)
         this.getUSerlist()
@@ -169,4 +170,5 @@ onSendInvitation() {
       }
     })
   }
+
 }
