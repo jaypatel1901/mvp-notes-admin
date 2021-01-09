@@ -185,9 +185,11 @@ export class DashboardComponent implements OnInit {
     this.commonService.post('invatationUser', userData).subscribe((data: any) => {
       if (data.status == 200) {
         this.spinner.hide();
+        document.getElementById("myModal").click();
         alert("Invitation sent successfully!")
       } else {
         this.spinner.hide();
+        document.getElementById("myModal").click();
         alert(data.message)
       }
     })
@@ -203,16 +205,20 @@ export class DashboardComponent implements OnInit {
     })
   }
   getUsageStatistics() {
+    this.spinner.show()
+
     this.commonService.get('getUsageStatistics').subscribe((data: any) => {
       if (data.status == 200) {
         this.totalUsage = data.data
         this.totalUsage.map((item, i) => {
           if (item.lable === "totaldata") {
             this.isTotalUsage = item
+            this.spinner.hide();
           }
         })
       } else {
         this.error = data.message
+        this.spinner.hide();
         alert(this.error)
       }
     })
@@ -250,6 +256,7 @@ export class DashboardComponent implements OnInit {
     })
   }
   onChangeSalefilter(event) {
+
     console.log("chekcc itme", event.target.value)
     let isFilter = event.target.value
     if(isFilter !==null){
@@ -257,13 +264,13 @@ export class DashboardComponent implements OnInit {
      newdata = this.filterData.filter((item) => {
       return item.label === isFilter
     });
-    console.log("new datata", newdata)
     this.isfilterchangeSales = newdata[0]
    this.saleReportChart()
   }
   }
   saleReportChart() {
-    
+    this.spinner.show();
+
     this.commonService.post('getsaleChart',this.isfilterchangeSales).subscribe((data: any) => {
       if (data.status == 200) {
         this.barChartData=[]
@@ -272,10 +279,13 @@ export class DashboardComponent implements OnInit {
         this.barChartLabels=newData.chartLabel
         this.barChartData.push({ data: newData.total, label: 'Gold Plan' 
       })
+      this.spinner.hide();
+
         // this.barChartData[0].data = newData.map(v => parseInt((v).toString()))
         console.log("dataa in chart1111", this.barChartData)
       } else {
         this.error = data.message
+        this.spinner.hide();
         alert(this.error)
       }
     })
@@ -291,31 +301,29 @@ export class DashboardComponent implements OnInit {
     })
   }
   onChangefilter(event) {
-    console.log("chekcc itme", event.target.value)
     let isFilter = event.target.value
     if(isFilter !==null){
     let  newdata=[]
      newdata = this.filterData.filter((item) => {
       return item.label === isFilter
     });
-    console.log("new datata", newdata)
     this.isfilterchange = newdata[0]
    this.getSubscriptionReportChart()
   }
   }
   getSubscriptionReportChart() {
-    console.log("new isfilterchange", this.isfilterchange)
+    this.spinner.show();
     this.lineChartData=[]
     this.commonService.post('subscriptionReport',this.isfilterchange).subscribe((data: any) => {
-      console.log("datada", data)
       if (data.status == 200) {
-        console.log("datada", data)
         this.Plans = data.data
         data.data.map((item, i) => {
           const newColor = RandomColor.generateColor()
           this.lineChartLabels=item.chartLabel
           this.lineChartData.push({ data: item.total, label: item.name, borderColor: newColor })
         })
+                this.spinner.hide();
+
         // let newData = data.data.Silver_Plan
         // let newData1 = data.data.Gold_Plan
         // let newData2 = data.data.Trial_Plan
@@ -328,6 +336,7 @@ export class DashboardComponent implements OnInit {
         // this.lineChartData.push({ data: datatrial, label: 'Trial Plan',  borderColor: '#F9966D'})
       } else {
         this.error = data.message
+        this.spinner.hide();
         alert(this.error)
       }
     })
@@ -361,11 +370,14 @@ export class DashboardComponent implements OnInit {
     })
   }
   getTotalEngagementRate() {
+    this.spinner.show();
     this.commonService.get('engagementRate').subscribe((data: any) => {
       if (data.status == 200) {
         this.TotalEngagementRate = data.data
-        console.log("TotalEngagementRate", data)
+        this.spinner.hide();
+
       } else {
+        this.spinner.hide();
         alert(data.message)
       }
     })

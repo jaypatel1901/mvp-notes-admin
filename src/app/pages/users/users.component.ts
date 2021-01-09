@@ -12,6 +12,7 @@ import SlimSelect from 'slim-select'
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+
   showTr:boolean=false
   error: any;
   user: any;
@@ -131,16 +132,20 @@ onSendInvitation() {
       if (data.status == 200) {
         this.planList = data.result
       } else {
+        this.spinner.hide();
         alert(data.message)
       }
     })
   }
+  
   getUSerlist() {
+    this.spinner.show();
     this.commonService.get('getUserlist').subscribe((data: any) => {
       if (data.status == 200) {
         this.userList = data.result
         this.Registered =data.result.length
         this.List = data.result
+        this.spinner.hide();
       } else {
         this.error = data.message
         alert(this.error)
@@ -160,15 +165,27 @@ onSendInvitation() {
    this.userId=id
   }
   deleteUsers(){
+    this.spinner.show();
     this.commonService.delete('deleteUser', this.userId).subscribe((data: any) => {
       if (data.status == 200) {
         alert(data.message)
         this.getUSerlist()
+        document.getElementById("ondelete").click();
+        document.getElementById("ondelete-model").click();
+        this.spinner.hide();
       } else {
+        document.getElementById("ondelete").click();
+        document.getElementById("ondelete-model").click();
+        this.spinner.hide();
         this.error = data.message
         alert(this.error)
       }
     })
+  }
+  notDelete=()=>{
+    document.getElementById("ondelete").click();
+    document.getElementById("ondelete-model").click();
+
   }
 
 }

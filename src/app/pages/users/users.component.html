@@ -191,10 +191,11 @@
                         <img src="assets/images/Group 2892.png">
                       </div> -->
                       <!-- ondelete -->
-                      <div class=" right-icon" >
-                        <button  class=" right-icon new-button" data-toggle="modal" data-target="#ondelete"  (click)="deleteUser(item.userId)">
-                        <img src="assets/images/Group 2893.png">
-                      </button>
+                      <div class=" right-icon">
+                        <button class=" right-icon new-button" data-toggle="modal" data-target="#ondelete"
+                          (click)="deleteUser(item.userId)">
+                          <img src="assets/images/Group 2893.png">
+                        </button>
                       </div>
                     </div>
                   </td>
@@ -260,26 +261,45 @@
       </div>
     </div>
   </div>
-<!-- delete model -->
-
-<div class="modal fade" id="ondelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog1" role="document">
-  <div class="modal-content modal-content2 p-4" style="margin-top: -9%;width: 104% !important;margin-left:45% ">
-    <div class="modal-body">
-      <button type="button" class="modal-close text-right position-relative" style="right: -92%;" data-dismiss="modal">close</button>
-      <h2 class="py-5">Do you really want to perform?</h2>
-      <div class="d-flex justify-content-between">
-        <button class="color-button bg-danger px-5" (click)="deleteUsers()">Delete</button>
-        <button class="color-button bg-info px-5"(click)="blockUser()">Block</button>
-
+  <!-- delete model -->
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise" [fullScreen]="true">
+    <p style="color: white"> Loading... </p>
+  </ngx-spinner>
+  <div class="modal fade" id="ondelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog1" role="document">
+      <div class="modal-content modal-content2 p-4" style="margin-top: -9%;width: 104% !important;margin-left:45% ">
+        <div class="modal-body">
+          <button type="button" class="modal-close text-right position-relative" style="right: -92%;"
+            data-dismiss="modal">close</button>
+          <h2 class="py-5">Do you really want to perform?</h2>
+          <div class="d-flex justify-content-between">
+            <button class="color-button bg-danger px-5" data-toggle="modal"
+              data-target="#ondelete-model">Delete</button>
+            <button class="color-button bg-info px-5" (click)="blockUser()">Block</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-</div>
+  <div class="modal fade" id="ondelete-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog1" role="document">
+      <div class="modal-content modal-content2 p-4" style="margin-top: -9%;width: 104% !important;margin-left:45% ">
+        <div class="modal-body">
+          <button type="button" class="modal-close text-right position-relative" style="right: -92%;"
+            data-dismiss="modal">close</button>
+          <h2 class="py-5">Do you really want to Delete?</h2>
+          <div class="d-flex justify-content-between">
+            <button class="color-button bg-danger px-5" (click)="deleteUsers()">Yes</button>
+            <button class="color-button bg-info px-5" (click)="notDelete()">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- end -->
+  <!-- end -->
   <!--subscription model----------->
   <!-- Modal -->
   <div class="modal fade" id="SubscriptionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -497,5 +517,5 @@ aria-hidden="true">
             </tbody>
           </table>
 
-         
+
           <!--modal body ends--->
