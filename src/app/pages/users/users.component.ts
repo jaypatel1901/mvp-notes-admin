@@ -120,9 +120,11 @@ onSendInvitation() {
   this.commonService.post('invatationUser',userData).subscribe((data: any) => {
     if (data.status == 200) {
       this.spinner.hide(); 
+      document.getElementById("myModal").click();
       alert("Invitation sent successfully!")
     } else {
       this.spinner.hide();
+      document.getElementById("myModal").click();
       alert(data.message)
     }
   })
