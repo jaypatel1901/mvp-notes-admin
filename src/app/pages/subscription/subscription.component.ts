@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder,  Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { CommonService } from '../../core/services/common.service';
 import SlimSelect from 'slim-select'
+import { NgxSpinnerService } from "ngx-spinner";
 
 declare var $: any;
 
@@ -34,7 +35,7 @@ export class SubscriptionComponent implements OnInit {
   isSubscriptionHistoryList:any=[]
   isStatus: boolean = false;
 
-  constructor(private commonService: CommonService,private _router: Router,private formBuilder: FormBuilder) { }
+  constructor(private commonService: CommonService,private _router: Router,private formBuilder: FormBuilder,private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getPlans();
@@ -50,10 +51,15 @@ export class SubscriptionComponent implements OnInit {
   }
 
   getPlans(){
+    this.spinner.show();
     this.commonService.get(`getSubscriptionPlan`).subscribe((data: any)=>{
       if(data.result.length>0){
         this.plans=data.result
+        this.spinner.hide();
+
       }else{
+        this.spinner.hide();
+
         this.plans=[];
       }
     })
@@ -107,6 +113,7 @@ export class SubscriptionComponent implements OnInit {
   }
 
   savePlan(){
+    this.spinner.show();
     let body={
       planName:this.planName,
       planDuration:this.planDuration,
@@ -121,7 +128,9 @@ export class SubscriptionComponent implements OnInit {
       if(data.status ==200){
         $('#CreatePlan').modal('hide');
         this.getPlans()
+        this.spinner.hide();
       }else{
+        this.spinner.hide();
         alert("something went wrong")
       }
     })
@@ -154,14 +163,17 @@ export class SubscriptionComponent implements OnInit {
 
   }
   allSubscriber(){
+    this.spinner.show();
     this.commonService.get(`subscriptionHistory`).subscribe((data: any)=>{
       if(data.data.length>0){
         this.subscriptionHistory=data.data
+        this.spinner.hide();
       }else{
+        this.spinner.hide();
         this.subscriptionHistory=[]
       }
     })
-  }
+  } 
 
   getSubscribers(){
     this.commonService.get(`getSubscribers`).subscribe((data: any)=>{
@@ -199,13 +211,16 @@ export class SubscriptionComponent implements OnInit {
       if (data.status == 200) {
         this.SubscriptionHistoryList=data.data
         this.isSubscriptionHistoryList=data.data
+        console.log("this.isSubscriptionHistoryList",this.isSubscriptionHistoryList)
       } else {
         alert(data.message)
       }
     })
   }
   onActive(){   
-  document.getElementById("activeButton").setAttribute('style','background-color :#009DE9 !important') 
+  document.getElementById("activeButton").setAttribute('style','background-color :#009DE9 !important')
+  document.getElementById("expiredButton").removeAttribute('style') 
+  document.getElementById("allButton").removeAttribute('style') 
    this.SubscriptionHistoryList=[]
     const result = this.isSubscriptionHistoryList.filter(item => item.Status==='Active');
     this.SubscriptionHistoryList=result

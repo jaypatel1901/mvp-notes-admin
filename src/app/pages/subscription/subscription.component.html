@@ -144,7 +144,7 @@
                   </thead>
                   <tbody>
                     <tr class="admin_table table-style table-style-subscription-head"
-                      *ngFor="let subscriber of isSubscriptionHistory | paginate: { itemsPerPage: 5, currentPage: p }">
+                      *ngFor="let subscriber of isSubscriptionHistory | paginate: { itemsPerPage: 10, currentPage: p }">
                       <td>
                         <!-- {{console.log(item)}} -->
                         <div class="d-flex align-items-center table-image-div h-100 sec">
@@ -201,7 +201,7 @@
                   </thead>
                   <tbody>
                     <tr class="admin_table table-style table-style-subscription-head"
-                      *ngFor="let item of SubscriptionHistoryList | paginate: { itemsPerPage: 5, currentPage: p } ">
+                      *ngFor="let item of SubscriptionHistoryList | paginate: { itemsPerPage: 10, currentPage: p } ">
                       <td>
                         <div class="d-flex align-items-center table-image-div">
                           <img class="pro_icon1" src="assets/images/contact_person.png">
@@ -227,7 +227,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
               </div>
             </div>
           </div>
@@ -343,6 +343,7 @@
     </div>
   </div>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
 
 
 
@@ -448,6 +449,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 
