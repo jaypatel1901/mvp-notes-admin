@@ -14,6 +14,8 @@ import { NgChartjsModule } from 'ng-chartjs';
 import { ChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { RandomcolorModule } from 'angular-randomcolor';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
 // import * as ChartAnnotation from 'chartjs-plugin-annotation';
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { RandomcolorModule } from 'angular-randomcolor';
     NgChartjsModule,
     ChartsModule,
     NgxSpinnerModule,
-    RandomcolorModule
+    RandomcolorModule,
+    SweetAlert2Module
   ]
 })
 export class PagesModule { }

@@ -4,7 +4,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import SlimSelect from 'slim-select'
+// import Swal from 'sweetalert2/dist/sweetalert2.js'
 
+import 'sweetalert2/src/sweetalert2.scss'
 
 @Component({
   selector: 'app-users',
@@ -186,10 +188,35 @@ onSendInvitation() {
       }
     })
   }
+  BlockUsers(){
+    this.spinner.show();
+    let obj:any ={
+      "isStatus":"1",
+      "blockBy":"admin",
+      "userId":this.userId
+    }
+    this.commonService.post('blockUser', obj).subscribe((data: any) => {
+      if (data.status == 200) {
+        alert(data.message)
+        this.getUSerlist()
+        document.getElementById("ondelete").click();
+        document.getElementById("ondelete-model").click();
+        document.getElementById("onblock-model").click();
+        this.spinner.hide();
+      } else {
+        document.getElementById("ondelete").click();
+        document.getElementById("ondelete-model").click();
+        document.getElementById("onblock-model").click();
+        this.spinner.hide();
+        this.error = data.message
+        alert(this.error)
+      }
+    })
+  }
   notDelete=()=>{
     document.getElementById("ondelete").click();
     document.getElementById("ondelete-model").click();
-
+    document.getElementById("onblock-model").click();
   }
 
 }
