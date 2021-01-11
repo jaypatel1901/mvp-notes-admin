@@ -37,6 +37,7 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createInvitation()
     this.getUSerlist()
     new SlimSelect({
       select: '#user-toggle',
@@ -107,6 +108,7 @@ onValueChanges(data?: any) {
   }
 }
 onSendInvitation() {
+  alert("hello")
   this.spinner.show();
   let userData = {
     firstName: this.invitationForm.value.firstName,

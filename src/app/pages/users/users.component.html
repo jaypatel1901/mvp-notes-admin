@@ -74,54 +74,7 @@
               <!-- Button trigger modal -->
 
 
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content p-4 ">
-                    <div class="modal-header">
-                      <h1 class="head_top-custoimer head_top-custoimer head_top-custoimer1" id="exampleModalLabel">
-                        Invite New User</h1>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="close-text">close</span>
-                      </button>
-                    </div>
-                    <div class="modal-body pt-0">
-                      <!-- <div class="modal-form-div">
-                        <form [formGroup]="invitationForm" class="form_login w-100">
-                          <div class="form-group dash-form">
-                            <input formControlName="firstName" type="name" class="form_login_n dash-form-input"
-                              placeholder="First Name" />
-                            <div *ngIf='invitationFormError.firstName' class="alert- mt-2">{{invitationFormError.firstName}}</div>
-                          </div>
-                          <div class="form-group dash-form">
-                            <input formControlName="lastName" type="name" class="form_login_n dash-form-input"
-                              placeholder="Last Name" />
-                            <div *ngIf='invitationFormError.lastName' class="alert- mt-2">{{invitationFormError.lastName}}</div>
-                          </div>
-                          <div class="form-group dash-form">
-                            <input formControlName="email" type="email" class="form_login_n dash-form-input"
-                              placeholder="User Email Address" />
-                            <div *ngIf='invitationFormError.email' class="alert- mt-2">{{invitationFormError.email}}</div>
-                          </div>
-                          <div class="form-group dash-form">
-                            <select formControlName="subscriptionId" id="Choose Subscriptions" name="Subscriptions"
-                              class="popup-choose">
-                              <option value=''>Choose Subscriptions</option>
-                              <option *ngFor='let item of planList' value={{item._id}}>{{item.planName}}</option>
-                            </select>
-                            <div *ngIf='invitationFormError.subscriptionId' class="alert- mt-2">{{invitationFormError.subscriptionId}}
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <button class="color-button" type="submit" [disabled]='invitationForm.invalid'
-                              (click)="onSendInvitation()">Send Invitation</button>
-                          </div>
-                        </form> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
             <!--modal ends--->
 
@@ -145,7 +98,7 @@
                 <tr class="admin_table table-style table-style-subscription-head">
                   <td>
                     <div class="d-flex align-items-center table-image-div h-100">
-                      <img class="pro_icon1" src="assets/images/contact_person.png">
+                      <img class="pro_icon1" src="assets/images/contact_person.png"/>
                       <p class="mb-0">{{item.fullName}}</p>
                     </div>
                   </td>
@@ -244,6 +197,7 @@
                         <option value=''>Choose Subscriptions</option>
                         <option *ngFor='let item of planList' value={{item._id}}>{{item.planName}}</option>
                       </select>
+
                       <div *ngIf='invitationFormError.subscriptionId' class="alert- mt-2">
                         {{invitationFormError.subscriptionId}}
                       </div>
@@ -281,6 +235,8 @@
         </div>
       </div>
     </div>
+    </div>
+
   </div>
   <div class="modal fade" id="ondelete-model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
