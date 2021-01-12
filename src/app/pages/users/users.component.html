@@ -86,7 +86,7 @@
                 <tr class="admin_table table-style">
                   <th>Name</th>
                   <th>Email Address</th>
-                  <th>Status</th>
+                  <th>Invitation</th>
                   <th>Join Date</th>
                   <th>Subscription Plan</th>
                   <th>Subscription Date</th>
@@ -94,6 +94,7 @@
                   <th>Data Usage</th>
                   <th>Note Usage</th>
                   <th>Subject Usage</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -140,6 +141,12 @@
                   </td>
                   <td>
                     <p>{{item.totalSub}}</p>
+                  </td>
+                  <td>
+                    <p *ngIf="item.isStatus=='0'; else templateName3">Active </p>
+                    <ng-template #templateName3>
+                      <p>Block</p>
+                    </ng-template>
                   </td>
                   <td>
                     <div class="d-flex p-0 m-0">
