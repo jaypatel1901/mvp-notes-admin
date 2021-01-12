@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import SlimSelect from 'slim-select'
 import { RandomColor } from 'angular-randomcolor';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -186,11 +187,11 @@ export class DashboardComponent implements OnInit {
       if (data.status == 200) {
         this.spinner.hide();
         document.getElementById("myModal").click();
-        alert("Invitation sent successfully!")
+        swal.fire("Invitation sent successfully!");
       } else {
         this.spinner.hide();
         document.getElementById("myModal").click();
-        alert(data.message)
+        swal.fire("Server Error");
       }
     })
   }

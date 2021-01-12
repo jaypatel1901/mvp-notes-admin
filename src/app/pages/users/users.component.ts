@@ -4,7 +4,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from "ngx-spinner";
 import SlimSelect from 'slim-select'
-
+// import * as Swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-users',
@@ -108,7 +109,6 @@ onValueChanges(data?: any) {
   }
 }
 onSendInvitation() {
-  alert("hello")
   this.spinner.show();
   let userData = {
     firstName: this.invitationForm.value.firstName,
@@ -121,11 +121,15 @@ onSendInvitation() {
     if (data.status == 200) {
       this.spinner.hide(); 
       document.getElementById("myModal").click();
-      alert("Invitation sent successfully!")
+      // alert("Invitation sent successfully!")
+      Swal.fire("Invitation sent successfully!");
+
     } else {
       this.spinner.hide();
       document.getElementById("myModal").click();
-      alert(data.message)
+      // alert(data.message)
+      Swal.fire("Server Error");
+
     }
   })
 }
@@ -163,58 +167,114 @@ onSendInvitation() {
     this.showTr=true
   }
 
-
+getUserId(id){
+  this.userId=id  
+}
   deleteUser(id) {
-    // alert(id)
-   this.userId=id
+            document.getElementById("ondelete").click();
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this imaginary file!",
+    showConfirmButton: true,
+    showCancelButton: true ,
+    confirmButtonText:'Yes, delete it!'   
+  })
+  .then((willDelete) => {
+      if(willDelete.value){
+           this.deleteUsers()
+      }else{
+        Swal.fire("Fail");
+      }
+    console.log(willDelete)
+  });
   }
   deleteUsers(){
     this.spinner.show();
     this.commonService.delete('deleteUser', this.userId).subscribe((data: any) => {
-      if (data.status == 200) {
-        alert(data.message)
+      if (data.status === 200) {
         this.getUSerlist()
-        document.getElementById("ondelete").click();
-        document.getElementById("ondelete-model").click();
         this.spinner.hide();
+        Swal.fire('Deleted!',
+        'Your file has been deleted.',
+        'success');
       } else {
-        document.getElementById("ondelete").click();
-        document.getElementById("ondelete-model").click();
         this.spinner.hide();
         this.error = data.message
-        alert(this.error)
+        Swal.fire("Fail!");
+
       }
     })
   }
-  BlockUsers(){
+  blockUser() {
+    document.getElementById("ondelete").click();
+   var key= 1
+    Swal.fire({
+      title: "Are you sure?",
+      showConfirmButton: true,
+      showCancelButton: true ,
+      confirmButtonText:'Yes, Block it!'   
+    })
+    .then(async (willDelete) => {
+        if(willDelete.value){
+            await this.BlockUsers(key)
+        }else{
+          Swal.fire("Fail");
+        }
+      console.log(willDelete)
+    });
+    }
+    unblockUser() {
+      document.getElementById("onBlock").click();
+
+      var key=0
+      Swal.fire({
+        title: "Are you sure?",
+        // text: "Once deleted, you will not be able to recover this imaginary file!",
+        showConfirmButton: true,
+        showCancelButton: true ,
+        confirmButtonText:'Yes, Unblock it!'   
+      })
+      .then(async (willDelete) => {
+          if(willDelete.value){
+              await this.BlockUsers(key)
+              //  Swal.fire("Success");
+          }else{
+            Swal.fire("Fail");
+          }
+        console.log(willDelete)
+      });
+      }
+  BlockUsers(key){
     this.spinner.show();
     let obj:any ={
-      "isStatus":"1",
+      "isStatus":key,
       "blockBy":"admin",
       "userId":this.userId
     }
     this.commonService.post('blockUser', obj).subscribe((data: any) => {
       if (data.status == 200) {
-        alert(data.message)
         this.getUSerlist()
-        document.getElementById("ondelete").click();
-        document.getElementById("ondelete-model").click();
-        document.getElementById("onblock-model").click();
         this.spinner.hide();
+        if(data.data.isStatus===1){
+        Swal.fire('Blocked!',
+        'Your user has been Blocked.',
+        'success');
+        }
+        if(data.data.isStatus===0){
+          Swal.fire('Unblocke!',
+          'Your user has been Unblock.',
+          'success');
+          }
       } else {
-        document.getElementById("ondelete").click();
-        document.getElementById("ondelete-model").click();
-        document.getElementById("onblock-model").click();
         this.spinner.hide();
         this.error = data.message
-        alert(this.error)
+        Swal.fire("Error");
+
       }
     })
   }
   notDelete=()=>{
     document.getElementById("ondelete").click();
-    document.getElementById("ondelete-model").click();
-    document.getElementById("onblock-model").click();
   }
-
+     
 }
