@@ -284,11 +284,11 @@
                 <div class="col-sm-12 d-flex justify-content-between border-bottom py-2">
                   <img src="assets/images/avtar.png" class="profile-img">
                   <div class="">
-                    <p class="profile-name">Hello, Summar Anand!</p>
-                    <p class="profile-sub mb-0">summaranand@mvpn.com</p>
+                    <p class="profile-name">Hello, {{userName}}!</p>
+                    <p class="profile-sub mb-0">{{userEmail}}</p>
                   </div>
                   <a href=""><img src="assets/images/notif.png" class="prof-icon pl-3"></a>
-                  <a href="index.html"><img src="assets/images/logout.png" class="prof-icon"></a>
+                <button class="btn" (click)="logout()"><img src="assets/images/logout.png" class="prof-icon"></button>
                 </div>
 
                 <div class="col-md-6 my-3">

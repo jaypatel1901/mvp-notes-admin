@@ -116,12 +116,10 @@
                       <div class="dataTables_length dataTables_length1 d-flex" id="example_length">
                         <label class="d-flex">
                           <p class="pt-1 registerd-user mr-2">SortBy:</p>
-                           <select name="example_length"
-                            aria-controls="example"
-                            (change)="onChange($event)"
-                             id="Subscription-filter" style="width: 150px;">
+                          <select name="example_length" aria-controls="example" (change)="onChange($event)"
+                            id="Subscription-filter" style="width: 150px;">
                             <option value="All users">All users</option>
-                            <option *ngFor='let item of planList'  value={{item.planName}}>{{item.planName}}</option>
+                            <option *ngFor='let item of planList' value={{item.planName}}>{{item.planName}}</option>
                           </select>
                         </label>
                       </div>
@@ -163,7 +161,7 @@
                       </td>
                       <!-- <td><p>01-01-2020</p></td> -->
                       <td>
-                        <p class="status-text purple">{{subscriber.Status}}</p>                          
+                        <p class="status-text purple">{{subscriber.Status}}</p>
                       </td>
                     </tr>
                   </tbody>
@@ -180,16 +178,50 @@
                   <div class="row">
                     <div class="col-sm-12 col-md-6 py-2">
                       <div class="d-flex">
-                        <button class="white-button mr-3" id='activeButton' (click)="onActive()"  >Active</button>
+                        <!-- <button class="white-button mr-3" id='activeButton' (click)="onActive()"  >Active</button>
                         <button class="white-button mr-3" id='expiredButton' (click)="onExpired()">Expired</button>
-                        <button class="white-button" id='allButton' (click)="onAllHisotry()">All History</button>
-
+                        <button class="white-button" id='allButton' (click)="onAllHisotry()">All History</button> -->
+                        <select name="example_length" aria-controls="example" (change)="onChangeHistory($event)"
+                          id="SubscriptionHistory-filter" style="width: 150px;">
+                          <option value="Allusers">All History</option>
+                          <option value="Active">Active</option>
+                          <option value="Expired">Expired</option>
+                          <option *ngFor='let item of planList' value={{item.planName}}>{{item.planName}}</option>
+                        </select>
+                        <div class="search-box">
+                          <i class="fa fa-search positio_icon1"></i>
+                          <input type="text" (change)="onChangeSearch($event)" placeholder="search by Name and Email"
+                            class="input_header1">
+                          <!-- <button class="btn btn-info" (click)="searchByName()" >search</button> -->
+                          <input [(ngModel)]="searchText" type='date' placeholder="search text goes here">   
+                        </div>
+                        <!-- <div class="d-flex">
+                          <input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)" />
+                        </div> -->
+                        <!-- <div style="padding:25px;">
+                          <div class="form-group">
+                            <div class="input-group"
+                              name="daterangeInput" 
+                              daterangepicker 
+                              [options]="options" 
+                              (selected)="selectedDate($event)"
+                              (applyDaterangepicker)="applyDate($event)"
+                            >
+                              <span class="form-control uneditable-input">
+                                  {{ daterange.start | date:'M/dd/y' }} - {{ daterange.end| date:'M/dd/y' }}
+                              </span>
+                              <span class="input-group-btn">
+                                <a type="button" class="btn btn-default">
+                                  <i class="glyphicon glyphicon-calendar"></i>
+                                </a>
+                              </span>
+                            </div> -->
                       </div>
                     </div>
                   </div>
                 </div>
                 <table id="example" class="table table-striped" style="width:100%">
-                 <thead>
+                  <thead>
                     <tr class="admin_table table-style">
                       <th style="padding-left: 5%;">Name & Email Address</th>
                       <th>Subscription Plan</th>
@@ -201,7 +233,7 @@
                   </thead>
                   <tbody>
                     <tr class="admin_table table-style table-style-subscription-head"
-                      *ngFor="let item of SubscriptionHistoryList | paginate: { itemsPerPage: 10, currentPage: p } ">
+                      *ngFor="let item of SubscriptionHistoryList | filter : searchKey |paginate: { itemsPerPage: 10, currentPage: p } ">
                       <td>
                         <div class="d-flex align-items-center table-image-div">
                           <img class="pro_icon1" src="assets/images/contact_person.png">
@@ -217,7 +249,9 @@
                       <td>
                         <p>{{item.date | date}}</p>
                       </td>
-                      <td><p>{{item.Expiry_Date | date}}</p></td>
+                      <td>
+                        <p>{{item.Expiry_Date | date}}</p>
+                      </td>
                       <td>
                         <p>${{item.Price}}.00</p>
                       </td>
@@ -267,15 +301,21 @@
             <div class="col">
               <p class="plan-form-label">Plan Price</p>
               <div class="form-group dash-form">
-                <input type="name" name="plan price" class="form_login_n1 dash-form-input" placeholder="Plan Price"
-                  [(ngModel)]="planPrice" />
+                <!-- <input type="name" name="plan price" class="form_login_n1 dash-form-input" placeholder="Plan Price"
+                  [(ngModel)]="planPrice" /> -->
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2"
+                    data-number-stepfactor="100" class="form-control currency" id="c2" />
+                </div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="duration"
-                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                <!-- <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="duration"
+                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;"> -->
+                <select (change)="somethingChanged($event)" name="duration" id="plan-duration" style="width: 150px;">
                   <option value="">Choose Subscriptions</option>
                   <option value="30">30 Days</option>
                   <option value="60">60 Days</option>
@@ -298,7 +338,7 @@
             <div class="col">
               <p class="plan-form-label">Data Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="dataUsage"
+                <select id="Choose-Subscriptions" (change)="somethingChanged($event)" name="dataUsage"
                   class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
                   <option value="">choose option</option>
                   <option value="1">1 GB</option>
@@ -310,8 +350,8 @@
             <div class="col">
               <p class="plan-form-label">Subject Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="subjectUsage"
-                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                <select id="Subject-Usage" (change)="somethingChanged($event)" name="subjectUsage"
+                  style="width: 150px;">
                   <option value="">choose subject</option>
                   <option value="10">10 Subjects</option>
                   <option value="20">20 Subjects</option>
@@ -322,8 +362,9 @@
             <div class="col">
               <p class="plan-form-label">Note Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="noteUsage"
-                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
+                <!-- <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="noteUsage"
+                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;"> -->
+                <select (change)="somethingChanged($event)" name="noteUsage" id="Note-Usage" style="width: 150px;">
                   <option value="">Choose an option</option>
                   <option value="100">100 Notes</option>
                   <option value="500">500 Notes</option>
@@ -332,18 +373,17 @@
               </div>
             </div>
           </div>
-
-
           <div class="form-group text-center">
             <button class="color-button" type="submit">Save Plan</button>
-
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-clockwise" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
 
 
 
@@ -376,8 +416,8 @@
             <div class="col">
               <p class="plan-form-label">Plan Price{{planPrice}}</p>
               <div class="form-group dash-form">
-                <input type="name" name="plan price" class="form_login_n1 dash-form-input" [(ngModel)]="planPrice"
-                  placeholder="Plan Price" />
+                <input type="name" name="plan price" [ngModel]="mymodel" class="form_login_n1 dash-form-input"
+                  [(ngModel)]="planPrice" placeholder="Plan Price" />
               </div>
             </div>
             <div class="col">
@@ -451,5 +491,3 @@
   </div>
 
 </div>
-
-

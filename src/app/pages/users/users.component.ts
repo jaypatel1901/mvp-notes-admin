@@ -45,7 +45,7 @@ export class UsersComponent implements OnInit {
       showSearch: false,
     })
 
-  }
+  } 
   onUserDetails = () => {
     this.isDetails = !this.isDetails
   }

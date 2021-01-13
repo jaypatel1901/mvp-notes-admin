@@ -15,9 +15,8 @@ const routes: Routes = [
       .then(m => m.AuthModule),
   },
   {
-    path: '**',
+    path: '#',
     redirectTo: 'login',
-    pathMatch: 'full',
   }
 ];
 const config: ExtraOptions = {

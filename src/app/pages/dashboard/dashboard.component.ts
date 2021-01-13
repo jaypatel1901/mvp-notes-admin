@@ -7,6 +7,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import SlimSelect from 'slim-select'
 import { RandomColor } from 'angular-randomcolor';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -41,17 +43,19 @@ export class DashboardComponent implements OnInit {
   TotalEngagementRate: number = 0
   Plans: any = []
   filterData = []
-  isfilterchangeSales=
-  {
-    label: 'All Time',
-    startDate: '2020-11-25T11:31:07.431Z',
-    endDate: '2021-01-08T14:00:30.813Z'
-  }
-  isfilterchange = {
+  userName: any=''
+  userEmail:any =''
+  isfilterchangeSales =
+    {
       label: 'All Time',
       startDate: '2020-11-25T11:31:07.431Z',
       endDate: '2021-01-08T14:00:30.813Z'
     }
+  isfilterchange = {
+    label: 'All Time',
+    startDate: '2020-11-25T11:31:07.431Z',
+    endDate: '2021-01-08T14:00:30.813Z'
+  }
   // paymentData:any =[]
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -78,7 +82,7 @@ export class DashboardComponent implements OnInit {
   ];
   //  ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']
   public barChartLabels: Label[] = []//['Jan 2021', 'Feb 2021', 'Mar 2021', 'Apr 2021', 'May 2021', 'Jun 2021', 'Jul 2021', 'Aug 2021', 'Oct 2021', 'Nov 2021', 'Dec 2021']
-  public lineChartLabels:Label[]=[]
+  public lineChartLabels: Label[] = []
   public barChartType: ChartType = 'bar';
   public lineChartType: ChartType = 'line';
   public barChartLegend = true;
@@ -92,12 +96,20 @@ export class DashboardComponent implements OnInit {
     // { data: [], label: 'Silver Plan' },
     // { data: [], label: 'Trial Plan' },
   ];
-  constructor(private commonService: CommonService, private fb: FormBuilder, private spinner: NgxSpinnerService) {
+  constructor(private commonService: CommonService, private fb: FormBuilder, private spinner: NgxSpinnerService, private router: Router) {
     this.createInvitation()
   }
 
   ngOnInit(): void {
-    this.getUSerlist()
+    const token = localStorage.getItem("token")
+    if (!token)
+      this.router.navigate(['login'])
+  
+  let fName =   localStorage.getItem("firstName");
+  let lName =   localStorage.getItem("lastName");
+  this.userEmail = localStorage.getItem('email')
+  this.userName = fName +" "+ lName
+      this.getUSerlist()
     this.getUsageStatistics()
     this.getSubscriptionPlanList()
     this.getSubscriptionReport()
@@ -260,27 +272,28 @@ export class DashboardComponent implements OnInit {
 
     console.log("chekcc itme", event.target.value)
     let isFilter = event.target.value
-    if(isFilter !==null){
-    let  newdata=[]
-     newdata = this.filterData.filter((item) => {
-      return item.label === isFilter
-    });
-    this.isfilterchangeSales = newdata[0]
-   this.saleReportChart()
-  }
+    if (isFilter !== null) {
+      let newdata = []
+      newdata = this.filterData.filter((item) => {
+        return item.label === isFilter
+      });
+      this.isfilterchangeSales = newdata[0]
+      this.saleReportChart()
+    }
   }
   saleReportChart() {
     this.spinner.show();
 
-    this.commonService.post('getsaleChart',this.isfilterchangeSales).subscribe((data: any) => {
+    this.commonService.post('getsaleChart', this.isfilterchangeSales).subscribe((data: any) => {
       if (data.status == 200) {
-        this.barChartData=[]
+        this.barChartData = []
         let newData = data.data
         console.log("dataa in chart", newData)
-        this.barChartLabels=newData.chartLabel
-        this.barChartData.push({ data: newData.total, label: 'Gold Plan' 
-      })
-      this.spinner.hide();
+        this.barChartLabels = newData.chartLabel
+        this.barChartData.push({
+          data: newData.total, label: 'Gold Plan'
+        })
+        this.spinner.hide();
 
         // this.barChartData[0].data = newData.map(v => parseInt((v).toString()))
         console.log("dataa in chart1111", this.barChartData)
@@ -303,27 +316,27 @@ export class DashboardComponent implements OnInit {
   }
   onChangefilter(event) {
     let isFilter = event.target.value
-    if(isFilter !==null){
-    let  newdata=[]
-     newdata = this.filterData.filter((item) => {
-      return item.label === isFilter
-    });
-    this.isfilterchange = newdata[0]
-   this.getSubscriptionReportChart()
-  }
+    if (isFilter !== null) {
+      let newdata = []
+      newdata = this.filterData.filter((item) => {
+        return item.label === isFilter
+      });
+      this.isfilterchange = newdata[0]
+      this.getSubscriptionReportChart()
+    }
   }
   getSubscriptionReportChart() {
     this.spinner.show();
-    this.lineChartData=[]
-    this.commonService.post('subscriptionReport',this.isfilterchange).subscribe((data: any) => {
+    this.lineChartData = []
+    this.commonService.post('subscriptionReport', this.isfilterchange).subscribe((data: any) => {
       if (data.status == 200) {
         this.Plans = data.data
         data.data.map((item, i) => {
           const newColor = RandomColor.generateColor()
-          this.lineChartLabels=item.chartLabel
+          this.lineChartLabels = item.chartLabel
           this.lineChartData.push({ data: item.total, label: item.name, borderColor: newColor })
         })
-                this.spinner.hide();
+        this.spinner.hide();
 
         // let newData = data.data.Silver_Plan
         // let newData1 = data.data.Gold_Plan
@@ -384,6 +397,25 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-
+  logout() {
+   
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      showConfirmButton: true,
+      showCancelButton: true ,
+      confirmButtonText:'Yes,Logout it!'   
+    })
+    .then((willDelete) => {
+        if(willDelete.value){
+          localStorage.removeItem("token");
+          this.router.navigate(['login'])
+        }
+        else{
+          Swal.fire("Fail");
+        }
+      console.log(willDelete)
+    });
+  }
 
 }

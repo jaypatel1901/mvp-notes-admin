@@ -26,6 +26,8 @@
     "express": "*",
     "ng-chartjs": "^0.2.1",
     "ng2-charts": "^2.4.2",
+    "ng2-daterangepicker": "^3.0.1",
+    "ngx-daterange": "^1.0.43",
     "ngx-pagination": "^5.0.0",
     "ngx-spinner": "^10.0.1",
     "nodemon": "^2.0.6",

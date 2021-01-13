@@ -15,6 +15,9 @@ import { ChartsModule } from 'ng2-charts';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { RandomcolorModule } from 'angular-randomcolor';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { FilterPipe} from './filter.pipe';
+import { Daterangepicker } from 'ng2-daterangepicker';
+// import { Daterangepicker } from 'ng2-daterangepicker';
 
 // import * as ChartAnnotation from 'chartjs-plugin-annotation';
 @NgModule({
@@ -25,7 +28,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     UsersComponent,
     CMSComponent,
     SubscriptionComponent,
-    SidebarComponent
+    SidebarComponent,
+    FilterPipe
   ],
   imports: [
     FormsModule,
@@ -37,7 +41,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     ChartsModule,
     NgxSpinnerModule,
     RandomcolorModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    Daterangepicker
   ]
 })
 export class PagesModule { }

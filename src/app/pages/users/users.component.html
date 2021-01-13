@@ -59,7 +59,7 @@
                         <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
                         <select name="example_length" aria-controls="example" (change)="onChange($event)"
                           id="user-toggle" style="width: 150px;">
-                          <option value="All users" class="head-option">All users</option>
+                           <option value="All users" class="head-option">All users</option>
                           <option *ngFor="let item of planList;" value={{item.planName}}>{{item.planName}}</option>
                         </select>
                       </label>
@@ -169,15 +169,38 @@
                       </div>
                     </ng-template>
                   </td>
+                  <!-- <td>
+                    <div class="" style="position: absolute;right: -18px;">
+                      <button class="btn dropdown-toggle bg-transparent p-0 m-0" type="button" data-toggle="dropdown">
+                        <span class="caret ml-2"></span></button>
+                      <ul class="dropdown-menu dropdown-menu-ul ">
+                        <li><a href="#" style="padding-bottom: 0;">
+                            <div class="d-flex" style="margin-left: -6px;">
+                              <img src="assets/images/Settings Icon.png" class="logout-icon">
+                              <p class="logout-text">My Account</p>
+                            </div>
+                          </a></li>
+                        <li><a href="#" style="padding-bottom: 0;">
+                            <div class="d-flex" style="margin-left: -6px;">
+                              <img src="assets/images/Settings Icon.png" class="logout-icon">
+                              <p class="logout-text">Sign Out</p>
+                            </div>
+                          </a></li>
+                        <li><a href="#"></a></li>
+                      </ul>
+                    </div>
+                  </td> -->
                 </tr>
               </tbody>
+              <pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
             </table>
             <!-- Table ends -->
+
           </div>
           <!-- <swal #deleteSwal title="Delete  file.name" etc></swal> -->
+
         </div>
 
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
         <!-- The Modal -->
         <div class="modal" id="myModal">
           <div class="modal-dialog">
