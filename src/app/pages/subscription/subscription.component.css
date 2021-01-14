@@ -24,3 +24,16 @@ input.currency {
     position: relative;
     z-index: 3;
 }
+
+.input_custom_1
+{
+    position: absolute;
+top: 5px;
+z-index: 99;
+left: 10px;
+}
+.input-group-addon.input_custom_MB {
+    position: absolute;
+    right: 18px;
+    top: 38px;
+}

@@ -90,7 +90,7 @@
                         </div>
                         <div>
                           <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
-                                class="px-2 mb-1"></span>{{plan.configration.dataUsage}} Data</p>
+                                class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
                           <p class="content-text"><span><img src="assets/images/Group 4652.png"
                                 class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
                         </div>
@@ -193,7 +193,7 @@
                           <input type="text" (change)="onChangeSearch($event)" placeholder="search by Name and Email"
                             class="input_header1">
                           <!-- <button class="btn btn-info" (click)="searchByName()" >search</button> -->
-                          <input [(ngModel)]="searchText" type='date' placeholder="search text goes here">   
+                          <input [(ngModel)]="searchText" type='date' placeholder="search text goes here">
                         </div>
                         <!-- <div class="d-flex">
                           <input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)" />
@@ -277,7 +277,7 @@
 <!-- The Modal -->
 <div class="modal" id="CreatePlan">
   <div class="modal-dialog">
-    <div class="modal-content  curved p-3" style="width: 88%;margin-top: -18%;">
+    <div class="modal-content  curved p-3" style="width: 120%;margin-top: -18%;">
 
       <!-- Modal Header -->
       <div class="modal-header">
@@ -287,13 +287,14 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="form_login w-100" (ngSubmit)="savePlan()">
+        <form [formGroup]="createPlanForm" class="form_login w-100">
           <div class="form-row">
             <div class="col">
               <p class="plan-form-label">Plan Name</p>
               <div class="form-group dash-form">
-                <input type="name" name="planName" class="form_login_n1 dash-form-input" placeholder="Plan Name"
-                  [(ngModel)]="planName" />
+                <input type="text" formControlName='planName' class="form_login_n1 dash-form-input"
+                  placeholder="Plan Name" />
+                <div *ngIf='createPlanFormError.planName' class="alert- mt-2">{{createPlanFormError.planName}}</div>
               </div>
             </div>
           </div>
@@ -301,26 +302,25 @@
             <div class="col">
               <p class="plan-form-label">Plan Price</p>
               <div class="form-group dash-form">
-                <!-- <input type="name" name="plan price" class="form_login_n1 dash-form-input" placeholder="Plan Price"
-                  [(ngModel)]="planPrice" /> -->
                 <div class="input-group">
-                  <span class="input-group-addon">$</span>
-                  <input type="number" value="1000" min="0" step="0.01" data-number-to-fixed="2"
-                    data-number-stepfactor="100" class="form-control currency" id="c2" />
+                  <span class="input-group-addon input_custom_1">$</span>
+                  <input type="number" formControlName='planPrice' placeholder="Plan Price"
+                    class="form-control currency" id="c2" />
+                  <div *ngIf='createPlanFormError.planPrice' class="alert- mt-2">{{createPlanFormError.planPrice}}</div>
                 </div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
-                <!-- <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="duration"
-                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;"> -->
-                <select (change)="somethingChanged($event)" name="duration" id="plan-duration" style="width: 150px;">
+                <select (change)="somethingChanged($event)" formControlName='duration' id="plan-duration"
+                  style="width: 150px;">
                   <option value="">Choose Subscriptions</option>
                   <option value="30">30 Days</option>
                   <option value="60">60 Days</option>
                   <option value="90">90 Days</option>
                 </select>
+                <div *ngIf='createPlanFormError.duration' class="alert- mt-2">{{createPlanFormError.duration}}</div>
               </div>
             </div>
           </div>
@@ -328,53 +328,52 @@
             <div class="col">
               <p class="plan-form-label">Plan Description</p>
               <div class="form-group dash-form">
-                <input type="text" name=description class="form_login_n1 dash-form-input" placeholder=""
-                  style="height: 100px !important;" [(ngModel)]="description" />
+                <input type="text" formControlName='description' class="form_login_n1 dash-form-input" placeholder=""
+                  style="height: 100px !important;" />
+                <div *ngIf='createPlanFormError.description' class="alert- mt-2">{{createPlanFormError.description}}
+                </div>
               </div>
             </div>
           </div>
-
           <div class="form-row">
             <div class="col">
               <p class="plan-form-label">Data Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose-Subscriptions" (change)="somethingChanged($event)" name="dataUsage"
-                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;">
-                  <option value="">choose option</option>
-                  <option value="1">1 GB</option>
-                  <option value="10">10 GB</option>
-                  <option value="15">15 GB</option>
-                </select>
+                <span class="input-group-addon input_custom_MB">MB</span>
+                <input type="text" name="dataUsage" class="form_login_n1 dash-form-input" placeholder=""
+                  formControlName="dataUsage" />
+                <div *ngIf='createPlanFormError.dataUsage' class="alert- mt-2">{{createPlanFormError.dataUsage}}</div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Subject Usage</p>
               <div class="form-group dash-form">
-                <select id="Subject-Usage" (change)="somethingChanged($event)" name="subjectUsage"
-                  style="width: 150px;">
+                <select id="Subject-Usage" formControlName='subjectUsage' style="width: 150px;">
                   <option value="">choose subject</option>
                   <option value="10">10 Subjects</option>
                   <option value="20">20 Subjects</option>
                   <option value="100">100 Subjects</option>
                 </select>
+                <div *ngIf='createPlanFormError.subjectUsage' class="alert- mt-2">{{createPlanFormError.subjectUsage}}
+                </div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Note Usage</p>
               <div class="form-group dash-form">
-                <!-- <select id="Choose Subscriptions" (change)="somethingChanged($event)" name="noteUsage"
-                  class="popup-choose" style="border: 1px solid #979797; box-shadow: none;"> -->
-                <select (change)="somethingChanged($event)" name="noteUsage" id="Note-Usage" style="width: 150px;">
+                <select formControlName="noteUsage" id="Note-Usage" style="width: 150px;">
                   <option value="">Choose an option</option>
                   <option value="100">100 Notes</option>
                   <option value="500">500 Notes</option>
                   <option value="1000">1000 Notes</option>
                 </select>
+                <div *ngIf='createPlanFormError.noteUsage' class="alert- mt-2">{{createPlanFormError.noteUsage}}</div>
               </div>
             </div>
           </div>
           <div class="form-group text-center">
-            <button class="color-button" type="submit">Save Plan</button>
+            <button class="color-button" type='submit' (click)="savePlan()" [disabled]='createPlanForm.invalid'>Save
+              Plan</button>
           </div>
         </form>
       </div>
@@ -392,7 +391,7 @@
 <!-- The Modal -->
 <div class="modal" id="EditPlan">
   <div class="modal-dialog">
-    <div class="modal-content  curved p-3" style="width: 88%;margin-top: -18%;">
+    <div class="modal-content  curved p-3" style="width: 120%;margin-top: -18%;">
 
       <!-- Modal Header -->
       <div class="modal-header">
@@ -402,13 +401,14 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form class="form_login w-100" (ngSubmit)="update()">
+        <form  [formGroup]="UpdatePlanForm" class="form_login w-100" >
           <div class="form-row">
             <div class="col">
               <p class="plan-form-label">Plan Name</p>
               <div class="form-group dash-form">
-                <input type="name" name="plan name" class="form_login_n1 dash-form-input" [(ngModel)]="planName"
+                <input type="name" formControlName='planName' [value]="UpdatePlanForm.value.planName"  class="form_login_n1 dash-form-input" 
                   placeholder="Plan Name" />
+                  <div *ngIf='updatePlanFormError.planName' class="alert- mt-2">{{updatePlanFormError.planName}}</div>
               </div>
             </div>
           </div>
@@ -416,20 +416,24 @@
             <div class="col">
               <p class="plan-form-label">Plan Price{{planPrice}}</p>
               <div class="form-group dash-form">
-                <input type="name" name="plan price" [ngModel]="mymodel" class="form_login_n1 dash-form-input"
-                  [(ngModel)]="planPrice" placeholder="Plan Price" />
+                <div class="input-group">
+                  <span class="input-group-addon input_custom_1">$</span>
+                  <input type="number" formControlName='planPrice'  [value]="UpdatePlanForm.value.planPrice" placeholder="Plan Price"
+                    class="form-control currency" id="c2" />
+                  <div *ngIf='updatePlanFormError.planPrice' class="alert- mt-2">{{updatePlanFormError.planPrice}}</div>
+                </div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
-                  style="border: 1px solid #979797; box-shadow: none;">
-                  <option value="">{{planDuration}}</option>
-                  <option value="">Monthly</option>
-                  <option value="">Quarterly</option>
-                  <option value="">Yearly</option>
+                <select  formControlName='duration' id="plan-durationupdate" >
+                  <option  [value]="planDuration">{{planDuration}}</option>
+                  <option value="30">30</option>
+                  <option value="60">60</option>
+                  <option value="90">90</option>
                 </select>
+                <div *ngIf='updatePlanFormError.duration' class="alert- mt-2">{{updatePlanFormError.duration}}</div>
               </div>
             </div>
           </div>
@@ -437,9 +441,10 @@
             <div class="col">
               <p class="plan-form-label">Plan Description</p>
               <div class="form-group dash-form">
-                <input type="text" class="form_login_n1 dash-form-input" name="description" placeholder=""
-                  style="height: 100px !important;" [(ngModel)]="description" />
+                <input type="text" class="form_login_n1 dash-form-input"  [value]="UpdatePlanForm.value.description"  placeholder=""
+                  style="height: 100px !important;" formControlName='description' />
               </div>
+              <div *ngIf='updatePlanFormError.description' class="alert- mt-2">{{updatePlanFormError.description}}</div>
             </div>
           </div>
 
@@ -447,43 +452,40 @@
             <div class="col">
               <p class="plan-form-label">Data Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
-                  style="border: 1px solid #979797; box-shadow: none;">
-                  <option value="">{{dataUsage}}</option>
-
-                  <option value="">1 GB</option>
-                  <option value="">10 GB</option>
-                  <option value="">15 GB</option>
-                </select>
+                <span class="input-group-addon input_custom_MB">MB</span>
+                <input type="text"  class="form_login_n1 dash-form-input" placeholder=""
+                  formControlName="dataUsage"  [value]="UpdatePlanForm.value.dataUsage" />
+                <div *ngIf='updatePlanFormError.dataUsage' class="alert- mt-2">{{updatePlanFormError.dataUsage}}</div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Subject Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
-                  style="border: 1px solid #979797; box-shadow: none;">
-                  <option value="">{{subjectUsage}}</option>
-                  <option value="">100</option>
-                  <option value="">1000</option>
-                  <option value="">15000</option>
+                <select formControlName='subjectUsage'  id="Subject-Usage-update">
+                  <!-- <option value={{UpdatePlanForm.value.subjectUsage}} >{{UpdatePlanForm.value.subjectUsage}}</option> -->
+                  <option value={{10}}>10</option>
+                  <option value={{20}}>20</option>
+                  <option value={{100}}>50</option>
                 </select>
+                <div *ngIf='updatePlanFormError.subjectUsage' class="alert- mt-2">{{updatePlanFormError.subjectUsage}}</div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Note Usage</p>
               <div class="form-group dash-form">
-                <select id="Choose Subscriptions" name="Subscriptions" class="popup-choose"
-                  style="border: 1px solid #979797; box-shadow: none;">
-                  <option value="">{{noteUsage}}</option>
-                  <option value="">100</option>
-                  <option value="">1000</option>
-                  <option value="">10000</option>
+                <select id="Note-Usage-update" formControlName='noteUsage' >
+                  <!-- <option  [value]="UpdatePlanForm.value.planName">{{ UpdatePlanForm.value.noteUsage}}</option> -->
+                  <option value={{100}}>100</option>
+                  <option value={{1000}}>1000</option>
+                  <option value={{10000}}>10000</option>
                 </select>
+                <div *ngIf='updatePlanFormError.noteUsage' class="alert- mt-2">{{updatePlanFormError.noteUsage}}</div>
               </div>
             </div>
           </div>
           <div class="form-group text-center">
-            <button class="color-button" type="submit">Save Plan</button>
+            <button class="btn btn-danger "  style="margin-right: 10px;" (click)="delete()">Delete Plan</button>
+            <button class="color-button"  (click)="update()">Plan Update</button>
           </div>
         </form>
       </div>

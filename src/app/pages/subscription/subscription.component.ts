@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from '../../core/services/common.service';
@@ -7,6 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NgxDateRangeModule } from 'ngx-daterange';
 // import { Component,  } from "@angular/core";
 // import { DaterangePickerComponent } from 'ng2-daterangepicker';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -38,43 +39,32 @@ export class SubscriptionComponent implements OnInit {
   isSubscriptionHistoryList: any = []
   isStatus: boolean = false;
   searchKey = ''
+  createPlanForm: FormGroup
+  createPlanFormError = {
+    "planName": '',
+    "planPrice": '',
+    "duration": '',
+    "description": '',
+    "dataUsage": '',
+    "subjectUsage": "",
+    "noteUsage": "",
+  }
+  UpdatePlanForm: FormGroup
+  updatePlanFormError = {
+    "planName": '',
+    "planPrice": '',
+    "duration": '',
+    "description": '',
+    "dataUsage": '',
+    "subjectUsage": "",
+    "noteUsage": "",
+  }
   // 
-  // public daterange: any = {
-  //   start: Date.now(),
-  //   end: Date.now(),
-  //   label: ''
-  // };
+  constructor(private commonService: CommonService, private fb: FormBuilder, private _router: Router, private spinner: NgxSpinnerService) {
+    this.createPlans()
+    this.updatePlans()
+  }
 
-  // @ViewChild(DaterangePickerComponent)
-  // private picker: DaterangePickerComponent;
-
-  // public options: any = {
-  //   locale: { format: 'YYYY-MM-DD' },
-  //   alwaysShowCalendars: false,
-  // }
-
-
-  // public options: any = {
-  //   locale: { format: 'YYYY-MM-DD' },
-  //   alwaysShowCalendars: false,
-  // } 
-  constructor(private commonService: CommonService, private _router: Router, private formBuilder: FormBuilder, private spinner: NgxSpinnerService) { }
-
-  // public selectedDate(value: any) {
-  //   console.log(value);
-  //   this.daterange.start = value.start;
-  //   this.daterange.end = value.end;
-  // }
-
-  // public applyDate(e: any) {
-  //   console.log(e)
-  //   //this.daterange.start = e.picker.startDate;
-  //   //this.daterange.end = e.picker.endDate;
-  // }
-
-  // ngAfterViewInit() {
-  //   this.picker.datePicker.setStartDate('2007-03-27');
-  // }
   ngOnInit(): void {
     this.getPlans();
     this.allSubscriber()
@@ -102,6 +92,20 @@ export class SubscriptionComponent implements OnInit {
       select: '#Note-Usage',
       showSearch: false,
     })
+    // update form
+    // 
+    new SlimSelect({
+      select: '#plan-durationupdate',
+      showSearch: false,
+    })
+    new SlimSelect({
+      select: '#Subject-Usage-update',
+      showSearch: false,
+    })
+    new SlimSelect({
+      select: '#Note-Usage-update',
+      showSearch: false,
+    })
   }
 
   getPlans() {
@@ -118,7 +122,7 @@ export class SubscriptionComponent implements OnInit {
       }
     })
   }
-
+  // 
 
   editplan(id) {
     this.planId = id;
@@ -126,66 +130,200 @@ export class SubscriptionComponent implements OnInit {
       plan_id: id
     }
     this.commonService.patch('getPlanDetails', body).subscribe((data: any) => {
-      console.log(JSON.stringify(data))
+      console.log(data)
       if (data.status == 200) {
-        this.planName = data.data.planName ? data.data.planName : '';
-        this.planPrice = data.data.planPrice;
-        this.planDuration = data.data.planDuration ? data.data.planDuration : '';
-        this.subjectUsage = data.data.configration.subjectUsage ? data.data.configration.subjectUsage : '';
-        this.dataUsage = data.data.configration.dataUsage ? data.data.configration.dataUsage : '';
-        this.noteUsage = data.data.configration.dataUsage ? data.data.configration.noteUsage : ''
-        this.description = data.data.description;
+        this.UpdatePlanForm.value.planName = data.data.planName ? data.data.planName : '';
+        this.UpdatePlanForm.value.planPrice = data.data.planPrice;
+        this.planDuration =data.data.planDuration ? data.data.planDuration : '';
+        this.UpdatePlanForm.value.duration = data.data.planDuration ? data.data.planDuration : '';
+        // this.UpdatePlanForm.value.subjectUsage = data.data.configration.subjectUsage ? data.data.configration.subjectUsage : '';
+        this.UpdatePlanForm.value.dataUsage = data.data.configration.dataUsage ? data.data.configration.dataUsage : '';
+        this.UpdatePlanForm.value.noteUsage = data.data.configration.dataUsage ? data.data.configration.noteUsage : ''
+        this.UpdatePlanForm.value.description = data.data.description;
       } else {
         this.plans = '';
       }
 
     })
   }
+  // 
+  updatePlanvalidationMessages = {
+    'planName': {
+      'required': 'Plan Name is required',
+      'minlength': 'minimum 3 characters required'
+    },
+    'planPrice': {
+      'required': 'Price is required',
+      'pattern': 'Only Numbers are Allowed',
+    },
+    'duration': {
+      'required': 'Duration is required',
+    },
+    'description': {
+      'required': 'Description is required',
+    },
+    'dataUsage': {
+      'required': 'Data Usage is required',
+      'pattern': 'Only Numbers are Allowed',
+    },
+    'subjectUsage': {
+      'required': 'Subject Usage is required',
+    },
+    'noteUsage': {
+      'required': 'Notes Usage is required',
+    }
+  }
+  updatePlans() {
+    // alert("hello")
+    this.UpdatePlanForm = this.fb.group({
+      planName: ['', [Validators.required, Validators.minLength(3)]],
+      planPrice: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      duration: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      dataUsage: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      subjectUsage: ['', [Validators.required]],
+      noteUsage: ['', [Validators.required]],
+    })
+    this.UpdatePlanForm.valueChanges.subscribe(data => this.onValueChangesUpdatePlan(data))
+  }
+  // 
+  onValueChangesUpdatePlan(data?: any) {
+    if (!this.UpdatePlanForm)
+      return
+    const form = this.UpdatePlanForm;
+    for (const field in this.updatePlanFormError) {
+      if (this.updatePlanFormError.hasOwnProperty(field)) {
+        this.updatePlanFormError[field] = '';
+        const control = form.get(field);
+        if (control && control.dirty && !control.valid) {
+          const messages = this.updatePlanvalidationMessages[field];
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.updatePlanFormError[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    }
+  }
+  // 
+
 
   update() {
-    alert(this.description)
+    // alert("hello")
+    this.spinner.show();
     let body = {
       subscriptionId: this.planId,
-      planName: this.planName,
-      planDuration: this.planDuration,
-      planPrice: this.planPrice,
-      subjectUsage: this.subjectUsage,
-      dataUsage: this.dataUsage,
-      noteUsage: this.noteUsage,
-      description: this.description
-
+      planName: this.UpdatePlanForm.value.planName,
+      planDuration: this.UpdatePlanForm.value.duration,
+      planPrice: this.UpdatePlanForm.value.planPrice,
+      subjectUsage: this.UpdatePlanForm.value.subjectUsage,
+      dataUsage: this.UpdatePlanForm.value.dataUsage,
+      noteUsage: this.UpdatePlanForm.value.noteUsage,
+      description: this.UpdatePlanForm.value.description
     }
+    console.log("update plan data", body)
     this.commonService.put('updateSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
+        Swal.fire('Updated!',
+        'Your file has been Updated.',
+        'success');
         $('#EditPlan').modal('hide');
         this.getPlans()
+        this.spinner.hide();
       } else {
-
+        this.spinner.hide();
+        Swal.fire('fail')
       }
     })
 
   }
 
+  //
+  createPlanvalidationMessages = {
+    'planName': {
+      'required': 'Plan Name is required',
+      'minlength': 'minimum 3 characters required'
+    },
+    'planPrice': {
+      // 'required': 'Price is required',
+      'pattern': 'Only Numbers are Allowed',
+    },
+    'duration': {
+      'required': 'Duration is required',
+      // 'pattern': 'email not in valid format'
+    },
+    'description': {
+      'required': 'Description is required',
+    },
+    'dataUsage': {
+      'required': 'Data Usage is required',
+      'pattern': 'Only Numbers are Allowed',
+    },
+    'subjectUsage': {
+      'required': 'Subject Usage is required',
+    },
+    'noteUsage': {
+      'required': 'Notes Usage is required',
+    }
+  }
+  // 
+  createPlans() {
+    this.createPlanForm = this.fb.group({
+      planName: ['', [Validators.required, Validators.minLength(3)]],
+      planPrice: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      duration: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      dataUsage: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      subjectUsage: ['', [Validators.required]],
+      noteUsage: ['', [Validators.required]],
+    })
+    this.createPlanForm.valueChanges.subscribe(data => this.onValueChanges(data))
+  }
+  // 
+  onValueChanges(data?: any) {
+
+    if (!this.createPlanForm)
+      return
+    const form = this.createPlanForm;
+    for (const field in this.createPlanFormError) {
+      if (this.createPlanFormError.hasOwnProperty(field)) {
+        this.createPlanFormError[field] = '';
+        const control = form.get(field);
+        if (control && control.dirty && !control.valid) {
+          const messages = this.createPlanvalidationMessages[field];
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.createPlanFormError[field] += messages[key] + ' ';
+            }
+          }
+        }
+      }
+    }
+  }
+  // 
   savePlan() {
     this.spinner.show();
     let body = {
-      planName: this.planName,
-      planDuration: this.planDuration,
-      planPrice: this.planPrice,
-      subjectUsage: this.subjectUsage,
-      dataUsage: this.dataUsage,
-      noteUsage: this.noteUsage,
-      description: this.description
-
+      planName: this.createPlanForm.value.planName,
+      planDuration: this.createPlanForm.value.duration,
+      planPrice: this.createPlanForm.value.planPrice,
+      subjectUsage: this.createPlanForm.value.subjectUsage,
+      dataUsage: this.createPlanForm.value.dataUsage,
+      noteUsage: this.createPlanForm.value.noteUsage,
+      description: this.createPlanForm.value.description
     }
     this.commonService.post('createSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
         $('#CreatePlan').modal('hide');
         this.getPlans()
         this.spinner.hide();
+        Swal.fire("Plan successfully Created!!");
       } else {
         this.spinner.hide();
-        alert("something went wrong")
+        // alert("something went wrong")
+        Swal.fire("something went wrong!!");
+
       }
     })
   }
@@ -261,7 +399,7 @@ export class SubscriptionComponent implements OnInit {
       // }
     })
   }
-  onChangeHistory(event){
+  onChangeHistory(event) {
     this.SubscriptionHistoryList = []
     this.filter = event.target.value
     this.isSubscriptionHistoryList.map((item, index) => {
@@ -281,7 +419,7 @@ export class SubscriptionComponent implements OnInit {
         const result = this.isSubscriptionHistoryList.filter(item => item.Status === 'Active');
         this.SubscriptionHistoryList = result
       }
-    }) 
+    })
   }
   getSubscriptionPlanList() {
     this.commonService.get('getSubscriptionPlan').subscribe((data: any) => {
@@ -303,7 +441,40 @@ export class SubscriptionComponent implements OnInit {
       }
     })
   }
-
+  // Delete Plan
+  delete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((willDelete) => {
+        if (willDelete.value) {
+          this.onDeletePlan()
+        } else {
+          Swal.fire("Fail");
+        }
+      });
+  }
+  onDeletePlan() {
+    document.getElementById("EditPlan").click();
+    this.spinner.show();
+    this.commonService.delete('deleteSubscription', this.planId).subscribe((data: any) => {
+      if (data.status == 200) {
+        this.spinner.hide();
+        this.getPlans()
+        Swal.fire('Deleted!',
+          'Your file has been deleted.',
+          'success');
+      }
+      else {
+        this.spinner.hide();
+        Swal.fire("Fail!");
+      }
+    })
+  }
   //  search bar
   onChangeSearch(event) {
     this.SubscriptionHistoryList = this.isSubHistory
@@ -315,8 +486,8 @@ export class SubscriptionComponent implements OnInit {
     // })
   }
   searchByName() {
-    alert(this.searchKey)
-    
+    // alert(this.searchKey)
+
   }
   onActive() {
     document.getElementById("activeButton").setAttribute('style', 'background-color :#009DE9 !important')

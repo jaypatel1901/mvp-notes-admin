@@ -43,8 +43,8 @@ export class DashboardComponent implements OnInit {
   TotalEngagementRate: number = 0
   Plans: any = []
   filterData = []
-  userName: any=''
-  userEmail:any =''
+  userName: any = ''
+  userEmail: any = ''
   isfilterchangeSales =
     {
       label: 'All Time',
@@ -60,20 +60,20 @@ export class DashboardComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
-  public lineChartColors: Color[] = [
-    {
-      borderColor: '#FF0000',
-      backgroundColor: null,
-    },
-    {
-      borderColor: '#8E2AC0',
-      // backgroundColor: '#8E2AC0',
-    },
-    {
-      borderColor: '#F9966D',
-      // backgroundColor: '#F9966D',
-    },
-  ];
+  // public lineChartColors: Color[] = [
+  //   {
+  //     borderColor: '#FF0000',
+  //     backgroundColor: null,
+  //   },
+  //   {
+  //     borderColor: '#8E2AC0',
+  //     // backgroundColor: '#8E2AC0',
+  //   },
+  //   {
+  //     borderColor: '#F9966D',
+  //     // backgroundColor: '#F9966D',
+  //   },
+  // ];
   public barChartColors: Color[] = [
     {
       borderColor: '#009DE9',
@@ -104,12 +104,12 @@ export class DashboardComponent implements OnInit {
     const token = localStorage.getItem("token")
     if (!token)
       this.router.navigate(['login'])
-  
-  let fName =   localStorage.getItem("firstName");
-  let lName =   localStorage.getItem("lastName");
-  this.userEmail = localStorage.getItem('email')
-  this.userName = fName +" "+ lName
-      this.getUSerlist()
+
+    let fName = localStorage.getItem("firstName");
+    let lName = localStorage.getItem("lastName");
+    this.userEmail = localStorage.getItem('email')
+    this.userName = fName + " " + lName
+    this.getUSerlist()
     this.getUsageStatistics()
     this.getSubscriptionPlanList()
     this.getSubscriptionReport()
@@ -398,24 +398,24 @@ export class DashboardComponent implements OnInit {
   }
 
   logout() {
-   
+
     Swal.fire({
       title: "Are you sure?",
       // text: "Once deleted, you will not be able to recover this imaginary file!",
       showConfirmButton: true,
-      showCancelButton: true ,
-      confirmButtonText:'Yes,Logout it!'   
+      showCancelButton: true,
+      confirmButtonText: 'Yes,Logout it!'
     })
-    .then((willDelete) => {
-        if(willDelete.value){
+      .then((willDelete) => {
+        if (willDelete.value) {
           localStorage.removeItem("token");
           this.router.navigate(['login'])
         }
-        else{
+        else {
           Swal.fire("Fail");
         }
-      console.log(willDelete)
-    });
+        console.log(willDelete)
+      });
   }
 
 }
