@@ -1,5 +1,7 @@
 
-
+body{
+  background-color: #f8f9fd;
+}
 a,
 a:hover,
 a:focus {
@@ -50,6 +52,9 @@ a:focus {
   transition: all 0.3s;
   border-top-right-radius: 50px;
   padding: 20px;
+  min-height: 100vh;
+  box-shadow: 0px 0px 5px grey;
+  margin-right: 7px;
 }
 
 #sidebar.active {
@@ -136,7 +141,7 @@ a.article:hover {
 ----------------------------------------------------- */
 #content {
   width: 100%;
-  padding: 20px;
+  padding: 20px 20px 0 5px;
   min-height: 100vh;
   transition: all 0.3s;
 }
@@ -172,4 +177,8 @@ a.article:hover {
   text-decoration: none;
   background: transparent !important;
 
+}
+.sidebar-name-div{
+  position: absolute;
+  bottom: 0;
 }

@@ -132,6 +132,10 @@ export class DashboardComponent implements OnInit {
       select: '#slim-select',
       showSearch: false,
     })
+    new SlimSelect({
+      select: '#modal-subscription',
+      showSearch: false,
+    })
   }
   inviationvalidationMessages = {
     'firstName': {

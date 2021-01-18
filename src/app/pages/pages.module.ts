@@ -8,6 +8,7 @@ import {DashboardContainerComponent} from './dashboard/dashboard-container/dashb
 import { UsersComponent } from './users/users.component';
 import { CMSComponent } from './cms/cms.component';
 import { SubscriptionComponent } from './subscription/subscription.component'
+import {PaymentComponent} from './payment/payment.component'
 import { SidebarComponent } from '../shared';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgChartjsModule } from 'ng-chartjs';
@@ -29,6 +30,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     CMSComponent,
     SubscriptionComponent,
     SidebarComponent,
+    PaymentComponent,
     FilterPipe
   ],
   imports: [

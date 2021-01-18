@@ -44,6 +44,10 @@ export class UsersComponent implements OnInit {
       select: '#user-toggle',
       showSearch: false,
     })
+    new SlimSelect({
+      select: '#modal-subscription1',
+      showSearch: false,
+    })
 
   } 
   onUserDetails = () => {

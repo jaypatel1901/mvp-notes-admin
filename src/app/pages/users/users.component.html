@@ -15,13 +15,7 @@
 
     <div class="container-fluid">
 
-      <!-- <button type="button" id="sidebarCollapse" class="btn text-sidebar bg-turbo-yellow">
-                        <i class="fas fa-align-left"></i>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button> -->
+
 
       <div class="row d-flex justify-content-between mr-0">
         <div class="col-md-6">
@@ -57,11 +51,13 @@
                     <div class="dataTables_length dataTables_length1 d-flex m-auto" id="example_length">
                       <label class="d-flex mb-0">
                         <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                        <div class="slim-div">
                         <select name="example_length" aria-controls="example" (change)="onChange($event)"
-                          id="user-toggle" style="width: 150px;">
+                          id="user-toggle" style="width: 150px;padding-top: 4px;">
                            <option value="All users" class="head-option">All users</option>
                           <option *ngFor="let item of planList;" value={{item.planName}}>{{item.planName}}</option>
                         </select>
+                        </div>
                       </label>
                     </div>
                   </div>
@@ -152,19 +148,40 @@
                   <td>
                     <div *ngIf="item.isStatus=='1'; else templateName4" class="d-flex p-0 m-0">
                       <div class=" right-icon">
-                        <button class=" right-icon new-button" data-toggle="modal"   data-target="#onBlock"
+                          <img src="assets/images/Group 2893.png"  data-toggle="modal"   data-target="#onBlock"
                           (click)="getUserId(item.userId)">
-                          <img src="assets/images/Group 2893.png">
-                        </button>
                       </div>
                     </div>
                     <ng-template #templateName4>
                       <div class="d-flex p-0 m-0">
                         <div class=" right-icon">
-                          <button class=" right-icon new-button" data-toggle="modal" data-target="#ondelete"
-                            (click)="getUserId(item.userId)">
-                            <img src="assets/images/Group 2893.png">
-                          </button>
+                          <img src="assets/images/Group 2893.png" type="button" data-toggle="dropdown" class="delete-icon">
+                             <!-- dropdown -->
+                             <div>
+                              <div class="dropdown">
+                                <div class="d-flex">
+                                  <div class="w-100" style="position: absolute;right: -18px;">
+                                    <ul class="dropdown-menu dropdown-menu-ul bg-white">
+                                      <li>
+                                        <a href="#" style="padding-bottom: 0;">
+                                          <div>
+                                            <p class="logout-text px-3 py-2"><span><img src="assets/images/Group 2893.png" class="block-img"/></span>Block</p>
+                                          </div>
+                                        </a>
+                                      </li>
+                                      <li>
+                                        <a href="#" style="padding-bottom: 0;">
+                                          <div data-toggle="modal" data-target="#ondelete" (click)="getUserId(item.userId)">
+                                            <p class="logout-text px-3 py-2"> <span><img src="assets/images/delete.png" class="block-img"/></span>Delete</p>
+                                          </div>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                             <!-- dropdown ends -->
                         </div>
                       </div>
                     </ng-template>
@@ -235,7 +252,7 @@
                     </div>
                     <div class="form-group dash-form">
                       <select formControlName="subscriptionId" id="Choose Subscriptions" name="Subscriptions"
-                        class="popup-choose">
+                        class="popup-choose" id="modal-subscription1">
                         <option value=''>Choose Subscriptions</option>
                         <option *ngFor='let item of planList' value={{item._id}}>{{item.planName}}</option>
                       </select>

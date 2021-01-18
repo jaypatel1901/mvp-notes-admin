@@ -116,11 +116,13 @@
                       <div class="dataTables_length dataTables_length1 d-flex" id="example_length">
                         <label class="d-flex">
                           <p class="pt-1 registerd-user mr-2">SortBy:</p>
+                          <div class="slim-div">
                           <select name="example_length" aria-controls="example" (change)="onChange($event)"
-                            id="Subscription-filter" style="width: 150px;">
+                            id="Subscription-filter" style="width: 150px;margin-top: 4px;">
                             <option value="All users">All users</option>
                             <option *ngFor='let item of planList' value={{item.planName}}>{{item.planName}}</option>
                           </select>
+                        </div>
                         </label>
                       </div>
                     </div>
@@ -181,6 +183,7 @@
                         <!-- <button class="white-button mr-3" id='activeButton' (click)="onActive()"  >Active</button>
                         <button class="white-button mr-3" id='expiredButton' (click)="onExpired()">Expired</button>
                         <button class="white-button" id='allButton' (click)="onAllHisotry()">All History</button> -->
+                        <div class="slim-div">
                         <select name="example_length" aria-controls="example" (change)="onChangeHistory($event)"
                           id="SubscriptionHistory-filter" style="width: 150px;">
                           <option value="Allusers">All History</option>
@@ -188,34 +191,16 @@
                           <option value="Expired">Expired</option>
                           <option *ngFor='let item of planList' value={{item.planName}}>{{item.planName}}</option>
                         </select>
+                        </div>
                         <div class="search-box">
                           <i class="fa fa-search positio_icon1"></i>
                           <input type="text" (change)="onChangeSearch($event)" placeholder="search by Name and Email"
-                            class="input_header1">
-                          <!-- <button class="btn btn-info" (click)="searchByName()" >search</button> -->
-                          <input [(ngModel)]="searchText" type='date' placeholder="search text goes here">
+                            class="input_header1" style="background-position: 10px 5px !important; padding:6px 38px !important;border: 1px solid lightgrey;
+                            border-radius: 20px;  ">
+                          
                         </div>
-                        <!-- <div class="d-flex">
-                          <input type="text" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event, daterange)" />
-                        </div> -->
-                        <!-- <div style="padding:25px;">
-                          <div class="form-group">
-                            <div class="input-group"
-                              name="daterangeInput" 
-                              daterangepicker 
-                              [options]="options" 
-                              (selected)="selectedDate($event)"
-                              (applyDaterangepicker)="applyDate($event)"
-                            >
-                              <span class="form-control uneditable-input">
-                                  {{ daterange.start | date:'M/dd/y' }} - {{ daterange.end| date:'M/dd/y' }}
-                              </span>
-                              <span class="input-group-btn">
-                                <a type="button" class="btn btn-default">
-                                  <i class="glyphicon glyphicon-calendar"></i>
-                                </a>
-                              </span>
-                            </div> -->
+                        <input [(ngModel)]="searchText" type='date' placeholder="search text goes here" class="input_date" >
+                      
                       </div>
                     </div>
                   </div>
@@ -287,7 +272,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form [formGroup]="createPlanForm" class="form_login w-100">
+        <form [formGroup]="createPlanForm" class="form_login w-100 my-0">
           <div class="form-row">
             <div class="col">
               <p class="plan-form-label">Plan Name</p>
@@ -304,8 +289,8 @@
               <div class="form-group dash-form">
                 <div class="input-group">
                   <span class="input-group-addon input_custom_1">$</span>
-                  <input type="number" formControlName='planPrice' placeholder="Plan Price"
-                    class="form-control currency" id="c2" />
+                  <input type="number" formControlName='planPrice' placeholder=""
+                  class="form_login_n1 dash-form-input p-price" id="c2" />
                   <div *ngIf='createPlanFormError.planPrice' class="alert- mt-2">{{createPlanFormError.planPrice}}</div>
                 </div>
               </div>
@@ -313,6 +298,7 @@
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
+                <div class="slim-form-div">
                 <select (change)="somethingChanged($event)" formControlName='duration' id="plan-duration"
                   style="width: 150px;">
                   <option value="">Choose Subscriptions</option>
@@ -320,6 +306,7 @@
                   <option value="60">60 Days</option>
                   <option value="90">90 Days</option>
                 </select>
+              </div>
                 <div *ngIf='createPlanFormError.duration' class="alert- mt-2">{{createPlanFormError.duration}}</div>
               </div>
             </div>
@@ -328,8 +315,8 @@
             <div class="col">
               <p class="plan-form-label">Plan Description</p>
               <div class="form-group dash-form">
-                <input type="text" formControlName='description' class="form_login_n1 dash-form-input" placeholder=""
-                  style="height: 100px !important;" />
+                <textarea  formControlName='description' class="form_login_n1 dash-form-input w-100 "
+                  style="height: 100px !important; border-radius: 10px;"></textarea>
                 <div *ngIf='createPlanFormError.description' class="alert- mt-2">{{createPlanFormError.description}}
                 </div>
               </div>
@@ -340,7 +327,7 @@
               <p class="plan-form-label">Data Usage</p>
               <div class="form-group dash-form">
                 <span class="input-group-addon input_custom_MB">MB</span>
-                <input type="text" name="dataUsage" class="form_login_n1 dash-form-input" placeholder=""
+                <input type="text" name="dataUsage" class="form_login_n1 dash-form-input p-price" placeholder=""
                   formControlName="dataUsage" />
                 <div *ngIf='createPlanFormError.dataUsage' class="alert- mt-2">{{createPlanFormError.dataUsage}}</div>
               </div>
@@ -348,12 +335,14 @@
             <div class="col">
               <p class="plan-form-label">Subject Usage</p>
               <div class="form-group dash-form">
+                <div class="slim-form-div">
                 <select id="Subject-Usage" formControlName='subjectUsage' style="width: 150px;">
                   <option value="">choose subject</option>
                   <option value="10">10 Subjects</option>
                   <option value="20">20 Subjects</option>
                   <option value="100">100 Subjects</option>
                 </select>
+                </div>
                 <div *ngIf='createPlanFormError.subjectUsage' class="alert- mt-2">{{createPlanFormError.subjectUsage}}
                 </div>
               </div>
@@ -361,17 +350,19 @@
             <div class="col">
               <p class="plan-form-label">Note Usage</p>
               <div class="form-group dash-form">
+                <div class="slim-form-div">
                 <select formControlName="noteUsage" id="Note-Usage" style="width: 150px;">
                   <option value="">Choose an option</option>
                   <option value="100">100 Notes</option>
                   <option value="500">500 Notes</option>
                   <option value="1000">1000 Notes</option>
                 </select>
+              </div>
                 <div *ngIf='createPlanFormError.noteUsage' class="alert- mt-2">{{createPlanFormError.noteUsage}}</div>
               </div>
             </div>
           </div>
-          <div class="form-group text-center">
+          <div class="form-group text-center mt-3">
             <button class="color-button" type='submit' (click)="savePlan()" [disabled]='createPlanForm.invalid'>Save
               Plan</button>
           </div>
@@ -396,7 +387,7 @@
       <!-- Modal Header -->
       <div class="modal-header">
         <p class="Modal-heading">Edit Plan</p>
-        <button type="button" class="modal-close" (click)="close()">close</button>
+        <button type="button" class="modal-close" (click)="close()">X</button>
       </div>
 
       <!-- Modal body -->
@@ -419,7 +410,7 @@
                 <div class="input-group">
                   <span class="input-group-addon input_custom_1">$</span>
                   <input type="number" formControlName='planPrice'  [value]="UpdatePlanForm.value.planPrice" placeholder="Plan Price"
-                    class="form-control currency" id="c2" />
+                    class="form_login_n1 dash-form-input p-price" id="c2" />
                   <div *ngIf='updatePlanFormError.planPrice' class="alert- mt-2">{{updatePlanFormError.planPrice}}</div>
                 </div>
               </div>
@@ -427,12 +418,14 @@
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
+                <div class="slim-form-div">
                 <select  formControlName='duration' id="plan-durationupdate" >
                   <option  [value]="planDuration">{{planDuration}}</option>
                   <option value="30">30</option>
                   <option value="60">60</option>
                   <option value="90">90</option>
                 </select>
+                </div>
                 <div *ngIf='updatePlanFormError.duration' class="alert- mt-2">{{updatePlanFormError.duration}}</div>
               </div>
             </div>
@@ -441,8 +434,8 @@
             <div class="col">
               <p class="plan-form-label">Plan Description</p>
               <div class="form-group dash-form">
-                <input type="text" class="form_login_n1 dash-form-input"  [value]="UpdatePlanForm.value.description"  placeholder=""
-                  style="height: 100px !important;" formControlName='description' />
+                <textarea type="text" class="form_login_n1 dash-form-input w-100"  [value]="UpdatePlanForm.value.description"  placeholder=""
+                  style="height: 100px !important;border-radius: 10px;" formControlName='description' ></textarea>
               </div>
               <div *ngIf='updatePlanFormError.description' class="alert- mt-2">{{updatePlanFormError.description}}</div>
             </div>
@@ -461,30 +454,34 @@
             <div class="col">
               <p class="plan-form-label">Subject Usage</p>
               <div class="form-group dash-form">
+                <div class="slim-form-div">
                 <select formControlName='subjectUsage'  id="Subject-Usage-update">
                   <!-- <option value={{UpdatePlanForm.value.subjectUsage}} >{{UpdatePlanForm.value.subjectUsage}}</option> -->
                   <option value={{10}}>10</option>
                   <option value={{20}}>20</option>
                   <option value={{100}}>50</option>
                 </select>
+                </div>
                 <div *ngIf='updatePlanFormError.subjectUsage' class="alert- mt-2">{{updatePlanFormError.subjectUsage}}</div>
               </div>
             </div>
             <div class="col">
               <p class="plan-form-label">Note Usage</p>
               <div class="form-group dash-form">
+                <div class="slim-form-div">
                 <select id="Note-Usage-update" formControlName='noteUsage' >
                   <!-- <option  [value]="UpdatePlanForm.value.planName">{{ UpdatePlanForm.value.noteUsage}}</option> -->
                   <option value={{100}}>100</option>
                   <option value={{1000}}>1000</option>
                   <option value={{10000}}>10000</option>
                 </select>
+                </div>
                 <div *ngIf='updatePlanFormError.noteUsage' class="alert- mt-2">{{updatePlanFormError.noteUsage}}</div>
               </div>
             </div>
           </div>
-          <div class="form-group text-center">
-            <button class="btn btn-danger "  style="margin-right: 10px;" (click)="delete()">Delete Plan</button>
+          <div class="form-group text-center mt-3">
+            <button class="color-button-red"  style="margin-right: 10px;" (click)="delete()">Delete Plan</button>
             <button class="color-button"  (click)="update()">Plan Update</button>
           </div>
         </form>

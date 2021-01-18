@@ -7,16 +7,7 @@
 
 
     <div class="container-fluid">
-      <!-- <button (click)= "Testing()">display name</button>
-      <input id="txtName" type="text" /> -->
 
-      <!-- <button type="button" id="sidebarCollapse" class="btn text-sidebar bg-turbo-yellow">
-                        <i class="fas fa-align-left"></i>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button> -->
 
       <div class="row d-flex justify-content-between mr-0">
         <div class="col-md-8">
@@ -42,17 +33,13 @@
                         </div>
                         <label class="d-flex mb-0 slim-container">
                           <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                          <div class="slim-div">
                           <select id="user-toggle" name="example_length" aria-controls="example"
                             (change)="onChangeSalefilter($event)">
                             <option *ngFor='let item of filterData' value={{item.label}} class="head-option">
                               {{item.label}} ( {{item.startDate | date}}-{{item.endDate | date}})</option>
-                            <!-- <option value="currentWeekData" class="head-option">Current Week</option>
-                          <option value="last7DaysData" class="head-option">Last 7 days</option>
-                          <option value="currentMonthData" class="head-option">Current Month</option>
-                          <option value="" class="head-option">Last Month</option>
-                          <option value="days30Data" class="head-option">Last 30 days </option>
-                          <option value="currentWeekData" class="head-option">Current Year </option> -->
                           </select>
+                        </div>
                         </label>
                       </div>
 
@@ -115,16 +102,13 @@
                         </div>
                         <label class="d-flex mb-0 slim-container">
                           <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                          <div class="slim-div">
                           <select id="Total-subscription" name="example_length" aria-controls="example"
                             (change)="onChangefilter($event)">
                             <option *ngFor='let item of filterData' value={{item.label}} class="head-option">
                               {{item.label}} ( {{item.startDate | date}}-{{item.endDate | date}})</option>
-                            <!-- <option value="last7DaysData" class="head-option">Last 7 days</option>
-                          <option value="currentMonthData" class="head-option">Current Month</option>
-                          <option value="" class="head-option">Last Month</option>
-                          <option value="days30Data" class="head-option">Last 30 days </option>
-                          <option value="currentWeekData" class="head-option">Current Year </option> -->
                           </select>
+                        </div>
                         </label>
                       </div>
 
@@ -179,9 +163,10 @@
                       </script>
                     </div>
                     <div class="col-md-4">
-                      <div class="bg-light p-4 curved subs-flow">
+                      <div class="bg-light p-4 curved ">
                         <p class="report-head pb-3">Subscription Report!</p>
-                        <div class="d-flex pb-1" *ngFor='let item of Plans'>
+                        <div class="subs-flow">
+                           <div class="d-flex pb-1" *ngFor='let item of Plans'>
                           <div class="p-0 m-0">
                             <img src="assets/images/blue.png" class="report-color-img">
                           </div>
@@ -189,7 +174,9 @@
                             <p class="report-head">{{item.count}}</p>
                             <p class="report-subhead">{{item.name}}</p>
                           </div>
+                           </div>
                         </div>
+
                         <!-- <div class="d-flex pb-1">
                           <div class="p-0 m-0">
                             <img src="assets/images/red.png" class="report-color-img">
@@ -287,13 +274,19 @@
             <div class="">
               <div class="row">
                 <div class="col-sm-12 d-flex justify-content-between border-bottom py-2">
-                  <img src="assets/images/avtar.png" class="profile-img">
-                  <div class="">
-                    <p class="profile-name">Hello, {{userName}}!</p>
-                    <p class="profile-sub mb-0">{{userEmail}}</p>
-                  </div>
-                  <a href=""><img src="assets/images/notif.png" class="prof-icon pl-3"></a>
-                  <button class="btn" (click)="logout()"><img src="assets/images/logout.png" class="prof-icon"></button>
+                  <div class="d-flex justify-content-between w-100">
+                    <div class=" w-50 d-flex">
+                       <img src="assets/images/avtar.png" class="profile-img">
+                       <div> 
+                       <p class="profile-name">Hello, {{userName}}!</p>
+                       <p class="profile-sub mb-0">{{userEmail}}</p>
+                       </div>
+                    </div>
+                    <div class=" w-50 d-flex justify-content-end">
+                       <a href=""><img src="assets/images/notif.png" class="prof-icon pr-3"></a>
+                       <a href=""><img src="assets/images/logout.png" class="prof-icon " (click)="logout()"></a>
+                    </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6 my-3">
@@ -303,6 +296,7 @@
                 <div class="col-md-6 my-3">
                   <label class="d-flex mb-0">
                     <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                    <div class="slim-div w-100">
                     <select id="slim-select" name="example_length" aria-controls="example" (change)="onChange($event)">
                       <option value="totaldata" class="head-option">All Time</option>
                       <option value="currentWeekData" class="head-option">Current Week</option>
@@ -312,6 +306,7 @@
                       <option value="days30Data" class="head-option">Last 30 days </option>
                       <option value="currentWeekData" class="head-option">Current Year </option>
                     </select>
+                    </div>
                   </label>
                 </div>
                 <div class="col-md-12">
@@ -456,7 +451,7 @@
             </div>
             <div class="form-group dash-form">
               <select formControlName="subscriptionId" id="Choose Subscriptions" name="Subscriptions"
-                class="popup-choose">
+                class="popup-choose" id="modal-subscription">
                 <option value=''>Choose Subscriptions</option>
                 <option *ngFor='let item of planList' value={{item._id}}>{{item.planName}}</option>
               </select>
@@ -464,7 +459,7 @@
               </div>
 
             </div>
-            <div class="form-group">
+            <div class="form-group mt-4">
               <button class="color-button" type="submit" [disabled]='invitationForm.invalid'
                 (click)="onSendInvitation()">Send Invitation</button>
             </div>

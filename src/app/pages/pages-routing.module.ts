@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './users/users.component';
 import { CMSComponent } from './cms/cms.component'
 import { SubscriptionComponent } from './subscription/subscription.component'
-
+import {PaymentComponent} from './payment/payment.component'
 const routes: Routes = [
   {
     path: '',
@@ -32,7 +32,10 @@ const routes: Routes = [
         component: SubscriptionComponent,
       },
      
-      
+      {
+        path: 'payment',
+        component: PaymentComponent,
+      },
     ],
   },
 ];

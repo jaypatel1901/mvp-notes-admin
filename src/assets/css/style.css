@@ -886,6 +886,14 @@ li.active a span .side-dot{
 }
 
 .slim-container{
-    width: 40%;
+    width: 60%;
+}
+.slim-div{
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+
 }
 

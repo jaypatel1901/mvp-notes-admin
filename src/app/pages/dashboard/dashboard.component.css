@@ -5,7 +5,7 @@
 
 .subs-flow{
     overflow: scroll;
-    height: 280px;
+    height: 200px;
 }
 .subs-flow::-webkit-scrollbar{
     display: none;

@@ -24,3 +24,16 @@ li {
   border: none;
   outline: none;
 }
+
+.logout-text:hover{
+  background-color: skyblue;
+  border-radius: 20px;
+}
+.delete-icon{
+  margin-top: 5px;
+}
+.block-img{
+  width: 20px;
+  height: 20px;
+  margin-right: 13px;
+}
