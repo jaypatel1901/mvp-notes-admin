@@ -1,0 +1,39 @@
+:host {
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.list {
+  max-width: 550px;
+  margin: auto;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.new-button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.new-button:focus{
+  border: none;
+  outline: none;
+}
+
+.logout-text:hover{
+  background-color: skyblue;
+  border-radius: 20px;
+}
+.delete-icon{
+  margin-top: 5px;
+}
+.block-img{
+  width: 20px;
+  height: 20px;
+  margin-right: 13px;
+}

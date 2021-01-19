@@ -1,0 +1,56 @@
+form {
+    margin: 0px auto;
+    width: 420px;
+}
+.form-row {
+    padding: 5px 10px;
+}
+label {
+    display: block;
+    margin: 3px 0;
+}
+.form-row input {
+    padding: 3px 1px;
+    width: 100%;
+}
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+.input-group .form-control {
+    float: none;
+}
+.input-group .input-buttons {
+    position: relative;
+    z-index: 3;
+}
+
+.input_custom_1
+{
+    position: absolute;
+top: 13px;
+z-index: 99;
+left: 10px;
+}
+.input-group-addon.input_custom_MB {
+    position: absolute;
+    right: 18px;
+    top: 33px;
+    font-size: 13px;
+    font-family: 'ProductSans400';
+}
+.p-price[type=number]{
+    padding-left: 30px !important;
+}
+.input_date{
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    height: 30px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
+    font-family: 'ProductSans400';
+    color: gray;
+}
+
+

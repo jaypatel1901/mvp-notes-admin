@@ -1,0 +1,7 @@
+.bg-auth-group
+{
+    background-image: url('../../../assets/images/Login.png') ;
+    height: 100vh;
+    background-size: cover;
+
+}
