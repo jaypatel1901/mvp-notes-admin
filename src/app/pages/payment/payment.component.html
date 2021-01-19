@@ -1,1 +1,136 @@
-<p>payment works!</p>
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="w-100">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-between mr-0">
+                <div class="col-md-6">
+                    <p class="section-heading">Users Management</p>
+                    <p class="section-subheading">Good Morning, Summer</p>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end mb-auto">
+
+                    <div class="search-box">
+                        <i class="fa fa-search positio_icon1"></i>
+                        <input type="text" name="" placeholder="What are you searching for...?" class="input_header1">
+                    </div>
+
+                </div>
+                <div class="col-md-2 text-right mb-auto">
+                    <div class="d-flex justify-content-end">
+                        <img src="assets/images/notif.png" class="header-icon">
+                        <img src="assets/images/logout.png" class="header-icon">
+                    </div>
+                </div>
+            </div>
+            <div class="first-section">
+                <div class="row">
+                    <div class="col-md-3 p-0">
+                        <div class="big-box">
+                            <p class="big-text">${{today}}</p>
+                            <p class="big-subtext">Today Earning</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <div class="smallbox">
+                            <p class="small-subtext">Yesterday <br /> Earning</p>
+                            <p class="small-text">${{yesterDay}}</p>
+                        </div>
+
+                        <div class="smallbox">
+                            <p class="small-subtext">This <br /> Month</p>
+                            <p class="small-text">${{month}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 p-0">
+                        <div class="smallbox">
+                            <p class="small-subtext">This <br /> Week</p>
+                            <p class="small-text">${{week}}</p>
+                        </div>
+
+                        <div class="smallbox">
+                            <p class="small-subtext">Lifetime <br /> Earning</p>
+                            <p class="small-text">${{lifeTime}}</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="chart-head">Subscription</p>
+                <div class="row">
+                    <div class="col-md-3 p-0" *ngFor="let item of paymentByPlan;">
+                        <div class="smallbox" >
+                            <p class="small-subtext">{{item.planName}} <br /> Subscription</p>
+                            <p class="small-text">${{item.totalPrice}}</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3 p-0">
+                        <div class="smallbox">
+                            <p class="small-subtext">Paid <br /> Commissions</p>
+                            <p class="small-text">$300.45</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <div class="smallbox">
+                            <p class="small-subtext">Unpaid <br /> Commissions</p>
+                            <p class="small-text">$300.45</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <!-- first section end -->
+
+            <!-- second section start -->
+
+            <div class="first-section">
+
+                <div class="table-div">
+                    <table id="example" class="table table-striped" style="width:100%;border-radius: 30px;">
+
+                        <thead>
+                            <tr class="admin_table table-style">
+                                <th style="padding-left: 5%;">Name & Email Address</th>
+                                <th>Subscription Plan</th>
+                                <th>Subscription Date</th>
+                                <th>Expiry Date</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr  *ngFor="let item of SubscriptionHistoryList" class="admin_table table-style table-style-subscription-head">
+                                <td>
+                                    <div class="d-flex align-items-center table-image-div">
+                                        <img class="pro_icon1" src="assets/images/contact_person.png" />
+                                        <div class="pl-4 pt-2">
+                                            <p class="subscriber-name mb-0">{{item.fullName}}</p>
+                                            <p class="subscriber-email">{{item.email}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p>{{item.Subscription_Plan}}</p>
+                                </td>
+                                <td>
+                                    <p>{{item.date | date}}</p>
+                                </td>
+                                <td>
+                                    <p>{{item.Expiry_Date | date}}</p>
+                                </td>
+                                <td>
+                                    <p>${{item.Price}}.00</p>
+                                </td>
+                                <td>
+                                    <p class="status-text purple">{{item.Status}}</p>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise" [fullScreen]="true">
+            <p style="color: white"> Loading... </p>
+          </ngx-spinner>
+    </div>

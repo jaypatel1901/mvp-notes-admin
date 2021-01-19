@@ -3,10 +3,10 @@
   <app-sidebar></app-sidebar>
 
   <!-- Page Content  -->
-  <div id="content" style="background: #F7F9FC;">
+  <div id="content" style="background: #F7F9FC; padding:20px 0px 5px 5px">
 
 
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
 
 
       <div class="row d-flex justify-content-between mr-0">
@@ -270,7 +270,7 @@
         </div>
 
         <div class="col-md-4 bg-white curved p-0">
-          <div class="overflow-div" style="height:auto;padding:15px 15px 0 15px;">
+          <div class="" style="height:auto;padding:15px 15px 0 15px;">
             <div class="">
               <div class="row">
                 <div class="col-sm-12 d-flex justify-content-between border-bottom py-2">
@@ -289,11 +289,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 my-3">
+                <div class="col-md-5 my-3">
                   <p class="profile-name">Usage Statistics</p>
                   <p class="profile-sub mb-0">Lorem Ipsum is a dummt text.</p>
                 </div>
-                <div class="col-md-6 my-3">
+                <div class="col-md-7 my-3">
                   <label class="d-flex mb-0">
                     <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
                     <div class="slim-div w-100">
@@ -310,13 +310,13 @@
                   </label>
                 </div>
                 <div class="col-md-12">
-                  <div class="bg-light curved px-4 py-2 sidebox-height">
+                  <div class="bg-light curved px-4 py-2 sidebox-height d-flex align-items-center">
                     <div class="row">
                       <div class="col-sm-2 p-0 m-0">
                         <img src="assets/images/total notes.png" class="w-100">
                       </div>
                       <div class="col-sm-4 ml-0 pl-0">
-                        <p class="text_head">{{isTotalUsage.totalNotes}}</p>
+                        <p class="Total-notes-number">{{isTotalUsage.totalNotes}}</p>
                         <p class="chart_subhead">Total Notes Created</p>
                       </div>
                       <div class="col-sm-6 d-flex align-items-end flex-column">
@@ -332,13 +332,13 @@
                       </div> -->
                     </div>
                   </div>
-                  <div class="bg-light curved px-4 py-2 mt-3 sidebox-height">
+                  <div class="bg-light curved px-4 py-2 mt-3 sidebox-height align-items-center">
                     <div class="row">
                       <div class="col-sm-2 p-0 m-0">
                         <img src="assets/images/total subjects.png" class="w-100">
                       </div>
                       <div class="col-sm-4 ml-0 pl-0">
-                        <p class="text_head">{{isTotalUsage.totelSubject}}</p>
+                        <p class="Total-notes-number">{{isTotalUsage.totelSubject}}</p>
                         <p class="chart_subhead">Total Subjects Created</p>
                       </div>
                       <div class="col-sm-6 d-flex align-items-end flex-column">
@@ -354,13 +354,13 @@
                       </div> -->
                     </div>
                   </div>
-                  <div class="bg-light curved px-4 py-2 mt-3 sidebox-height">
+                  <div class="bg-light curved px-4 py-2 mt-3 sidebox-height align-items-center">
                     <div class="row">
                       <div class="col-sm-2 p-0 m-0">
                         <img src="assets/images/server space used.png" class="w-100">
                       </div>
                       <div class="col-sm-4 ml-0 pl-0">
-                        <p class="text_head">2</p>
+                        <p class="Total-notes-number">2</p>
                         <p class="chart_subhead">Total Server Space Used</p>
                       </div>
                       <div class="col-sm-6 d-flex align-items-end flex-column">
@@ -390,7 +390,7 @@
                       </div>
                       <div class="col-sm-4 ml-0 pl-0">
 
-                        <p class="text_head">{{TotalEngagementRate.rate}} %</p>
+                        <p class="Total-notes-number">{{TotalEngagementRate.rate}} %</p>
                         <p class="chart_subhead">Users using MVP Notes</p>
                       </div>
                       <div class="col-sm-6 d-flex align-items-end flex-column">

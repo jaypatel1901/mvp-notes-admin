@@ -10,3 +10,8 @@
 .subs-flow::-webkit-scrollbar{
     display: none;
 }
+.Total-notes-number{
+    font-size: 20px;
+    margin-bottom: 0;
+    font-family: 'ProductSansBold';
+}
