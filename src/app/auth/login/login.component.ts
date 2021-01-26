@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', data.data.email);
 
 
-        localStorage.setItem('token', token);
+        localStorage.setItem('adminToken', token);
         this._router.navigate(["dashboard"]);
       } else {
         this.error = data.message

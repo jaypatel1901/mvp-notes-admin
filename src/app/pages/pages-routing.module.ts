@@ -6,6 +6,8 @@ import { UsersComponent } from './users/users.component';
 import { CMSComponent } from './cms/cms.component'
 import { SubscriptionComponent } from './subscription/subscription.component'
 import {PaymentComponent} from './payment/payment.component'
+import {UsersDetailComponent} from './userDetails/userDetail.component'
+import {MyAccountComponent} from './my-account/my-account.component'
 const routes: Routes = [
   {
     path: '',
@@ -35,6 +37,14 @@ const routes: Routes = [
       {
         path: 'payment',
         component: PaymentComponent,
+      },
+      {
+        path: 'user-details',
+        component: UsersDetailComponent,
+      },
+      {
+        path: 'myProfile',
+        component: MyAccountComponent,
       },
     ],
   },

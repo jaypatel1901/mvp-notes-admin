@@ -1,106 +1,31 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
 
 
-<div>
-    <div class="first-box tile-effect">
-        <p class="cms-head">How may we help you?</p>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <div class="border-div">
-                    <img src="../.../../../../assets/images/edit_1.png" class="icon-img" />
-                    <p class="cx-icon-font">Guide me</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="border-div">
-                    <img src="../.../../../../assets/images/edit_1.png" class="icon-img" />
-                    <p class="cx-icon-font">Live chat</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="border-div">
-                    <img src="../.../../../../assets/images/edit_1.png" class="icon-img" />
-                    <p class="cx-icon-font">Raise a Ticket</p>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <div class="border-div">
-                    <img src="../.../../../../assets/images/edit_1.png" class="icon-img" />
-                    <p class="cx-icon-font">Call us</p>
-                </div>
-            </div>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+
+  
+  <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" -->
+  
+	<div class="container">
+		<div class="row" *ngFor="let item of chatList">
+			<div class="col-md-12 p-0">
+				<div class="enquiry-box">
+					<div class="d-flex">
+						<div>
+							<img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-256.png" class="pro-imgs">
+						</div>
+						<div>
+							<h5 class="mb-0">{{item.subject}}</h5>
+							<p>Matt Rogers .<span>Created {{item.updated_at |date}}.</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+  </div>
+  <!--  -->
         </div>
-    </div>
-
-    <div class="second-box tile-effect">
-        <p class="cms-head">Raise a support ticket</p>
-        <!-- form -->
-        <form class="w-50 m-auto">
-         
-            <div class="cx-form">
-              <input type="text" class="" id="inputAddress" placeholder="Name">
-            </div>
-            <div class="cx-form">
-              <input type="text" class="" id="inputAddress2" placeholder="Contact Number">
-            </div>
-            <div class="cx-form">
-                <input type="text" class="" id="inputAddress2" placeholder="Email">
-              </div>
-              <div class="cx-form">
-                <input type="text" class="" id="inputAddress2" placeholder="Total Catagory">
-              </div>
-       
-              <div class="form-row mt-3">
-            <div class="form-group col-md-6">
-              <div class="form-check" style=" text-align: left;
-              padding-left: 20px;">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label cs-check-label" for="gridCheck">
-                  Relates to a previous ticket
-                </label>
-              </div>
-            </div>
-            <div class="form-group col-md-6 text-right">
-            <button type="submit" class="cx-form-button">SUBMIT YOUR TICKET</button>
-        </div>
-        </div>
-          </form>
-        <!-- form-ends -->
-    </div>
-
-    <div class="first-box tile-effect blue-back d-flex align-items-center">
-        <div class="m-auto">
-        <p class="support-text">Contact our support team on: 1234 5678 90</p>
-        <p class="support-subtext">Your account number is : 9009412558</p>
-    </div>
-
-    </div>
-
-    <div class="first-box tile-effect d-flex align-items-center" style="height: 15vh;">
-        <div class="m-auto">
-        <p class="follow-text">FOLLOW US</p>
-
-    </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>

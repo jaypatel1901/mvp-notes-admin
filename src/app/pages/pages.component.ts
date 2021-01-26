@@ -14,7 +14,7 @@ export class PagesComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    if(!localStorage.getItem('token'))
+    if(!localStorage.getItem('adminToken'))
       this.router.navigate(['login'])
   }
 

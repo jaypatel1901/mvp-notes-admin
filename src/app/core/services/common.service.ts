@@ -14,7 +14,7 @@ export class CommonService {
     let headers = new HttpHeaders()
     headers = headers.append('content-type', 'application/json')
     headers = headers.append('content-type', 'application/x-www-form-urlencoded')
-    let token=localStorage.getItem('token') ? localStorage.getItem('token') : '';
+    let token=localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : '';
     headers = headers.append('token', token);
     const finalUrl = constants.apiBaseURL + url;
     // headers = headers.append('customer-header', 'custom')
@@ -35,7 +35,7 @@ export class CommonService {
    // headers = headers.append('content-type', 'application/json')
    // headers = headers.append('content-type', 'application/x-www-form-urlencoded')
     // headers = headers.append('customer-header', 'custom')
-    let token=localStorage.getItem('token') ? localStorage.getItem('token') : '';
+    let token=localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : '';
     headers = headers.append('token', token);
     const finalUrl = constants.apiBaseURL + url;
     console.log("url in common",finalUrl)
@@ -65,7 +65,7 @@ export class CommonService {
     // headers = headers.append('content-type', 'application/json')
     // headers = headers.append('content-type', 'application/x-www-form-urlencoded')
     // headers = headers.append('customer-header', 'custom')
-    let token=localStorage.getItem('token') ? localStorage.getItem('token') : '';
+    let token=localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : '';
     headers = headers.append('token', token);
 
     const finalUrl = constants.apiBaseURL + url;
@@ -97,7 +97,7 @@ export class CommonService {
     // headers = headers.append('content-type', 'application/json')
     // headers = headers.append('content-type', 'application/x-www-form-urlencoded')
 
-    let token=localStorage.getItem('token') ? localStorage.getItem('token') : '';
+    let token=localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : '';
     headers = headers.append('token', token);
 
     const finalUrl = constants.apiBaseURL + url;
@@ -129,7 +129,7 @@ export class CommonService {
     // headers = headers.append('content-type', 'application/json')
     // headers = headers.append('content-type', 'application/x-www-form-urlencoded')
 
-    let token=localStorage.getItem('token') ? localStorage.getItem('token') : '';
+    let token=localStorage.getItem('adminToken') ? localStorage.getItem('adminToken') : '';
     headers = headers.append('token', token);
 
     const finalUrl = constants.apiBaseURL + url+'/';
