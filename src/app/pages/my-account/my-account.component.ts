@@ -30,10 +30,10 @@ export class MyAccountComponent implements OnInit {
   error: any
   profile: any
   profileImage: any
-  planName: any
+  userId: any
   @ViewChild('documentEditForm') documentEditForm: FormGroupDirective;
 
-  constructor(private _router: Router, private commonService: CommonService, private formBuilder: FormBuilder, private modalService: BsModalService,  private toastr: ToastrService,private spinner: NgxSpinnerService) { }
+  constructor(private _router: Router, private commonService: CommonService, private formBuilder: FormBuilder, private modalService: BsModalService, private toastr: ToastrService, private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -68,6 +68,15 @@ export class MyAccountComponent implements OnInit {
 
       //   ]
       // ],
+      oldPassword: ['',
+        [
+          Validators.required,
+          Validators.pattern(/^\S*$/),
+          Validators.minLength(6),
+          Validators.maxLength(12),
+
+        ]
+      ],
       newPassword: ['',
         [
           Validators.required,
@@ -114,7 +123,7 @@ export class MyAccountComponent implements OnInit {
         this.profileImage = data.result.profileImage
         this.gender = data.result.gender ? data.result.gender : ''
         this.socialLogin = data.result.socialLogin
-        this.planName = data.result.PlanName
+        this.userId = data.result._id
 
 
         // this.gender='male'
@@ -191,12 +200,16 @@ export class MyAccountComponent implements OnInit {
       return;
     }
     let body = {
+      oldPassword:this.passwordForm.value.oldPassword,
       password: this.passwordForm.value.newPassword,
     }
     this.spinner.show()
     this.commonService.post('updateAdminPassword', body).subscribe((data: any) => {
       this.modalRef.hide()
       this.spinner.hide()
+      Swal.fire('Password!',
+      data.message,
+      data.success);
     },
       (error) => {
         this.spinner.hide()
@@ -235,7 +248,47 @@ export class MyAccountComponent implements OnInit {
   signOut() {
     localStorage.clear()
     this._router.navigate(["login"]);
+  }
+  onDeleteAccount(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!'
+    })
+      .then((willDelete) => {
+        if (willDelete.value) {
+          this.onDeleteAdmin()
+        } else {
+          Swal.fire("Fail");
+        }
+        console.log(willDelete)
+      });
+  }
+  onDeleteAdmin() {
+    let body = {
+      status: 1, //account delete
+    }
+
+    this.commonService.post('updateAdminProfile', body).subscribe((data: any) => {
+      console.log(data)
+      if (data.status == 200) {
+        this.spinner.hide();
+
+        Swal.fire('Deleted!',
+        'Your file has been deleted.',
+        'success');
+        localStorage.clear()
+        this._router.navigate(["login"]);
+        // this.gender='male'
+      } else {
+        this.spinner.hide();
+
+      }
+
+    })
+
 
   }
-
 }

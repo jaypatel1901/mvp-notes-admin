@@ -101,7 +101,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("adminToken")
     if (!token)
       this.router.navigate(['login'])
 

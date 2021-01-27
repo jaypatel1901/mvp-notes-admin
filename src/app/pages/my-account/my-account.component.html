@@ -168,7 +168,7 @@
               <li>
                 <div class="row">
                   <div class="col-xl-10">
-                    <p class="sigin">Delete account </p>
+                    <button class="btn btn-danger" (click)='onDeleteAccount()'>Delete account </button>
                   </div>
                   <div class="col-xl-8">
                   </div>
@@ -204,11 +204,11 @@
         <div class="col-md-12">
           <div class="form-group">
             <label class="lab_first">Old Password</label>
-            <input type="password" class="form_profile" placeholder="" formControlName="newPassword"
-              [ngClass]="{ 'has-error': submitted1 && passwordControls.newPassword.errors }" />
+            <input type="password" class="form_profile" placeholder="" formControlName="oldPassword"
+              [ngClass]="{ 'has-error': submitted1 && passwordControls.oldPassword.errors }" />
             <div class="alert- mt-2"
-              *ngIf=" submitted1 && passwordControls.newPassword.errors ||passwordForm.controls['newPassword'].invalid && (passwordForm.controls['newPassword'].dirty || passwordForm.controls['newPassword'].touched)">
-              <ng-container *ngIf="passwordForm.controls['newPassword'].hasError('required');">
+              *ngIf=" submitted1 && passwordControls.oldPassword.errors ||passwordForm.controls['oldPassword'].invalid && (passwordForm.controls['oldPassword'].dirty || passwordForm.controls['oldPassword'].touched)">
+              <ng-container *ngIf="passwordForm.controls['oldPassword'].hasError('required');">
                 <span class="redColor">Old Password is required</span>
               </ng-container>
               <ng-container *ngIf="passwordForm.controls['newPassword'].hasError('pattern');">
@@ -216,7 +216,7 @@
               </ng-container>
               <ng-container
                 *ngIf="passwordForm.controls['newPassword'].hasError('minlength') || passwordForm.controls['newPassword'].hasError('maxlength') ;">
-                <span class="redColor">Old Password must be at least 6 characters and maximum 12 characters</span>
+                 <span class="redColor">Old Password must be at least 6 characters and maximum 12 characters</span>
               </ng-container>
 
             </div>
