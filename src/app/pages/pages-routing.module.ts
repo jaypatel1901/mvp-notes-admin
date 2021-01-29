@@ -26,7 +26,7 @@ const routes: Routes = [
         component: UsersComponent,
       },
       {
-        path: 'cms',
+        path: 'customer-support',
         component: CMSComponent,
       },
       {

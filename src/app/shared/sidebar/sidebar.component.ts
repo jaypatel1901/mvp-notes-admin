@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,16 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  firstName:any;
-  lastName:any;
-  constructor() { }
+  firstName: any;
+  lastName: any;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.getUser();
+    this.activeButton()
   }
-getUser(){
-  this.firstName=localStorage.getItem("firstName")
-  this.lastName=localStorage.getItem("lastName")
-// alert(this.firstName)
-}
+  getUser() {
+    this.firstName = localStorage.getItem("firstName")
+    this.lastName = localStorage.getItem("lastName")
+    // alert(this.firstName)
+  }
+  activeButton() {
+    let myMainSite = this.router.url
+    var splitUrl = myMainSite.split('/');
+    let id = splitUrl[1]
+    document.getElementById(id).classList.add("active")
+  }
 }
