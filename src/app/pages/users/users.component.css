@@ -30,7 +30,15 @@ li {
   border-radius: 20px;
 }
 .delete-icon{
-  margin-top: 5px;
+  margin-top: 0px;
+    width: 90%;
+    border-radius: 50%;
+ transition: .2s;
+}
+.delete-icon:hover{
+ box-shadow: 0px 0px 5px grey;
+ border-radius: 50%;
+ transition: .2s;
 }
 .block-img{
   width: 20px;
@@ -47,3 +55,17 @@ li {
 .overflow-table::-webkit-scrollbar{
   display: none;
 } */
+
+.user-delete-dropdown-box{
+  left: -42px;
+  border-radius: 19px;
+}
+.user-delete-dropdown-box a {
+  padding: 6px 10px;
+  font-size: 13px;
+  font-family: 'Productsans400';
+  font-weight: 600;
+ }
+ .yes-no-menu{
+   max-height: 40vh !important;
+ }

@@ -153,10 +153,48 @@
                       </div>
                     </div>
                     <ng-template #templateName4>
-                      <div class="d-flex p-0 m-0">
+                      <div class="dropdown show">
+                        <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <img src="assets/images/Group 2893.png" class="delete-icon"/>
+                        </a>
+                      
+                        <div class="dropdown-menu user-delete-dropdown-box" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#"><span><img src="assets/images/Group 2893.png" class="block-img"/></span>Block</a>
+                          <a class="dropdown-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><img src="assets/images/delete.png" class="block-img"/></span>Delete</a>
+                          <div class="dropdown-menu user-delete-dropdown-box">
+                            <a href="#" class="dropdown-item">Are you sure? Yes.</a>
+                            <a href="#" class="dropdown-item">cancel</a>
+
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- <div class="d-flex p-0 m-0">
+                        <div class=" right-icon">
+                          <img src="assets/images/Group 2893.png" class="delete-icon" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <div>
+                      <div class="dropdown show ">
+                        
+                      
+                        <div class="dropdown-menu user-delete-dropdown-box" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#"><div type="button" data-toggle="dropdown">
+                            <p class="logout-text px-3 py-2"><span><img src="assets/images/Group 2893.png" class="block-img"/></span>Block</p>
+                          </div></a>
+                          <a class="dropdown-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">dee</a>
+                          <div class="dropdown-menu yes-no-menu">
+                            <a href="#" class="dropdown-item">Yes</a>
+                            <a href="#" class="dropdown-item">No</a>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      </div> -->
+                      
+                      <!-- <div class="d-flex p-0 m-0">
                         <div class=" right-icon">
                           <img src="assets/images/Group 2893.png" type="button" data-toggle="dropdown" class="delete-icon">
-                             <!-- dropdown -->
+                             
                              <div>
                               <div class="dropdown">
                                 <div class="d-flex">
@@ -168,7 +206,13 @@
                                           </div>
                                       </li>
                                       <li>
-                                          <div data-toggle="modal" data-target="#ondelete" (click)="getUserId(item.userId)">
+                                          <div>
+                                            <a class="dropdown-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">dropdown</a>
+                                            <div class="dropdown-menu">
+                                              <a href="#" class="dropdown-item">asdf</a>
+                                              <a href="#" class="dropdown-item">asdf</a>
+                                              <a href="#" class="dropdown-item">asdf</a>
+                                            </div>
                                             <p class="logout-text px-3 py-2"> <span><img src="assets/images/delete.png" class="block-img"/></span>Delete</p>
                                           </div>
                                       </li>
@@ -177,9 +221,9 @@
                                 </div>
                               </div>
                             </div>
-                             <!-- dropdown ends -->
+                       
                              <div>
-                                <!-- dropdown -->
+                                
                              <div>
                               <div class="blockDropdown">
                                 <div class="d-flex">
@@ -206,7 +250,7 @@
                             </div>
                              </div>
                         </div>
-                      </div>
+                      </div> -->
                     </ng-template>
                   </td>
                   <!-- <td>
