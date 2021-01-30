@@ -41,7 +41,7 @@
                            </div> -->
       </div>
 
-      <div class="overflow-div" style="height: 86vh;">
+      <div class="overflow-div">
         <div class="bg-white p-4 curved mt-2">
           <div class="tab-content">
             <div id="home" class="tab-pane fade show active">
@@ -77,7 +77,7 @@
 
             </div>
             <!--modal ends--->
-
+             <div class="overflow-table">
             <table id="example" class="table table-striped" style="width:100%">
               <thead>
                 <tr class="admin_table table-style">
@@ -95,7 +95,7 @@
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 10, currentPage: p }'>
+              <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 10, currentPage: p }' >
                 <tr class="admin_table table-style table-style-subscription-head">
                   <td>
                     <div class="d-flex align-items-center table-image-div h-100">
@@ -231,12 +231,18 @@
                     </div>
                   </td> -->
                 </tr>
+                <pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
+
               </tbody>
-              <pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
+              
             </table>
+            
+            </div>
+            
             <!-- Table ends -->
 
           </div>
+          
           <!-- <swal #deleteSwal title="Delete  file.name" etc></swal> -->
 
         </div>
@@ -285,8 +291,8 @@
                       </div>
 
                     </div>
-                    <div class="form-group">
-                      <button class="color-button" type="submit" (click)="onSendInvitation()">Send Invitation</button>
+                    <div class="form-group text-center mb-0 mt-2">
+                      <button class="color-button mt-2" type="submit" (click)="onSendInvitation()">Send Invitation</button>
                     </div>
                   </form>
                 </div>

@@ -37,3 +37,13 @@ li {
   height: 20px;
   margin-right: 13px;
 }
+
+/* .overflow-table{
+  overflow: scroll;
+  height: 73vh;
+  padding: 0;
+  margin: 0;
+}
+.overflow-table::-webkit-scrollbar{
+  display: none;
+} */

@@ -10,17 +10,20 @@
   
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet" -->
   
-	<div class="container">
+	<div class="cms-overflow-div">
 		<div class="row" *ngFor="let item of chatList">
 			<div class="col-md-12 p-0">
 				<div class="enquiry-box">
 					<div class="d-flex">
 						<div>
-							<img src="https://cdn0.iconfinder.com/data/icons/elasto-online-store/26/00-ELASTOFONT-STORE-READY_user-circle-256.png" class="pro-imgs">
+							<img src="https://lh3.googleusercontent.com/proxy/FujfA3eluYT2tjx1vXpHOMDCeIWVoqwaN78oO0hgX4Ynfp_sNkwQMfnu76hOWOL8bcQugMwipRXlfYZo02Lfm-FM-hrjXWbv6kQ6sgHwo4G4BZGZcLsa" class="pro-imgs">
 						</div>
-						<div>
-							<h5 class="mb-0">{{item.subject}}</h5>
-							<p>Matt Rogers .<span>Created {{item.updated_at |date}}.</span></p>
+						<div class="w-100">
+							<p class="mb-0 enquiry-head">{{item.subject}}</p>
+							<div class="d-flex justify-content-between w-100">
+							<p class="cx-name">Matt Rogers .</p>
+							<p class="creation-date">Created {{item.updated_at |date}}.</p>
+							</div>
 						</div>
 					</div>
 				</div>

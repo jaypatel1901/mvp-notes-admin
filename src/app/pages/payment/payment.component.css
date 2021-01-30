@@ -1,7 +1,7 @@
 
 .first-section{
     background-color: transparent;
-    padding: 30px;
+    padding: 30px 10px;
     border-radius: 20px;
 }
 .big-box{
@@ -82,10 +82,12 @@
 }
 .table-div{
     background-color: white;
-    border-radius: 10px;
+    border-radius: 25px;
     overflow: scroll;
     overflow-x: hidden;
     height: 40vh;
+    margin: -8px;
+    padding: 20px;
 }
 
 .table-div::-webkit-scrollbar{

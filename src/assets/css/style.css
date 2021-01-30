@@ -897,3 +897,17 @@ li.active a span .side-dot{
 
 }
 
+
+.ngx-pagination {
+    position: absolute;
+    bottom: 0;
+    padding-left: 0;
+    font-size: 14px;
+}
+.ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: #2199e8;
+    color: #fefefe;
+    cursor: default;
+    border-radius: 5px;
+}

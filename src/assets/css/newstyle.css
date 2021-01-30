@@ -529,13 +529,19 @@ button:focus{
 }
 
 .prof-icon{
-    width: 95%;
+    width: 70%;
     margin-top: 0px;
+    transition: .2s;
+    border-radius: 50%;
 }
 .prof-icon:hover{
-    transform: rotate(360deg) !important;
-    transition: .3s;
+    width: 70%;
+    margin-top: 0px;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 50%;
+    transition: .2s;
 }
+
 .progress-bar{
 	background-color: #009DE9 !important;
 
