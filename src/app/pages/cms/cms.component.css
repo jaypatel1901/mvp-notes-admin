@@ -55,3 +55,90 @@
     padding: 30px;
 }
 
+.chat-overflow-div{
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 73vh;
+    padding: 20px 0;
+}
+.chat-overflow-div::-webkit-scrollbar{
+    display: none;
+}
+.msg-overflow-div{
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 59vh;
+    padding: 20px 0;
+}
+.msg-overflow-div::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  .bubbleWrapper {
+      padding: 10px 10px;
+      display: flex;
+      justify-content: flex-end;
+      flex-direction: column;
+      align-self: flex-end;
+    color: #fff;
+  }
+  .inlineContainer {
+    display: inline-flex;
+  }
+  .inlineContainer.own {
+    flex-direction: row-reverse;
+  }
+  .inlineIcon {
+    width:20px;
+    object-fit: contain;
+  }
+  .ownBubble {
+      min-width: 60px;
+      max-width: 700px;
+      padding: 5px 18px;
+    margin: 0px 8px;
+      background-color: #f0f9fe;
+      border-radius: 16px 16px 0 16px;
+      border: 1px solid #f0f9fe;
+      color: black;
+      font-size: 14px;
+    font-family: 'ProductSans400';
+    font-weight: 500;
+   
+  }
+  .otherBubble {
+    min-width: 60px;
+    max-width: 700px;
+    padding: 5px 18px;
+    margin: 0px 8px;
+    background-color: #f5f5f5;
+    border-radius: 16px 16px 16px 0;
+    border: 1px solid #f5f5f5;
+    color: black;
+    font-size: 14px;
+    font-family: 'ProductSans400';
+    font-weight: 500;
+    
+  }
+  .own {
+      align-self: flex-end;
+  }
+  .other {
+      align-self: flex-start;
+  }
+  span.own,
+  span.other{
+    font-size: 10px;
+    color: grey;
+  }
