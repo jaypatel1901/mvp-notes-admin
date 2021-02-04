@@ -25,6 +25,9 @@ export class SidebarComponent implements OnInit {
     let myMainSite = this.router.url
     var splitUrl = myMainSite.split('/');
     let id = splitUrl[1]
+    if(id==""){
+       id = "dashboard"
+    }
     document.getElementById(id).classList.add("active")
   }
 }

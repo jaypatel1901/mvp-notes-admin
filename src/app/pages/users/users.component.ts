@@ -256,8 +256,9 @@ export class UsersComponent implements OnInit {
         console.log(willDelete)
       });
   }
-  unblockUser() {
-    document.getElementById("onBlock").click();
+  unblockUser(id) {
+    // document.getElementById("onBlock").click();
+    this.userId = id
 
     var key = 0
     Swal.fire({

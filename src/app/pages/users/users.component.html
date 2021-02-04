@@ -33,7 +33,7 @@
         <div class="col-md-2 text-right mb-auto">
           <div class="d-flex justify-content-end">
             <img src="assets/images/notif.png" class="header-icon">
-            <a>  <img src="assets/images/logout.png" (click)="logout()" class="header-icon"></a>
+            <a> <img src="assets/images/logout.png" (click)="logout()" class="header-icon"></a>
           </div>
         </div>
         <!-- <div class="col-md-6 text-right">
@@ -52,11 +52,11 @@
                       <label class="d-flex mb-0">
                         <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
                         <div class="slim-div">
-                        <select name="example_length" aria-controls="example" (change)="onChange($event)"
-                          id="user-toggle" style="width: 150px;padding-top: 4px;">
-                           <option value="All users" class="head-option">All users</option>
-                          <option *ngFor="let item of planList;" value={{item.planName}}>{{item.planName}}</option>
-                        </select>
+                          <select name="example_length" aria-controls="example" (change)="onChange($event)"
+                            id="user-toggle" style="width: 150px;padding-top: 4px;">
+                            <option value="All users" class="head-option">All users</option>
+                            <option *ngFor="let item of planList;" value={{item.planName}}>{{item.planName}}</option>
+                          </select>
                         </div>
                       </label>
                     </div>
@@ -77,99 +77,110 @@
 
             </div>
             <!--modal ends--->
-             <div class="overflow-table">
-            <table id="example" class="table table-striped" style="width:100%">
-              <thead>
-                <tr class="admin_table table-style">
-                  <th>Name</th>
-                  <th>Email Address</th>
-                  <th>Invitation</th>
-                  <th>Join Date</th>
-                  <th>Subscription Plan</th>
-                  <th>Subscription Date</th>
-                  <th>Expiry Date</th>
-                  <th>Data Usage</th>
-                  <th>Note Usage</th>
-                  <th>Subject Usage</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 10, currentPage: p }' >
-                <tr class="admin_table table-style table-style-subscription-head">
-                  <td>
-                    <div class="d-flex align-items-center table-image-div h-100">
-                      <img class="pro_icon1" src="assets/images/contact_person.png" />
-                      <p class="mb-0">{{item.fullName}}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <p>{{item.email}}</p>
-                  </td>
-                  <td>
-                    <p *ngIf="item.status==0; else templateName">Self invited </p>
-                    <ng-template #templateName>
-                      Admin invited
-                    </ng-template>
-                  </td>
-                  <td>
-                    <p>{{item.joinDate | date}}</p>
-                  </td>
-                  <td><button class="gold-subscription" (click)='getUserSubHistory(item.userId)' data-toggle="modal"
-                      data-target="#SubscriptionModal">{{item.planName}}</button>
-                  </td>
-                  <td>
-                    <p *ngIf="item.subscriptionDate=='NA'; else templateName1">NA </p>
-                    <ng-template #templateName1>
-                      <p>{{item.subscriptionDate | date}}</p>
-                    </ng-template>
-                  </td>
-                  <td>
-                    <p *ngIf="item.expiryDate=='NA'; else templateName2">NA </p>
-                    <ng-template #templateName2>
-                      <p>{{item.expiryDate | date}}</p>
-                    </ng-template>
-                  </td>
-                  <td>
-                    <p>NA</p>
-                  </td>
-                  <td>
-                    <p>{{item.totalNotes}}</p>
-                  </td>
-                  <td>
-                    <p>{{item.totalSub}}</p>
-                  </td>
-                  <td>
-                    <p *ngIf="item.isStatus=='1'; else templateName3">Block </p>
-                    <ng-template #templateName3>
-                      <p>Active</p>
-                    </ng-template>
-                  </td>
-                  <td>
-                    <div *ngIf="item.isStatus=='1'; else templateName4" class="d-flex p-0 m-0">
-                      <div class=" right-icon">
-                          <img src="assets/images/Group 2893.png"  data-toggle="modal"   data-target="#onBlock"
-                          (click)="getUserId(item.userId)">
+            <div class="overflow-table">
+              <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                  <tr class="admin_table table-style">
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Invitation</th>
+                    <th>Join Date</th>
+                    <th>Subscription Plan</th>
+                    <th>Subscription Date</th>
+                    <th>Expiry Date</th>
+                    <th>Data Usage</th>
+                    <th>Note Usage</th>
+                    <th>Subject Usage</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor='let item of userList | paginate: { itemsPerPage: 10, currentPage: p }'>
+                  <tr class="admin_table table-style table-style-subscription-head">
+                    <td>
+                      <div class="d-flex align-items-center table-image-div h-100">
+                        <img class="pro_icon1" src="assets/images/contact_person.png" />
+                        <p class="mb-0">{{item.fullName}}</p>
                       </div>
-                    </div>
-                    <ng-template #templateName4>
-                      <div class="dropdown show">
-                        <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <img src="assets/images/Group 2893.png" class="delete-icon"/>
-                        </a>
-                      
-                        <div class="dropdown-menu user-delete-dropdown-box" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" (click)='blockUser(item.userId)' ><span><img src="assets/images/Group 2893.png" class="block-img"/></span>Block</a>
-                          <a class="dropdown-item" data-toggle="dropdown" (click)='deleteUser(item.userId)' aria-haspopup="true" aria-expanded="false"><span><img src="assets/images/delete.png" class="block-img"/></span>Delete</a>
-                          <!-- <div class="dropdown-menu user-delete-dropdown-box">
-                            <a href="#" class="dropdown-item">Are you sure? Yes.</a>
-                            <a href="#" class="dropdown-item">cancel</a>
-
-                          </div> -->
+                    </td>
+                    <td>
+                      <p>{{item.email}}</p>
+                    </td>
+                    <td>
+                      <p *ngIf="item.status==0; else templateName">Self invited </p>
+                      <ng-template #templateName>
+                        Admin invited
+                      </ng-template>
+                    </td>
+                    <td>
+                      <p>{{item.joinDate | date}}</p>
+                    </td>
+                    <td><button class="gold-subscription" (click)='getUserSubHistory(item.userId)' data-toggle="modal"
+                        data-target="#SubscriptionModal">{{item.planName}}</button>
+                    </td>
+                    <td>
+                      <p *ngIf="item.subscriptionDate=='NA'; else templateName1">NA </p>
+                      <ng-template #templateName1>
+                        <p>{{item.subscriptionDate | date}}</p>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <p *ngIf="item.expiryDate=='NA'; else templateName2">NA </p>
+                      <ng-template #templateName2>
+                        <p>{{item.expiryDate | date}}</p>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <p>NA</p>
+                    </td>
+                    <td>
+                      <p>{{item.totalNotes}}</p>
+                    </td>
+                    <td>
+                      <p>{{item.totalSub}}</p>
+                    </td>
+                    <td>
+                      <p *ngIf="item.isStatus=='1'; else templateName3">Block </p>
+                      <ng-template #templateName3>
+                        <p>Active</p>
+                      </ng-template>
+                    </td>
+                    <td>
+                      <div *ngIf="item.isStatus=='1'; else templateName4" class="d-flex p-0 m-0">
+                        <!-- <div class=" right-icon">
+                          <img src="assets/images/Group 2893.png" data-toggle="modal" data-target="#onBlock"
+                            (click)="getUserId(item.userId)">
+                        </div> -->
+                        <div class="dropdown show">
+                          <a class="" href="#" role="button" id="dropdownMenuLinkBlobk" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/images/Group 2893.png" class="delete-icon" />
+                          </a>
+                          <div class="dropdown-menu user-delete-dropdown-box" aria-labelledby="dropdownMenuLinkBlobk">
+                            <a class="dropdown-item" (click)="unblockUser(item.userId)" ><span><img
+                                  src="assets/images/Group 2893.png" class="block-img" /></span>UnBlock</a>
+                            <a class="dropdown-item" data-toggle="dropdown" (click)='deleteUser(item.userId)'
+                              aria-haspopup="true" aria-expanded="false"><span><img src="assets/images/delete.png"
+                                  class="block-img" /></span>Delete</a>
+                          </div>
                         </div>
                       </div>
-                      
-                      <!-- <div class="d-flex p-0 m-0">
+                      <ng-template #templateName4>
+                        <div class="dropdown show">
+                          <a class="" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/images/Group 2893.png" class="delete-icon" />
+                          </a>
+                          <div class="dropdown-menu user-delete-dropdown-box" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" (click)='blockUser(item.userId)'><span><img
+                                  src="assets/images/Group 2893.png" class="block-img" /></span>Block</a>
+                            <a class="dropdown-item" data-toggle="dropdown" (click)='deleteUser(item.userId)'
+                              aria-haspopup="true" aria-expanded="false"><span><img src="assets/images/delete.png"
+                                  class="block-img" /></span>Delete</a>
+                          </div>
+                        </div>
+
+                        <!-- <div class="d-flex p-0 m-0">
                         <div class=" right-icon">
                           <img src="assets/images/Group 2893.png" class="delete-icon" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           <div>
@@ -190,8 +201,8 @@
                       </div>
                       </div>
                       </div> -->
-                      
-                      <!-- <div class="d-flex p-0 m-0">
+
+                        <!-- <div class="d-flex p-0 m-0">
                         <div class=" right-icon">
                           <img src="assets/images/Group 2893.png" type="button" data-toggle="dropdown" class="delete-icon">
                              
@@ -251,9 +262,9 @@
                              </div>
                         </div>
                       </div> -->
-                    </ng-template>
-                  </td>
-                  <!-- <td>
+                      </ng-template>
+                    </td>
+                    <!-- <td>
                     <div class="" style="position: absolute;right: -18px;">
                       <button class="btn dropdown-toggle bg-transparent p-0 m-0" type="button" data-toggle="dropdown">
                         <span class="caret ml-2"></span></button>
@@ -274,19 +285,19 @@
                       </ul>
                     </div>
                   </td> -->
-                </tr>
-                <pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
+                  </tr>
+                  <pagination-controls (pageChange)="p = $event" style="float: right;"></pagination-controls>
 
-              </tbody>
-              
-            </table>
-            
+                </tbody>
+
+              </table>
+
             </div>
-            
+
             <!-- Table ends -->
 
           </div>
-          
+
           <!-- <swal #deleteSwal title="Delete  file.name" etc></swal> -->
 
         </div>
@@ -336,7 +347,8 @@
 
                     </div>
                     <div class="form-group text-center mb-0 mt-2">
-                      <button class="color-button mt-2" type="submit" (click)="onSendInvitation()">Send Invitation</button>
+                      <button class="color-button mt-2" type="submit" (click)="onSendInvitation()">Send
+                        Invitation</button>
                     </div>
                   </form>
                 </div>
@@ -369,8 +381,7 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="onBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="onBlock" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog1" role="document">
     <div class="modal-content modal-content2 p-4" style="margin-top: -9%;width: 104% !important;margin-left:45% ">
       <div class="modal-body">
@@ -450,11 +461,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="admin_table table-style table-style1" *ngFor='let item of userSubHistory' >
+            <tr class="admin_table table-style table-style1" *ngFor='let item of userSubHistory'>
               <td>
                 <div class="d-flex align-items-center table-image-div">
                   <img class="pro_icon1" src="assets/images/contact_person.png">
-                  <p class="mb-0">{{userDetails.userName}}</p><br/>
+                  <p class="mb-0">{{userDetails.userName}}</p><br />
                   <p class="subscriber-email">{{userDetails.email}}</p>
 
                 </div>
@@ -475,7 +486,7 @@
                 <p class="text-primary">Active</p>
               </td>
             </tr>
-                      </tbody>
+          </tbody>
         </table>
 
 

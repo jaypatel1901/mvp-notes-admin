@@ -112,6 +112,7 @@ export class SubscriptionComponent implements OnInit {
   getPlans() {
     this.spinner.show();
     this.commonService.get(`getSubscriptionPlan`).subscribe((data: any) => {
+      console.log("datda plans",data.result)
       if (data.result.length > 0) {
         this.plans = data.result
         this.spinner.hide();
