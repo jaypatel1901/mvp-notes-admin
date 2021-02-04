@@ -33,7 +33,7 @@
         <div class="col-md-2 text-right mb-auto">
           <div class="d-flex justify-content-end">
             <img src="assets/images/notif.png" class="header-icon">
-            <img src="assets/images/logout.png" class="header-icon">
+            <a>  <img src="assets/images/logout.png" (click)="logout()" class="header-icon"></a>
           </div>
         </div>
         <!-- <div class="col-md-6 text-right">
@@ -159,13 +159,13 @@
                         </a>
                       
                         <div class="dropdown-menu user-delete-dropdown-box" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#"><span><img src="assets/images/Group 2893.png" class="block-img"/></span>Block</a>
-                          <a class="dropdown-item" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span><img src="assets/images/delete.png" class="block-img"/></span>Delete</a>
-                          <div class="dropdown-menu user-delete-dropdown-box">
+                          <a class="dropdown-item" (click)='blockUser(item.userId)' ><span><img src="assets/images/Group 2893.png" class="block-img"/></span>Block</a>
+                          <a class="dropdown-item" data-toggle="dropdown" (click)='deleteUser(item.userId)' aria-haspopup="true" aria-expanded="false"><span><img src="assets/images/delete.png" class="block-img"/></span>Delete</a>
+                          <!-- <div class="dropdown-menu user-delete-dropdown-box">
                             <a href="#" class="dropdown-item">Are you sure? Yes.</a>
                             <a href="#" class="dropdown-item">cancel</a>
 
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                       

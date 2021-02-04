@@ -7,6 +7,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { NgxDateRangeModule } from 'ngx-daterange';
 // import { Component,  } from "@angular/core";
 // import { DaterangePickerComponent } from 'ng2-daterangepicker';
+
 import Swal from 'sweetalert2';
 
 declare var $: any;
@@ -512,5 +513,25 @@ export class SubscriptionComponent implements OnInit {
     document.getElementById("allButton").setAttribute('style', 'background-color :#009DE9 !important')
     this.SubscriptionHistoryList = []
     this.SubscriptionHistoryList = this.isSubscriptionHistoryList
+  }
+  logout() {
+
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes,Logout it!'
+    })
+      .then((willDelete) => {
+        if (willDelete.value) {
+          localStorage.removeItem("token");
+          this._router.navigate(['login'])
+        }
+        else {
+          Swal.fire("Fail");
+        }
+        console.log(willDelete)
+      });
   }
 }

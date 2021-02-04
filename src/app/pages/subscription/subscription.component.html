@@ -35,7 +35,8 @@
         <div class="col-md-2 text-right mb-auto">
           <div class="d-flex justify-content-end">
             <img src="assets/images/notif.png" class="header-icon">
-            <img src="assets/images/logout.png" class="header-icon">
+            <a>  <img src="assets/images/logout.png" (click)="logout()" class="header-icon"></a>
+
           </div>
         </div>
         <!-- <div class="col-md-6 text-right">
@@ -86,7 +87,7 @@
                           </p>
                         </div>
                         <div>
-                          <p class="subs-para-light">For most of the business that<br> want to optimize web queries</p>
+                          <p class="subs-para-light">{{plan.description}}</p>
                         </div>
                         <div>
                           <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
