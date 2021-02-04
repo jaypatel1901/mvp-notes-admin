@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../../core/services/common.service';
 import Swal from 'sweetalert2';
 import { NgxSpinnerService } from "ngx-spinner";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'payment',
@@ -16,7 +17,7 @@ export class PaymentComponent implements OnInit {
   month: any
   paymentByPlan:any
   SubscriptionHistoryList:any
-  constructor(private commonService: CommonService,private spinner: NgxSpinnerService,) { }
+  constructor(private commonService: CommonService,private spinner: NgxSpinnerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPaymentData()
@@ -82,5 +83,25 @@ export class PaymentComponent implements OnInit {
         alert(data.message)
       }
     })
+  }
+  logout() {
+
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes,Logout it!'
+    })
+      .then((willDelete) => {
+        if (willDelete.value) {
+          localStorage.removeItem("token");
+          this.router.navigate(['login'])
+        }
+        else {
+          Swal.fire("Fail");
+        }
+        console.log(willDelete)
+      });
   }
 }

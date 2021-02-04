@@ -6,6 +6,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 import SlimSelect from 'slim-select'
 // import * as Swal from 'sweetalert2';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -38,7 +39,7 @@ export class UsersComponent implements OnInit {
   }
   invitationForm: FormGroup
 
-  constructor(private commonService: CommonService, private fb: FormBuilder, private spinner: NgxSpinnerService) {
+  constructor(private commonService: CommonService, private fb: FormBuilder, private spinner: NgxSpinnerService,private router: Router) {
 
   }
 
@@ -159,6 +160,7 @@ export class UsersComponent implements OnInit {
     this.spinner.show();
     this.commonService.get('getUserlist').subscribe((data: any) => {
       if (data.status == 200) {
+        console.log("user list",data.result)
         this.userList = data.result
         this.Registered = data.result.length
         this.List = data.result
@@ -198,6 +200,8 @@ export class UsersComponent implements OnInit {
     this.userId = id
   }
   deleteUser(id) {
+    console.log("userid",id)
+    this.userId = id
     document.getElementById("ondelete").click();
     Swal.fire({
       title: "Are you sure?",
@@ -232,8 +236,10 @@ export class UsersComponent implements OnInit {
       }
     })
   }
-  blockUser() {
-    document.getElementById("ondelete").click();
+  blockUser(id) {
+    this.userId = id
+
+    // document.getElementById("ondelete").click();
     var key = 1
     Swal.fire({
       title: "Are you sure?",
@@ -303,5 +309,24 @@ export class UsersComponent implements OnInit {
   notDelete = () => {
     document.getElementById("ondelete").click();
   }
+  logout() {
 
+    Swal.fire({
+      title: "Are you sure?",
+      // text: "Once deleted, you will not be able to recover this imaginary file!",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes,Logout it!'
+    })
+      .then((willDelete) => {
+        if (willDelete.value) {
+          localStorage.removeItem("token");
+          this.router.navigate(['login'])
+        }
+        else {
+          Swal.fire("Fail");
+        }
+        console.log(willDelete)
+      });
+  }
 }
