@@ -526,13 +526,13 @@ export class SubscriptionComponent implements OnInit {
     })
       .then((willDelete) => {
         if (willDelete.value) {
-          localStorage.removeItem("token");
+          localStorage.removeItem("adminToken");
           this._router.navigate(['login'])
         }
         else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
         }
-        console.log(willDelete)
+        // console.log(willDelete)
       });
   }
 }

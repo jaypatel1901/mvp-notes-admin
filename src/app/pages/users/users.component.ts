@@ -214,7 +214,7 @@ export class UsersComponent implements OnInit {
         if (willDelete.value) {
           this.deleteUsers()
         } else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
         }
         console.log(willDelete)
       });
@@ -251,7 +251,7 @@ export class UsersComponent implements OnInit {
         if (willDelete.value) {
           await this.BlockUsers(key)
         } else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
         }
         console.log(willDelete)
       });
@@ -273,7 +273,7 @@ export class UsersComponent implements OnInit {
           await this.BlockUsers(key)
           //  Swal.fire("Success");
         } else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
         }
         console.log(willDelete)
       });
@@ -321,11 +321,11 @@ export class UsersComponent implements OnInit {
     })
       .then((willDelete) => {
         if (willDelete.value) {
-          localStorage.removeItem("token");
+          localStorage.removeItem("adminToken");
           this.router.navigate(['login'])
         }
         else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
         }
         console.log(willDelete)
       });

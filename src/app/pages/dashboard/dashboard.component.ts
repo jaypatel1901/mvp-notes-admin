@@ -49,12 +49,12 @@ export class DashboardComponent implements OnInit {
     {
       label: 'All Time',
       startDate: '2020-11-25T11:31:07.431Z',
-      endDate: '2021-01-08T14:00:30.813Z'
+      endDate: new Date()
     }
   isfilterchange = {
     label: 'All Time',
     startDate: '2020-11-25T11:31:07.431Z',
-    endDate: '2021-01-08T14:00:30.813Z'
+    endDate: '2021-02-22T06:13:25.308Z'
   }
   // paymentData:any =[]
   public barChartOptions: ChartOptions = {

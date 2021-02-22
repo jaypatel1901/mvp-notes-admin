@@ -95,11 +95,11 @@ export class PaymentComponent implements OnInit {
     })
       .then((willDelete) => {
         if (willDelete.value) {
-          localStorage.removeItem("token");
+          localStorage.removeItem("adminToken");
           this.router.navigate(['login'])
         }
         else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
         }
         console.log(willDelete)
       });
