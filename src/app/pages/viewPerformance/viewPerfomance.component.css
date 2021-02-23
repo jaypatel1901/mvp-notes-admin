@@ -1,0 +1,102 @@
+
+.first-section{
+    background-color: transparent;
+    padding: 30px 10px;
+    border-radius: 20px;
+}
+.big-box{
+    height: 96%;
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+    padding: 28px;
+    transition: .3s;
+}
+.big-box:hover{
+    height: 96%;
+    border-radius: 10px;
+    background-color: #009de8    ;
+    margin: 5px;
+    padding: 28px;
+    transform: scale(1.04);
+    transition: .3s;
+    cursor: pointer;
+}
+.big-box:hover p{
+   color: white !important;
+}
+.smallbox{
+    border-radius: 10px;
+    background-color: white;
+    margin: 5px;
+    padding: 20px;
+    display: flex;
+    cursor: pointer;
+    transition: .3s;
+}
+.smallbox:hover{
+    border-radius: 10px;
+    background-color: #009de8    ;
+    margin: 5px;
+    padding: 20px;
+    display: flex;
+    transform: scale(1.04);
+    transition: .3s;
+}
+.smallbox:hover p{
+  color: white !important;
+}
+.big-text{
+    font-size: 42px;
+    font-family: ProductSansBold;
+    margin-bottom: 0;
+}
+.big-subtext{
+    font-size: 18px;
+    font-family: ProductSans400;
+    color: grey;
+    margin-bottom: 0;
+}
+.small-text{
+    font-size: 28px;
+    font-family: ProductSansBold;
+    margin-bottom: 0;
+    padding-left: 30px;
+    
+}
+.small-subtext{
+    font-size: 12px;
+    font-family: 'ProductSansBold';
+    color: grey;
+    margin-bottom: 0;
+    line-height: 11px;
+    margin: auto 0;
+    width: 60px;
+}
+.chart-head{
+    font-size: 20px;
+    color: grey;
+    margin-bottom: 0;
+    font-family: ProductSansBold;
+    padding: 20px 0 10px 0;
+}
+.table-div{
+    background-color: white;
+    border-radius: 25px;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 40vh;
+    margin: -8px;
+    padding: 20px;
+}
+
+.table-div::-webkit-scrollbar{
+  display: none;
+}
+.two_section{
+    background-color: white;
+padding: 20px;
+    border-radius: 25px;
+}
+/* */
+

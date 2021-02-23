@@ -8,6 +8,7 @@ import { SubscriptionComponent } from './subscription/subscription.component'
 import {PaymentComponent} from './payment/payment.component'
 import {UsersDetailComponent} from './userDetails/userDetail.component'
 import {MyAccountComponent} from './my-account/my-account.component'
+import {ViewPerfomanceComponent} from './viewPerformance/viewPerfomance.component'
 const routes: Routes = [
   {
     path: '',
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'myProfile',
         component: MyAccountComponent,
+      },
+      {
+        path: 'view-Perfomance/:id',
+        component: ViewPerfomanceComponent,
       },
     ],
   },

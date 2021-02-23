@@ -11,6 +11,7 @@ import { SubscriptionComponent } from './subscription/subscription.component'
 import {PaymentComponent} from './payment/payment.component'
 import {MyAccountComponent} from './my-account/my-account.component'
 import {UsersDetailComponent} from './userDetails/userDetail.component'
+import {ViewPerfomanceComponent} from './viewPerformance/viewPerfomance.component'
 import { SidebarComponent } from '../shared';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgChartjsModule } from 'ng-chartjs';
@@ -35,6 +36,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     PaymentComponent,
     UsersDetailComponent,
     MyAccountComponent,
+    ViewPerfomanceComponent,
     FilterPipe
   ], 
   imports: [

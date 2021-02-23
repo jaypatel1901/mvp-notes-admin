@@ -1,0 +1,143 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="w-100">
+        <div class="container-fluid">
+            <div class="row d-flex justify-content-between mr-0 pt-3">
+                <div class="col-md-6">
+                    <p class="section-heading">{{planName}}</p>
+                    <p class="section-subheading">Subscriptions Management /{{planName}}</p>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end mb-auto">
+
+                    <div class="search-box">
+                        <i class="fa fa-search positio_icon1"></i>
+                        <input type="text" name="" placeholder="What are you searching for...?" class="input_header1">
+                    </div>
+
+                </div>
+                <div class="col-md-2 text-right mb-auto">
+                    <div class="d-flex justify-content-end">
+                        <!-- <img src="assets/images/notif.png" class="header-icon"> -->
+                        <a> <img src="assets/images/logout.png" (click)="logout()" class="header-icon"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="first-section">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="two_section">
+                            <div class="d-flex justify-content-between w-100">
+                                <div>
+                                    <p class="text_head">New Users</p>
+                                </div>
+                                <label class="d-flex mb-0 slim-container">
+                                    <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                                    <div class="slim-div">
+                                        <select id="user-toggle" name="example_length" aria-controls="example"
+                                            (change)="onChangeUsersfilter($event)">
+                                            <option *ngFor='let item of filterData' value={{item.label}}
+                                                class="head-option">
+                                                {{item.label}} ( {{item.startDate | date}}-{{item.endDate | date}})
+                                            </option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                            <!-- content -->
+                            <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+                                [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                                [colors]="barChartColors" [chartType]="barChartType"
+                                style="max-height: 300px !important;">
+                            </canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="two_section">
+                            <div class="d-flex justify-content-between w-100">
+                                <div>
+                                    <p class="text_head">Total sales</p>
+                                </div>
+                                <label class="d-flex mb-0 slim-container">
+                                    <p class=" pt-2 registerd-user mb-0 mr-2">SortBy:</p>
+                                    <div class="slim-div">
+                                        <select id="Total-sales" name="example_length" aria-controls="example"
+                                            (change)="onChangSalesfilter($event)">
+                                            <option *ngFor='let item of filterData' value={{item.label}}
+                                                class="head-option">
+                                                {{item.label}} ( {{item.startDate | date}}-{{item.endDate | date}})
+                                            </option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                            <!-- content -->
+                            <canvas baseChart [datasets]="barChartData1" [labels]="barChartLabels1"
+                                [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+                                [colors]="barChartColors" [chartType]="barChartType"
+                                style="max-height: 300px !important;">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- first section end -->
+
+        <!-- second section start -->
+        <p class="chart-head">Users List</p>
+        <div class="first-section pt-0 pb-0">
+            <div class="table-div">
+                <table id="example" class="table table-striped" style="width:100%;border-radius: 30px;">
+                    <thead>
+                        <tr class="admin_table table-style">
+                            <th style="padding-left: 5%;">Name & Email Address</th>
+                            <th>Email</th>
+                            <th>Subscription Plan</th>
+                            <th>Subscription Date</th>
+                            <th>Expiry Date</th>
+                            <!-- <th>Price</th> -->
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of userList" class="admin_table table-style table-style-subscription-head">
+                            <td>
+                                <div class="d-flex align-items-center table-image-div">
+                                    <img class="pro_icon1" src="assets/images/contact_person.png" />
+                                    <div class="pl-4 pt-2">
+                                        <p class="subscriber-name mb-0">{{item.fullName}}</p>
+                                        <!-- <p class="subscriber-email">{{item.email}}</p> -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p>{{item.email}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.planName}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.subscriptionDate | date}}</p>
+                            </td>
+                            <td>
+                                <p>{{item.expiryDate | date}}</p>
+                            </td>
+                            <!-- <td>
+                                <p>${{item.Price}}.00</p>
+                            </td> -->
+                            <td>
+                                <p *ngIf="item.planStatus=='1'; else templateName">Expiry </p>
+                                <ng-template #templateName>
+                                    <p>Active</p>
+                                </ng-template>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-clockwise" [fullScreen]="true">
+        <p style="color: white"> Loading... </p>
+    </ngx-spinner>
+</div>

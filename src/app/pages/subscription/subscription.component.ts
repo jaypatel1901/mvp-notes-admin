@@ -9,6 +9,7 @@ import { NgxDateRangeModule } from 'ngx-daterange';
 // import { DaterangePickerComponent } from 'ng2-daterangepicker';
 
 import Swal from 'sweetalert2';
+import { concatAll } from 'rxjs/operators';
 
 declare var $: any;
 
@@ -514,6 +515,12 @@ export class SubscriptionComponent implements OnInit {
     document.getElementById("allButton").setAttribute('style', 'background-color :#009DE9 !important')
     this.SubscriptionHistoryList = []
     this.SubscriptionHistoryList = this.isSubscriptionHistoryList
+  }
+  onViewPerfomance(id){
+    // View-Perfomance
+    console.log(id)
+    this._router.navigate([`view-Perfomance/${id}`])
+
   }
   logout() {
 

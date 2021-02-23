@@ -56,32 +56,17 @@ export class DashboardComponent implements OnInit {
     startDate: '2020-11-25T11:31:07.431Z',
     endDate: '2021-02-22T06:13:25.308Z'
   }
-  // paymentData:any =[]
   public barChartOptions: ChartOptions = {
     responsive: true,
   };
-  // public lineChartColors: Color[] = [
-  //   {
-  //     borderColor: '#FF0000',
-  //     backgroundColor: null,
-  //   },
-  //   {
-  //     borderColor: '#8E2AC0',
-  //     // backgroundColor: '#8E2AC0',
-  //   },
-  //   {
-  //     borderColor: '#F9966D',
-  //     // backgroundColor: '#F9966D',
-  //   },
-  // ];
+  
   public barChartColors: Color[] = [
     {
       borderColor: '#009DE9',
       backgroundColor: '#009DE9',
     },
   ];
-  //  ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']
-  public barChartLabels: Label[] = []//['Jan 2021', 'Feb 2021', 'Mar 2021', 'Apr 2021', 'May 2021', 'Jun 2021', 'Jul 2021', 'Aug 2021', 'Oct 2021', 'Nov 2021', 'Dec 2021']
+  public barChartLabels: Label[] = []
   public lineChartLabels: Label[] = []
   public barChartType: ChartType = 'bar';
   public lineChartType: ChartType = 'line';
@@ -273,7 +258,6 @@ export class DashboardComponent implements OnInit {
     })
   }
   onChangeSalefilter(event) {
-
     console.log("chekcc itme", event.target.value)
     let isFilter = event.target.value
     if (isFilter !== null) {
@@ -292,15 +276,11 @@ export class DashboardComponent implements OnInit {
       if (data.status == 200) {
         this.barChartData = []
         let newData = data.data
-        console.log("dataa in chart", newData)
         this.barChartLabels = newData.chartLabel
         this.barChartData.push({
           data: newData.total, label: 'Gold Plan'
         })
         this.spinner.hide();
-
-        // this.barChartData[0].data = newData.map(v => parseInt((v).toString()))
-        console.log("dataa in chart1111", this.barChartData)
       } else {
         this.error = data.message
         this.spinner.hide();
