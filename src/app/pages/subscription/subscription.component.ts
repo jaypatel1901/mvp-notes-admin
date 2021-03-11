@@ -86,14 +86,7 @@ export class SubscriptionComponent implements OnInit {
       select: '#plan-duration',
       showSearch: false,
     })
-    new SlimSelect({
-      select: '#Subject-Usage',
-      showSearch: false,
-    })
-    new SlimSelect({
-      select: '#Note-Usage',
-      showSearch: false,
-    })
+   
     // update form
     // 
     new SlimSelect({
@@ -139,7 +132,7 @@ export class SubscriptionComponent implements OnInit {
         this.UpdatePlanForm.value.planPrice = data.data.planPrice;
         this.planDuration =data.data.planDuration ? data.data.planDuration : '';
         this.UpdatePlanForm.value.duration = data.data.planDuration ? data.data.planDuration : '';
-        // this.UpdatePlanForm.value.subjectUsage = data.data.configration.subjectUsage ? data.data.configration.subjectUsage : '';
+        this.UpdatePlanForm.value.subjectUsage = data.data.configration.subjectUsage ? data.data.configration.subjectUsage : '';
         this.UpdatePlanForm.value.dataUsage = data.data.configration.dataUsage ? data.data.configration.dataUsage : '';
         this.UpdatePlanForm.value.noteUsage = data.data.configration.dataUsage ? data.data.configration.noteUsage : ''
         this.UpdatePlanForm.value.description = data.data.description;

@@ -13,58 +13,58 @@ import SlimSelect from 'slim-select'
   styleUrls: ['./viewPerfomance.component.css']
 })
 export class ViewPerfomanceComponent implements OnInit {
-  planId:any
-  planName:any
-  userList:any
-  planPrice:any
-  filterData:any
+  planId: any
+  planName: any
+  userList: any
+  planPrice: any
+  filterData: any
   isfilterchangeUsers =
     {
       label: 'All Time',
       startDate: '2020-11-25T11:31:07.431Z',
       endDate: new Date(),
-      planId:''
+      planId: ''
     }
-isfilterchangeSales =
+  isfilterchangeSales =
     {
       label: 'All Time',
       startDate: '2020-11-25T11:31:07.431Z',
       endDate: new Date(),
-      planId:''
+      planId: ''
     }
   // 
-// 
-public barChartOptions: ChartOptions = {
-  responsive: true,
-};
-public barChartLabels: Label[] = [];
-public barChartLabels1: Label[] = [];
+  // 
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public barChartLabels: Label[] = [];
+  public barChartLabels1: Label[] = [];
 
-public barChartType: ChartType = 'bar';
-public barChartLegend = true;
-public barChartPlugins = [];
-public barChartColors: Color[] = [
-  {
-    borderColor: '#009DE9',
-    backgroundColor: '#009DE9',
-  },
-];
-public barChartData: ChartDataSets[] = [
-  { data: [ ], label: 'Series A' },
-];
-public barChartData1: ChartDataSets[] = [
-  // { data: [ ], label: 'Series A' },
-];
-// 
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartPlugins = [];
+  public barChartColors: Color[] = [
+    {
+      borderColor: '#009DE9',
+      backgroundColor: '#009DE9',
+    },
+  ];
+  public barChartData: ChartDataSets[] = [
+    { data: [], label: 'Series A' },
+  ];
+  public barChartData1: ChartDataSets[] = [
+    // { data: [ ], label: 'Series A' },
+  ];
+  // 
 
-  constructor(private commonService: CommonService,private spinner: NgxSpinnerService, private router: Router) { }
+  constructor(private commonService: CommonService, private spinner: NgxSpinnerService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPlan()
     this.getUserList()
     this.getUserChart()
     this.getChartFilter()
-this.getSaleChart()
+    this.getSaleChart()
     new SlimSelect({
       select: '#user-toggle',
       showSearch: false,
@@ -74,15 +74,15 @@ this.getSaleChart()
       showSearch: false,
     })
   }
-  
-  
+
+
   getPlan() {
     this.spinner.show();
     let myMainSite = this.router.url
     var splitUrl = myMainSite.split('/');
     this.planId = splitUrl[2]
-    let body={
-      plan_id:this.planId
+    let body = {
+      plan_id: this.planId
     }
     this.commonService.patch('getPlanDetails', body).subscribe((data: any) => {
       if (data.status == 200) {
@@ -131,20 +131,20 @@ this.getSaleChart()
     }
   }
   getUserChart() {
-    this.barChartData=[]
+    this.barChartData = []
     this.spinner.show();
-    let body={
-      "planId":this.planId
+    let body = {
+      "planId": this.planId
     }
     this.isfilterchangeUsers.planId = this.planId
-    this.commonService.post(`userPerfomanceChart`,this.isfilterchangeUsers).subscribe((data: any) => {
+    this.commonService.post(`userPerfomanceChart`, this.isfilterchangeUsers).subscribe((data: any) => {
       this.spinner.hide();
 
       if (data.status == 200) {
-        console.log("datda",data)
+        console.log("datda", data)
         var newdata = data.data
         this.barChartData.push({
-          data:newdata.chartData,label:"Gold Plan"
+          data: newdata.chartData, label: "Gold Plan"
         })
         this.barChartLabels = newdata.chartLabel
 
@@ -178,21 +178,21 @@ this.getSaleChart()
     }
   }
   getSaleChart() {
-    this.barChartData1=[]
+    this.barChartData1 = []
     this.spinner.show();
-    
+
     this.isfilterchangeSales.planId = this.planId
-    this.commonService.post(`userPerfomanceChart`,this.isfilterchangeSales).subscribe((data: any) => {
+    this.commonService.post(`userPerfomanceChart`, this.isfilterchangeSales).subscribe((data: any) => {
       this.spinner.hide();
 
       if (data.status == 200) {
-        console.log("datda",data)
+        console.log("datda", data)
         var newdata = data.data
-       
-        var newArr =[]
+
+        var newArr = []
         console.log(newArr)
-        newdata.chartData.map((item,i)=>{
-          newArr.push(item*this.planPrice)
+        newdata.chartData.map((item, i) => {
+          newArr.push(item * this.planPrice)
         })
         this.barChartLabels1 = newdata.chartLabel
 
