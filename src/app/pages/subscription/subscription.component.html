@@ -103,8 +103,14 @@
                           <button (click)="onViewPerfomance(plan._id)" class="edit-button">View Performance</button>
                         </div>
                         <div class="d-flex mt-auto mb-auto">
-                          <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
+                          <div *ngIf="plan.isActive === true;else other_content">
+                            <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
                             data-target="#EditPlan">Edit</button>
+                        </div>
+                        
+                        <ng-template #other_content> Plan Deactivated</ng-template>
+
+                        
                         </div>
                       </div>
                     </div>

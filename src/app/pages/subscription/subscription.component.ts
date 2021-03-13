@@ -453,7 +453,7 @@ export class SubscriptionComponent implements OnInit {
           Swal.fire("Fail");
         }
       });
-  }
+  } 
   onDeletePlan() {
     document.getElementById("EditPlan").click();
     this.spinner.show();
