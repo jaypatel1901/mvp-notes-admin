@@ -61,6 +61,7 @@ export class SubscriptionComponent implements OnInit {
     "subjectUsage": "",
     "noteUsage": "",
   }
+  planData:any 
   // 
   constructor(private commonService: CommonService, private fb: FormBuilder, private _router: Router, private spinner: NgxSpinnerService) {
     this.createPlans()
@@ -123,11 +124,13 @@ export class SubscriptionComponent implements OnInit {
   editplan(id) {
     this.planId = id;
     let body = {
-      plan_id: id
+      plan_id: id 
     }
     this.commonService.patch('getPlanDetails', body).subscribe((data: any) => {
       console.log(data)
       if (data.status == 200) {
+        this.planData = data.data;
+        this.updatePlans()
         this.UpdatePlanForm.value.planName = data.data.planName ? data.data.planName : '';
         this.UpdatePlanForm.value.planPrice = data.data.planPrice;
         this.planDuration =data.data.planDuration ? data.data.planDuration : '';
@@ -172,13 +175,13 @@ export class SubscriptionComponent implements OnInit {
   updatePlans() {
     // alert("hello")
     this.UpdatePlanForm = this.fb.group({
-      planName: ['', [Validators.required, Validators.minLength(3)]],
-      planPrice: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      duration: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      dataUsage: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      subjectUsage: ['', [Validators.required]],
-      noteUsage: ['', [Validators.required]],
+      planName: [this.planData?this.planData.planName:'', [Validators.required, Validators.minLength(3)]],
+      planPrice: [this.planData?this.planData.planPrice:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      duration: [this.planData?this.planData.duration:'', [Validators.required]],
+      description: [this.planData?this.planData.description:'', [Validators.required]],
+      dataUsage: [this.planData?this.planData.configration.dataUsage:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      subjectUsage: [this.planData?this.planData.configration.subjectUsage:'', [Validators.required]],
+      noteUsage: [this.planData?this.planData.configration.noteUsage:'', [Validators.required]],
     })
     this.UpdatePlanForm.valueChanges.subscribe(data => this.onValueChangesUpdatePlan(data))
   }

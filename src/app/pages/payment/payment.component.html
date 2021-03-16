@@ -80,14 +80,14 @@
 
             <!-- second section start -->
 
-            <div class="first-section pt-0 pb-0">
+            <div class="first-section p-0">
 
                 <div class="table-div">
-                    <table id="example" class="table table-striped" style="width:100%;border-radius: 30px;">
+                    <table id="example" class="table table-striped" style="width:100%;border-radius: 30px;margin-bottom: 0 !important;">
 
-                        <thead>
+                        <thead class="pay_table_head">
                             <tr class="admin_table table-style">
-                                <th style="padding-left: 5%;">Name & Email Address</th>
+                                <th style="padding-left: 0%;width: 300px;">Name & Email Address</th>
                                 <th>Subscription Plan</th>
                                 <th>Subscription Date</th>
                                 <th>Expiry Date</th>
@@ -95,10 +95,10 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="pay_table_body">
 
                             <tr  *ngFor="let item of SubscriptionHistoryList" class="admin_table table-style table-style-subscription-head">
-                                <td>
+                                <td style="width: 300px;">
                                     <div class="d-flex align-items-center table-image-div">
                                         <img class="pro_icon1" src="assets/images/contact_person.png" />
                                         <div class="pl-4 pt-2">

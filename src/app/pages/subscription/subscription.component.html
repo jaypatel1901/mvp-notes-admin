@@ -44,7 +44,7 @@
                        </div> -->
       </div>
 
-      <div class="overflow-div" style="height:auto;">
+      <div class="">
 
 
 
@@ -61,7 +61,7 @@
           </li>
         </ul>
 
-        <div class="container-fluid bg-white right-main-container">
+        <div class="container-fluid bg-white subs-divs">
 
           <!--content start---->
 
@@ -77,40 +77,40 @@
                       <button class="color-button" data-toggle="modal" data-target="#CreatePlan">Create new
                         plan</button>
                     </div>
-                    <div class="col-md-12 px-4 mb-2" *ngFor="let plan of plans;">
-                      <div class="d-flex justify-content-around shadow-box py-3">
-                        <div class="trial-section">
-                          <p class="subs-bold-text">{{plan.planName}}</p>
-                        </div>
-                        <div>
-                          <p class="subs-bold-text">${{plan.planPrice}} <span class="subs-month p-0 m-0"> /month</span>
-                          </p>
-                        </div>
-                        <div>
-                          <p class="subs-para-light">{{plan.description}}</p>
-                        </div>
-                        <div>
-                          <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
-                                class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
-                          <p class="content-text"><span><img src="assets/images/Group 4652.png"
-                                class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
-                        </div>
-                        <div>
-                          <p class="content-text"><span><img src="assets/images/Group 4652.png"
-                                class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
-                        </div>
-                        <div class="d-flex mt-auto mb-auto">
-                          <button (click)="onViewPerfomance(plan._id)" class="edit-button">View Performance</button>
-                        </div>
-                        <div class="d-flex mt-auto mb-auto">
-                          <div *ngIf="plan.isActive === true;else other_content">
-                            <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
-                            data-target="#EditPlan">Edit</button>
-                        </div>
-                        
-                        <ng-template #other_content> Plan Deactivated</ng-template>
+                    <div class="col-md-12 px-4 mb-2 subs-card-div">
+                      <div class="" *ngFor="let plan of plans;">
+                        <div class="d-flex justify-content-around shadow-box py-3">
+                          <div class="trial-section">
+                            <p class="subs-bold-text">{{plan.planName}}</p>
+                          </div>
+                          <div>
+                            <p class="subs-bold-text">${{plan.planPrice}} <span class="subs-month p-0 m-0"> /month</span>
+                            </p>
+                          </div>
+                          <!-- <div>
+                            <p class="subs-para-light">{{plan.description}}</p>
+                          </div> -->
+                          <div>
+                            <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
+                                  class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
+                            <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                  class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
+                          </div>
+                          <div>
+                            <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                  class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
+                          </div>
+                          <div class="d-flex mt-auto mb-auto">
+                            <button (click)="onViewPerfomance(plan._id)" class="edit-button">View Performance</button>
+                          </div>
+                          <div class="d-flex mt-auto mb-auto">
+                            <div *ngIf="plan.isActive === true;else other_content">
+                              <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
+                              data-target="#EditPlan">Edit</button>
+                            </div>
+                          <ng-template #other_content> Plan Deactivated</ng-template>
+                          </div>
 
-                        
                         </div>
                       </div>
                     </div>
@@ -139,12 +139,11 @@
 
                   </div>
                 </div>
-
+                <div class="subscriber_table-body">
                 <table id="example" class="table table-striped" style="width:100%">
-
-                  <thead>
+                  <thead class="all_subs_head">
                     <tr class="admin_table table-style table-style-subscription">
-                      <th style="padding-left: 6%;">Name</th>
+                      <th>Name</th>
                       <th>Email Address</th>
                       <th>Subscription Plan</th>
                       <th>Subscription Date</th>
@@ -152,7 +151,7 @@
                       <th>Status</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="all_subs_body">
                     <tr class="admin_table table-style table-style-subscription-head"
                       *ngFor="let subscriber of isSubscriptionHistory | paginate: { itemsPerPage: 10, currentPage: p }">
                       <td>
@@ -179,6 +178,7 @@
                   </tbody>
                 </table>
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
+              </div>
 
               </div>
 
@@ -215,10 +215,11 @@
                     </div>
                   </div>
                 </div>
+                <div class="subscriber_table-body">
                 <table id="example" class="table table-striped" style="width:100%">
-                  <thead>
+                  <thead class="all_subs_head">
                     <tr class="admin_table table-style">
-                      <th style="padding-left: 5%;">Name & Email Address</th>
+                      <th style="padding-left: 0%;width: 280px;">Name & Email Address</th>
                       <th>Subscription Plan</th>
                       <th>Subscription Date</th>
                       <th>Expiry Date</th>
@@ -226,13 +227,13 @@
                       <th>Status</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody class="all_subs_body">
                     <tr class="admin_table table-style table-style-subscription-head"
                       *ngFor="let item of SubscriptionHistoryList | filter : searchKey |paginate: { itemsPerPage: 10, currentPage: p } ">
-                      <td>
+                      <td style="width: 280px;">
                         <div class="d-flex align-items-center table-image-div">
                           <img class="pro_icon1" src="assets/images/contact_person.png">
-                          <div class="pl-4 pt-2">
+                          <div class="pl-2 pt-2">
                             <p class="subscriber-name mb-0">{{item.fullName}} </p>
                             <p class="subscriber-email">{{item.email}}</p>
                           </div>
@@ -256,6 +257,7 @@
                     </tr>
                   </tbody>
                 </table>
+                </div>
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
               </div>
             </div>

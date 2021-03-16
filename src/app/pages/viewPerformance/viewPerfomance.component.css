@@ -1,7 +1,7 @@
 
 .first-section{
     background-color: transparent;
-    padding: 30px 10px;
+    padding: 30px 0px;
     border-radius: 20px;
 }
 .big-box{
@@ -78,16 +78,13 @@
     color: grey;
     margin-bottom: 0;
     font-family: ProductSansBold;
-    padding: 20px 0 10px 0;
+    padding: 0px 0 10px 0;
 }
 .table-div{
     background-color: white;
     border-radius: 25px;
-    overflow: scroll;
-    overflow-x: hidden;
-    height: 40vh;
-    margin: -8px;
-    padding: 20px;
+    margin: 0px;
+    padding: 5px 20px;
 }
 
 .table-div::-webkit-scrollbar{
@@ -95,8 +92,34 @@
 }
 .two_section{
     background-color: white;
-padding: 20px;
+    padding: 20px;
     border-radius: 25px;
 }
-/* */
+
+.performance_overflow{
+    height: 88vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+
+
+
+.performance_table_body{
+    height: 30vh;
+    
+  }
+  .performance_table_body{
+   display: block;
+   overflow: scroll;
+   width: 100%;
+ }
+ .performance_table_head, .performance_table_body tr {
+   display:table;
+   width:100%;
+   table-layout:fixed;
+ }
+ .performance_table_head {
+   padding: 6px 0px 0 0 !important;
+ }
 

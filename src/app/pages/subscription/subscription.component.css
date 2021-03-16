@@ -52,5 +52,39 @@ left: 10px;
     font-family: 'ProductSans400';
     color: gray;
 }
+.subs-divs{
+    height: auto !important;
+    padding: 2%;
+    padding-bottom: 0 !important;
+    border-radius: 20px;
+}
+.subs-card-div{
+    height: 70vh;
+    overflow: scroll;
+}
+.subs-card-div>div{
+    margin: 10px 0;
+}
+.subscriber_table-body{
+    height: 74vh;
+}
 
+
+.all_subs_body{
+    height: 62vh;
+    
+  }
+  .all_subs_body{
+   display: block;
+   overflow: scroll;
+   width: 100%;
+ }
+ .all_subs_head, .all_subs_body tr {
+   display:table;
+   width:100%;
+   table-layout:fixed;
+ }
+ .all_subs_head {
+   padding: 6px 0px 0 0 !important;
+ }
 

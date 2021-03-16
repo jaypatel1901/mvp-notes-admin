@@ -69,6 +69,10 @@ font-family: SF-regular;
 src: url('../fonts/SF-Pro-Display-Regular.otf');
 }
 
+*::-webkit-scrollbar{
+    display: none;
+}
+
 img.logo_header {
     display: block;
     margin: 50px auto;
@@ -1143,6 +1147,7 @@ font-family: 'SF-Bold';
     padding:8px 0;
     font-size: 12px;
     font-weight: 600;
+    text-transform: capitalize;
 
 }
 .table-image-div>p{
@@ -1181,8 +1186,9 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
  font-family: 'SF-Bold';
 }
 .pro_icon1{
-    max-height: 37px;
-    padding-right: 15px;
+    max-height: 32px;
+    padding-right: 3px;
+    margin-top: 4px;
 }
 
 .custom-select-sm {
@@ -1227,6 +1233,7 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
     font-family: 'SF-Bold';
     font-weight: 600;
     font-size: 24px;
+    text-transform: capitalize;
 
  }
  .subs-month{
@@ -1258,7 +1265,7 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
    cursor: pointer;
  }
  .shadow-box:hover{
-   transform: scale(1.05);
+   transform: scale(1.01);
    transition: .3s;
    box-shadow: 0px 0px 20px #00000014;
  }
@@ -1509,9 +1516,9 @@ button:focus {
 .table-style1>td>p{
   margin-bottom: -10px !Important;
 }
-.table-style1>th{
+/* .table-style1>th{
     padding-left: 8px !Important;
-}
+} */
 .formcontrol1{
     height: 33px !Important;
 }
@@ -1548,7 +1555,7 @@ button:focus {
 }
 
 .table th, .table td {
-    padding: 6px 30px 0 0;
+    padding: 6px 0px 0 0;
     vertical-align: top;
     border-top: none !important;
 }
@@ -1912,3 +1919,17 @@ transition: .4s;
     transform: rotate(90deg);
 }
 
+
+.swal2-title{
+ font-family: 'ProductSansBold' !important;
+}
+.swal2-content{
+    font-family: 'ProductSans400';
+}
+.swal2-styled {
+    font-family: 'ProductSans400';
+    padding: 8px 20px !important;
+} 
+table thead{
+    line-height: 40px !important;
+  }

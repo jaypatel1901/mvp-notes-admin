@@ -24,10 +24,15 @@ export class SidebarComponent implements OnInit {
   activeButton() {
     let myMainSite = this.router.url
     var splitUrl = myMainSite.split('/');
-    let id = splitUrl[1]
+    var id = splitUrl[1]
+    // console.log("split id",id)
     if(id==""){
        id = "dashboard"
     }
+    if(id=="view-Perfomance"){
+      id ="subscription"
+    }
+
     document.getElementById(id).classList.add("active")
   }
 }

@@ -9,45 +9,41 @@
     border-radius: 10px;
     background-color: white;
     margin: 5px;
-    padding: 28px;
+    padding: 10px 30px;
     transition: .3s;
 }
-.big-box:hover{
+/* .big-box:hover{
     height: 96%;
     border-radius: 10px;
     background-color: #009de8    ;
     margin: 5px;
-    padding: 28px;
+    padding: 10px 30px;
     transform: scale(1.04);
     transition: .3s;
     cursor: pointer;
-}
-.big-box:hover p{
+} */
+/* .big-box:hover p{
    color: white !important;
-}
+} */
 .smallbox{
     border-radius: 10px;
     background-color: white;
     margin: 5px;
-    padding: 20px;
+    padding: 5px 20px;
     display: flex;
     cursor: pointer;
     transition: .3s;
 }
-.smallbox:hover{
-    border-radius: 10px;
+/* .smallbox:hover{
     background-color: #009de8    ;
-    margin: 5px;
-    padding: 20px;
-    display: flex;
     transform: scale(1.04);
-    transition: .3s;
+    transition: .2s;
 }
 .smallbox:hover p{
   color: white !important;
-}
+} */
 .big-text{
-    font-size: 42px;
+    font-size: 55px;
     font-family: ProductSansBold;
     margin-bottom: 0;
 }
@@ -58,7 +54,7 @@
     margin-bottom: 0;
 }
 .small-text{
-    font-size: 28px;
+    font-size: 35px;
     font-family: ProductSansBold;
     margin-bottom: 0;
     padding-left: 30px;
@@ -83,13 +79,24 @@
 .table-div{
     background-color: white;
     border-radius: 25px;
-    overflow: scroll;
-    overflow-x: hidden;
-    height: 40vh;
-    margin: -8px;
+    margin: 0px;
     padding: 20px;
 }
 
-.table-div::-webkit-scrollbar{
-  display: none;
-}
+.pay_table_body{
+    height: 34vh;
+    
+  }
+  .pay_table_body{
+   display: block;
+   overflow: scroll;
+   width: 100%;
+ }
+ .pay_table_head, .pay_table_body tr {
+   display:table;
+   width:100%;
+   table-layout:fixed;
+ }
+ .pay_table_head {
+   padding: 6px 0px 0 0 !important;
+ }

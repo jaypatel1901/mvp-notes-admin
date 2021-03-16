@@ -30,10 +30,10 @@ li {
   border-radius: 20px;
 }
 .delete-icon{
-  margin-top: 0px;
-    width: 90%;
-    border-radius: 50%;
- transition: .2s;
+  margin-top: 6px;
+  width: 25px;
+  border-radius: 50%;
+  transition: .2s;
 }
 .delete-icon:hover{
  box-shadow: 0px 0px 5px grey;
@@ -69,3 +69,31 @@ li {
  .yes-no-menu{
    max-height: 40vh !important;
  }
+ /* .overflow-table{
+   height: 75vh;
+   overflow: scroll;
+ } */
+ .overflow-table::-webkit-scrollbar{
+   display: none;
+ }
+ .user_table-body{
+   height: 67.5vh;
+ }
+ .dropdown-item{
+   cursor: pointer;
+ }
+ .user_table-body{
+  display: block;
+  overflow: scroll;
+  width: 100%;
+}
+.user-table-head, .user_table-body tr {
+  display:table;
+  width:100%;
+  table-layout:fixed;
+}
+.user-table-head {
+  padding: 6px 0px 0 0 !important;
+}
+
+
