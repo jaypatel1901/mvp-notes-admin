@@ -12,8 +12,8 @@
                   </button> -->
 
     <div class="row d-flex justify-content-between mr-0">
-      <div class="col-md-6">
-        <p class="section-heading">Users Management</p>
+      <div class="col-md-6" *ngFor='let item of data'>
+        <p class="section-heading">{{item.title}}</p>
         <p class="section-subheading">Good Morning, Summer</p>
       </div>
       <div class="col-md-4 d-flex justify-content-end mb-auto">

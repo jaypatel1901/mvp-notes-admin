@@ -21,6 +21,7 @@ import { RandomcolorModule } from 'angular-randomcolor';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FilterPipe} from './filter.pipe';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import{HeaderComponent} from '../shared'
 // import { Daterangepicker } from 'ng2-daterangepicker';
 
 // import * as ChartAnnotation from 'chartjs-plugin-annotation';
@@ -28,6 +29,7 @@ import { Daterangepicker } from 'ng2-daterangepicker';
   declarations: [
     PagesComponent,
     DashboardComponent,
+    HeaderComponent,
     DashboardContainerComponent,
     UsersComponent,
     CMSComponent,

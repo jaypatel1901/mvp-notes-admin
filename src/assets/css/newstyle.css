@@ -1592,8 +1592,10 @@ button:focus {
 }
 
 .search-box {
-  background:transparent;
-  padding: 0 20px;
+        background: transparent;
+        padding: 0 20px;
+        position: relative;
+        right: -170px;
 }
 .search-box .input-wrapper {
   background: #f0fafc;

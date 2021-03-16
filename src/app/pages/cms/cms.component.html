@@ -1,178 +1,187 @@
 <div class="wrapper" style="background-color: #f8f9fd;">
-  <app-sidebar></app-sidebar>
+
+	<app-sidebar></app-sidebar>
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
 
 
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!------ Include the above in your HEAD tag ---------->
+	<!-- New Chat Theme -->
+	<div class="container-fluid">
+			<!-- <app-header></app-header> -->
 
-  
- <!-- New Chat Theme -->
- <div class="container-fluid">
-  <div class="row d-flex justify-content-between mr-0 pt-3">
-	<div class="col-md-6">
-		<p class="section-heading">Customer Management</p>
-		<p class="section-subheading">Good Morning, Summer</p>
-	</div>
-	<div class="col-md-4 d-flex justify-content-end mb-auto">
-		<div class="search-box">
-			<i class="fa fa-search positio_icon1"></i>
-			<input type="text" name="" placeholder="What are you searching for...?" class="input_header1">
-		</div>
-	</div>
-	<div class="col-md-2 text-right mb-auto">
-		<div class="d-flex justify-content-end">
-			<img src="assets/images/notif.png" class="header-icon">
-			<img src="assets/images/logout.png" class="header-icon">
-		</div>
-	</div>
-  </div>
-
- <div class="overflow-div">
-	<div class="bg-white curved">
-		 <div>
-    <div class="row no-gutters">
-    <div class="col-md-4 border-right ">
-      <div class="d-flex justify-content-between align-items-center px-3 py-3">
-	 <p class="section-heading mb-0">Users List</p>
-	 <img src="assets/images/Settings Icon.png" class="">
-      </div>
-      <div class="search-box" style="padding: 0 13px !important;">
-	 <div class="input-wrapper">
-	 <i class="material-icons"></i>
-	 <input placeholder="Search here" type="text" class="chat-search">
-	 </div>
-      </div>
-   
-	  <div class="chat-overflow-div">
-       <div *ngFor="let item of chatList" >
-          <div class="friend-drawer friend-drawer--onhover">
-	 <img class="profile-image" src="assets/images/User icon.png" alt="">
-	 <div class="text">
-	 <h6>Matt Rogers</h6>
-	 <p class="text-muted">{{item.subject}}</p>
-	 </div>
-	 <span class="time text-muted small mt-auto">{{item.updated_at |date}}.</span>
-         </div>
-	   </div>
-	</div>
-</div>
-
-
-
-   
-   <div class="col-md-5">
-   <div class="settings-tray">
-	 <div class="friend-drawer no-gutters friend-drawer--grey">
-	 <img class="profile-image" src="assets/images/User icon.png" alt="">
-	 <div class="text d-flex justify-content-between w-100">
-	   <h6>Jon Fisher</h6>
-	   <div class="ticket-div d-flex align-items-center">
-		  <p class="open-btn">
-			open
-		  </p>
-		  <p  class="time small text-dark">Ticket #12345</p>
-	   </div>
-	   <button class="color-button-small" data-toggle="modal" data-target="#myModal" style="height: 33px;">End chat</button>
-	 </div>
-	 </div>
-   </div>
-   <div class="chat-panel">
-	 <div class="row no-gutters">
-	 <div class="col-md-3">
-	   
-	 </div>
-	 </div>
-	 <div class="msg-overflow-div">
-	     <div class="row no-gutters">
-	 <div class="col-md-12">
-		<!-- slkl -->
-		<div class="bubbleWrapper">
-			<div class="inlineContainer">
-				<img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
-				<div class="otherBubble other">
-					Hi
+		<div class="row d-flex justify-content-between mr-0 pt-3">
+			<div class="col-md-6">
+				<p class="section-heading">Customer Management</p>
+				<p class="section-subheading">Good Morning, Summer</p>
+			</div>
+			<div class="col-md-4 d-flex justify-content-end mb-auto">
+				<div class="search-box">
+					<i class="fa fa-search positio_icon1"></i>
+					<input type="text" name="" placeholder="What are you searching for...?" class="input_header1">
 				</div>
-			</div><span class="other">08:41</span>
-		</div>
-		<div class="bubbleWrapper">
-			<div class="inlineContainer own">
-				<img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
-				<div class="ownBubble own">
-				 Hello
+			</div>
+			<div class="col-md-2 text-right mb-auto">
+				<div class="d-flex justify-content-end">
+					<img src="assets/images/notif.png" class="header-icon">
+					<img src="assets/images/logout.png" class="header-icon">
 				</div>
-			</div><span class="own">08:55</span>
+			</div>
 		</div>
-		<div class="bubbleWrapper">
-			<div class="inlineContainer">
-				<img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
-				<div class="otherBubble other">
-					Knowing when to leave requires training.
+
+		<div class="overflow-div">
+			<div class="bg-white curved">
+				<div>
+					<div class="row no-gutters">
+						<div class="col-md-4 border-right ">
+							<div class="d-flex justify-content-between align-items-center px-3 py-3">
+								<p class="section-heading mb-0">Users List</p>
+								<img src="assets/images/Settings Icon.png" class="">
+							</div>
+							<div class="search-box" style="padding: 0 13px !important;">
+								<div class="input-wrapper">
+									<i class="material-icons"></i>
+									<input placeholder="Search here" type="text" class="chat-search">
+								</div>
+							</div>
+
+							<div class="chat-overflow-div">
+								<div *ngFor="let item of chatList">
+									<div class="friend-drawer friend-drawer--onhover">
+										<img class="profile-image" src="assets/images/User icon.png" alt="">
+										<div class="text">
+											<h6>Matt Rogers</h6>
+											<p class="text-muted">{{item.subject}}</p>
+										</div>
+										<span class="time text-muted small mt-auto">{{item.updated_at |date}}.</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+						<div class="col-md-5">
+							<div class="settings-tray">
+								<div class="friend-drawer no-gutters friend-drawer--grey">
+									<img class="profile-image" src="assets/images/User icon.png" alt="">
+									<div class="text d-flex justify-content-between w-100">
+										<h6>Jon Fisher</h6>
+										<div class="ticket-div d-flex align-items-center">
+											<p class="open-btn">
+												open
+											</p>
+											<p class="time small text-dark">Ticket #12345</p>
+										</div>
+										<button class="color-button-small" data-toggle="modal" data-target="#myModal"
+											style="height: 33px;">End chat</button>
+									</div>
+								</div>
+							</div>
+							<div class="chat-panel">
+								<div class="row no-gutters">
+									<div class="col-md-3">
+
+									</div>
+								</div>
+								<div class="msg-overflow-div">
+									<div class="row no-gutters">
+										<div class="col-md-12">
+											<!-- slkl -->
+											<div class="bubbleWrapper">
+												<div class="inlineContainer">
+													<img class="inlineIcon"
+														src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+													<div class="otherBubble other">
+														Hi
+													</div>
+												</div><span class="other">08:41</span>
+											</div>
+											<div class="bubbleWrapper">
+												<div class="inlineContainer own">
+													<img class="inlineIcon"
+														src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
+													<div class="ownBubble own">
+														Hello
+													</div>
+												</div><span class="own">08:55</span>
+											</div>
+											<div class="bubbleWrapper">
+												<div class="inlineContainer">
+													<img class="inlineIcon"
+														src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+													<div class="otherBubble other">
+														Knowing when to leave requires training.
+													</div>
+												</div><span class="other">10:13</span>
+											</div>
+											<div class="bubbleWrapper">
+												<div class="inlineContainer own">
+													<img class="inlineIcon"
+														src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
+													<div class="ownBubble own">
+														Stunned but impressed.
+													</div>
+												</div><span class="own">11:07</span>
+											</div>
+											<div class="bubbleWrapper">
+												<div class="inlineContainer">
+													<img class="inlineIcon"
+														src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
+													<div class="otherBubble other">
+														How about throwing stars?
+													</div>
+												</div><span class="other">11:11</span>
+											</div>
+											<!-- jkkj -->
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-12">
+										<div class="chat-box-tray">
+											<input type="text" placeholder="" class="chat-input">
+											<button class="color-button-small mt-auto"
+												style="height: 33px;">Send</button>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-3 p-3" style="border-left: 2px solid lightgrey;">
+							<div class="d-flex">
+								<img src="assets/images/User icon.png" class="chat-profile-icon">
+								<p class="section-heading">John fisher</p>
+							</div>
+							<div class="d-flex pt-4">
+								<img src="assets/images/Email.png" class="chat-profile-smallicon">
+								<p class="chat-small-text">jonfisher@gmail.com</p>
+							</div>
+							<div class="d-flex pt-2">
+								<img src="assets/images/Phone.png" class="chat-profile-smallicon">
+								<p class="chat-small-text">+01 987654323</p>
+							</div>
+							<div class="d-flex pt-2">
+								<img src="assets/images/Language.png" class="chat-profile-smallicon">
+								<p class="chat-small-text">English</p>
+							</div>
+
+						</div>
+					</div>
 				</div>
-			</div><span class="other">10:13</span>
+			</div>
 		</div>
-		<div class="bubbleWrapper">
-			<div class="inlineContainer own">
-				<img class="inlineIcon" src="https://www.pinclipart.com/picdir/middle/205-2059398_blinkk-en-mac-app-store-ninja-icon-transparent.png">
-				<div class="ownBubble own">
-				Stunned but impressed. 
-				</div>
-			</div><span class="own">11:07</span>
-		</div>
-		<div class="bubbleWrapper">
-			<div class="inlineContainer">
-				<img class="inlineIcon" src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png">
-				<div class="otherBubble other">
-					How about throwing stars?
-				</div>
-			</div><span class="other">11:11</span>
-		</div>
-		<!-- jkkj -->
-	 </div>
-	     </div>
-
-	 </div>
-
-	 <div class="row">
-	 <div class="col-12">
-	   <div class="chat-box-tray">
-	   <input type="text" placeholder="" class="chat-input">
-	   <button class="color-button-small mt-auto" style="height: 33px;">Send</button>
-	   </div>
-
-	 </div>
-	 </div>
-   </div>
-   </div>
-   <div class="col-md-3 p-3" style="border-left: 2px solid lightgrey;">
-	 <div class="d-flex">
-	   <img src="assets/images/User icon.png" class="chat-profile-icon">
-	   <p class="section-heading">John fisher</p>
-	 </div>
-	 <div class="d-flex pt-4">
-	   <img src="assets/images/Email.png" class="chat-profile-smallicon">
-	   <p class="chat-small-text">jonfisher@gmail.com</p>
-	 </div>
-	 <div class="d-flex pt-2">
-	   <img src="assets/images/Phone.png" class="chat-profile-smallicon">
-	   <p class="chat-small-text">+01 987654323</p>
-	 </div>
-	 <div class="d-flex pt-2">
-	   <img src="assets/images/Language.png" class="chat-profile-smallicon">
-	   <p class="chat-small-text">English</p>
-	 </div>
-
-   </div>
-   </div>
-		 </div>
 	</div>
-</div>
-</div>
 
 
- <!-- Chat theme ends -->
-  
+	<!-- Chat theme ends -->
+
 
 
 
@@ -199,5 +208,5 @@
 			</div>
 		</div>
   </div> -->
-  <!--  -->
-        </div>
+	<!--  -->
+</div>
