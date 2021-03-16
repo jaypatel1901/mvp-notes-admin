@@ -100,11 +100,16 @@ img.img_header {
     background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border-radius: 21px;
-    margin-top: 25px;
-    margin-bottom: 25px;
     padding: 15px;
-}
+    height: 95vh;
+    overflow: scroll;
+    margin-top: 25px;
 
+}
+/*  */
+
+
+/*  */
 button.btn_account {
     background: transparent linear-gradient(284deg, #2B50ED 0%, #6B85F2 100%) 0% 0% no-repeat padding-box;
     border-radius: 10px;

@@ -88,3 +88,32 @@ left: 10px;
    padding: 6px 0px 0 0 !important;
  }
 
+ .plan-price-text{
+     font-size: 40px !important;
+     margin-bottom: 0 !important
+ }
+ .plan-cards p{
+  margin-bottom: 0 !important;
+ }
+ .plan-card-action-div{
+     width: 400px;
+     justify-content: space-between;
+ }
+ .deactivated_plan{
+    background-color:#ff726f;
+    border-radius: 10px;
+    font-size: 13px;
+    border: none;
+    padding: 5.5px 40px;
+    margin: 0;
+    font-family: 'SF-Bold';
+    font-weight: 300;
+    color: white;
+ }
+ .plan-points-div{
+     display: flex;
+     width: 250px;
+ }
+ .plan-points-div div:nth-child(1){
+     min-width: 125px;
+ }

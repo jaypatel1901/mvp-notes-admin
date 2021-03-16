@@ -79,18 +79,19 @@
                     </div>
                     <div class="col-md-12 px-4 mb-2 subs-card-div">
                       <div class="" *ngFor="let plan of plans;">
-                        <div class="d-flex justify-content-around shadow-box py-3">
+                        <div class="d-flex justify-content-around shadow-box align-items-center plan-cards py-3">
                           <div class="trial-section">
                             <p class="subs-bold-text">{{plan.planName}}</p>
                           </div>
                           <div>
-                            <p class="subs-bold-text">${{plan.planPrice}} <span class="subs-month p-0 m-0"> /month</span>
+                            <p class="subs-bold-text plan-price-text">${{plan.planPrice}} <span class="subs-month p-0 m-0"> /month</span>
                             </p>
                           </div>
                           <!-- <div>
                             <p class="subs-para-light">{{plan.description}}</p>
                           </div> -->
-                          <div>
+                          <div class="plan-points-div">
+                          <div class="">
                             <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
                                   class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
                             <p class="content-text"><span><img src="assets/images/Group 4652.png"
@@ -100,18 +101,17 @@
                             <p class="content-text"><span><img src="assets/images/Group 4652.png"
                                   class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
                           </div>
-                          <div class="d-flex mt-auto mb-auto">
+                        </div>
+                          <div class="d-flex plan-card-action-div">
                             <button (click)="onViewPerfomance(plan._id)" class="edit-button">View Performance</button>
-                          </div>
-                          <div class="d-flex mt-auto mb-auto">
                             <div *ngIf="plan.isActive === true;else other_content">
                               <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
                               data-target="#EditPlan">Edit</button>
                             </div>
-                          <ng-template #other_content> Plan Deactivated</ng-template>
+                              <ng-template #other_content><p class="deactivated_plan">Plan deactivated</p></ng-template>
                           </div>
-
-                        </div>
+                          </div>
+                          
                       </div>
                     </div>
                   </div>
