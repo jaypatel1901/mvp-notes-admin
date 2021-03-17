@@ -57,29 +57,56 @@ export class DashboardComponent implements OnInit {
     endDate: '2021-02-22T06:13:25.308Z'
   }
   public barChartOptions: ChartOptions = {
+    
+    legend: {
+      position:'top',
+      align:'end',
+      labels: {
+          // This more specific font property overrides the global property
+          fontColor: 'black',
+          fontSize: 15 ,
+      }
+      
+  },
     responsive: true,
+    scales: {
+      xAxes: [{
+        ticks: { fontColor: 'Black' },
+        gridLines: { color: 'rgba(255,255,255,0.1)' }
+      }],
+    },
+    
   };
   
   public barChartColors: Color[] = [
     {
-      borderColor: '#009DE9',
-      backgroundColor: '#009DE9',
+      borderColor: '#00a1df',
+      backgroundColor: '#00a1df',  
+      borderWidth: 0.7,
     },
   ];
   public barChartLabels: Label[] = []
   public lineChartLabels: Label[] = []
+  lineChartColors: Color[] = [
+    {
+      borderColor: '#00a1df',
+      backgroundColor: '#00a1df',
+      borderWidth: 0.7,
+    },
+  ];
   public barChartType: ChartType = 'bar';
   public lineChartType: ChartType = 'line';
   public barChartLegend = true;
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [
-    { data: [], label: 'Total Sales' },
+    { 
+      data: [],
+      label: 'Total Sales',
+     },
   ];
   public lineChartData: ChartDataSets[] = [
-    // { data: [], label: 'Gold Plan' },
-    // { data: [], label: 'Silver Plan' },
-    // { data: [], label: 'Trial Plan' },
+    
   ];
   constructor(private commonService: CommonService, private fb: FormBuilder, private spinner: NgxSpinnerService, private router: Router) {
     this.createInvitation()

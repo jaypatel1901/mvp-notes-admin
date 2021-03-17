@@ -849,9 +849,10 @@ img.img_plus {
     cursor: pointer;
 }
 .sidebox-height{
-    min-height: 13vh;
+    min-height: 14vh;
     transition: .2s;
     cursor: pointer;
+    margin: 0 15px;
 }
 .sidebox-height1{
     min-height: 29vh;
