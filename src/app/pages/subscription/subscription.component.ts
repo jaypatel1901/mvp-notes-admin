@@ -225,15 +225,22 @@ export class SubscriptionComponent implements OnInit {
     console.log("update plan data", body)
     this.commonService.put('updateSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
-        Swal.fire('Updated!',
-        'Your file has been Updated.',
-        'success');
+        // Swal.fire('Plan Updated!',
+        // 'Your Plan has been Updated.',
+        // 'success');
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Plan has been Updated',
+          showConfirmButton: false,
+          timer: 2000
+        })
         $('#EditPlan').modal('hide');
         this.getPlans()
         this.spinner.hide();
       } else {
         this.spinner.hide();
-        Swal.fire('fail')
+        // Swal.fire('fail')
       }
     })
 
@@ -322,7 +329,27 @@ export class SubscriptionComponent implements OnInit {
         $('#CreatePlan').modal('hide');
         this.getPlans()
         this.spinner.hide();
-        Swal.fire("Plan successfully Created!!");
+        // Swal.fire({
+        //   title: "Plan Successfully Created!",
+        //   text: "",
+        //   showConfirmButton: false,
+        //   showCancelButton: false,
+        // });
+        // Swal.fire("Plan successfully Created!!");
+
+        // Swal.fire('Plan Successfully Created!',
+        //             'success');
+
+        // Swal.fire('Created!!',
+        //         'Your Plan has been Created!.',
+        //         'success');
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Plan has been Created !',
+          showConfirmButton: false,
+          timer: 2000
+        })
       } else {
         this.spinner.hide();
         // alert("something went wrong")
@@ -449,10 +476,10 @@ export class SubscriptionComponent implements OnInit {
   delete(id) {
     Swal.fire({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once Deactivated, you will not be able to recover this imaginary Plan!",
       showConfirmButton: true,
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, deactivate it!'
     })
       .then((willDelete) => {
         if (willDelete.value) {
@@ -468,7 +495,7 @@ export class SubscriptionComponent implements OnInit {
       text: "",
       showConfirmButton: true,
       showCancelButton: true,
-      confirmButtonText: 'Yes, Active  it!'
+      confirmButtonText: 'Yes, Activate  it!'
     })
       .then((willDelete) => {
         if (willDelete.value) { 
@@ -481,9 +508,13 @@ export class SubscriptionComponent implements OnInit {
             if (data.status == 200) {
               this.spinner.hide();
               this.getPlans()
-              Swal.fire('Activated!',
-                'Your Plan has been Activated.',
-                'success');
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Your Plan has been Activated !',
+                showConfirmButton: false,
+                timer: 2000
+              })
             }
             else {
               this.spinner.hide();
@@ -506,9 +537,17 @@ export class SubscriptionComponent implements OnInit {
       if (data.status == 200) {
         this.spinner.hide();
         this.getPlans()
-        Swal.fire('Deleted!',
-          'Your file has been deleted.',
-          'success');
+        // Swal.fire('Deactivated!',
+        //   'Your Plan has been Deactivated.',
+        //   'success');
+
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your Plan has been Deactivated !',
+            showConfirmButton: false,
+            timer: 2000
+          })
       }
       else {
         this.spinner.hide();

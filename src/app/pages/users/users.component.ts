@@ -132,7 +132,13 @@ export class UsersComponent implements OnInit {
         this.spinner.hide();
         document.getElementById("myModal").click();
         // alert("Invitation sent successfully!")
-        Swal.fire("Invitation sent successfully!");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Invitation sent Successfully!',
+          showConfirmButton: false,
+          timer: 2500
+        })
 
       } else {
         this.spinner.hide();
@@ -205,7 +211,7 @@ export class UsersComponent implements OnInit {
     document.getElementById("ondelete").click();
     Swal.fire({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      text: "Once deleted, you will not be able to recover this User !",
       showConfirmButton: true,
       showCancelButton: true,
       confirmButtonText: 'Yes, delete it!'
@@ -225,9 +231,17 @@ export class UsersComponent implements OnInit {
       if (data.status === 200) {
         this.getUSerlist()
         this.spinner.hide();
-        Swal.fire('Deleted!',
-          'Your file has been deleted.',
-          'success');
+        // Swal.fire('Deleted!',
+        //   'Your file has been deleted.',
+        //   'success');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'This user has been Deleted',
+            showConfirmButton: false,
+            timer: 2500
+          })
+          
       } else {
         this.spinner.hide();
         this.error = data.message
@@ -290,14 +304,29 @@ export class UsersComponent implements OnInit {
         this.getUSerlist()
         this.spinner.hide();
         if (data.data.isStatus === 1) {
-          Swal.fire('Blocked!',
-            'Your user has been Blocked.',
-            'success');
+          // Swal.fire('Blocked!',
+          //   'Your user has been Blocked.',
+          //   'success');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'This user has been Blocked',
+            showConfirmButton: false,
+            timer: 2500
+          })
         }
         if (data.data.isStatus === 0) {
-          Swal.fire('Unblocke!',
-            'Your user has been Unblock.',
-            'success');
+          // Swal.fire('Unblocke!',
+          //   'Your user has been Unblock.',
+          //   'success');
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'This user has been Unblock.',
+            showConfirmButton: false,
+            timer: 2500
+          })
+          
         }
       } else {
         this.spinner.hide();

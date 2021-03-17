@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-4 d-flex justify-content-end mb-auto">
 
-          <div class="search-box">
+          <div class="search-box" style="right: -170px !important;">
             <i class="fa fa-search positio_icon1"></i>
             <input type="text" name="" placeholder="What are you searching for...?" class="input_header1">
           </div>
@@ -316,9 +316,9 @@
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
-                <div class="slim-form-div">
+                <div class="slim-form-div px-0">
                   <select (change)="somethingChanged($event)" formControlName='duration' id="plan-duration"
-                    style="width: 150px;">
+                    style="width:100%;">
                     <option value="">Choose Subscriptions</option>
                     <option value="30">30 Days</option>
                     <option value="60">60 Days</option>
@@ -334,7 +334,7 @@
               <p class="plan-form-label">Plan Description</p>
               <div class="form-group dash-form">
                 <textarea formControlName='description' class="form_login_n1 dash-form-input w-100 "
-                  style="height: 100px !important; border-radius: 10px;"></textarea>
+                  style="height: 100px !important; border-radius: 10px;padding: 10px;"></textarea>
                 <div *ngIf='createPlanFormError.description' class="alert- mt-2">{{createPlanFormError.description}}
                 </div>
               </div>
@@ -438,7 +438,7 @@
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
-                <div class="slim-form-div">
+                <div class="slim-form-div px-0">
                   <select formControlName='duration' id="plan-durationupdate">
                     <option [value]="planDuration">{{planDuration}}</option>
                     <option value="30">30</option>
@@ -456,7 +456,7 @@
               <div class="form-group dash-form">
                 <textarea type="text" class="form_login_n1 dash-form-input w-100"
                   [value]="UpdatePlanForm.value.description" placeholder=""
-                  style="height: 100px !important;border-radius: 10px;" formControlName='description'></textarea>
+                  style="height: 100px !important;border-radius: 10px;padding: 10px;" formControlName='description'></textarea>
               </div>
               <div *ngIf='updatePlanFormError.description' class="alert- mt-2">{{updatePlanFormError.description}}</div>
             </div>
@@ -505,8 +505,8 @@
             </div>
           </div>
           <div class="form-group text-center mt-3">
-            <button class="color-button-red" style="margin-right: 10px;" (click)="delete()">Delete Plan</button>
-            <button class="color-button" (click)="update()">Plan Update</button>
+            <button class="color-button-red" style="margin-right: 10px;" (click)="delete()">Deactivate Plan</button>
+            <button class="color-button" (click)="update()">Update Plan</button>
           </div>
         </form>
       </div>

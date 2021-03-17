@@ -188,7 +188,14 @@ export class DashboardComponent implements OnInit {
       if (data.status == 200) {
         this.spinner.hide();
         document.getElementById("myModal").click();
-        swal.fire("Invitation sent successfully!");
+        // swal.fire("Invitation sent successfully!");
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Invitation sent Successfully!',
+          showConfirmButton: false,
+          timer: 2500
+        })
       } else {
         this.spinner.hide();
         document.getElementById("myModal").click();
@@ -395,9 +402,9 @@ export class DashboardComponent implements OnInit {
           localStorage.removeItem("token");
           this.router.navigate(['login'])
         }
-        else {
-          Swal.fire("Fail");
-        }
+        // else {
+        //   Swal.fire("Fail");
+        // }
         console.log(willDelete)
       });
   }

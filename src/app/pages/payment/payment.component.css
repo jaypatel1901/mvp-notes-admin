@@ -65,7 +65,7 @@
     font-family: 'ProductSansBold';
     color: grey;
     margin-bottom: 0;
-    line-height: 11px;
+    line-height: 13px;
     margin: auto 0;
     width: 60px;
 }
@@ -100,3 +100,9 @@
  .pay_table_head {
    padding: 6px 0px 0 0 !important;
  }
+
+
+ .paymnt-container{
+    height: 88vh;
+    overflow: scroll;
+}
