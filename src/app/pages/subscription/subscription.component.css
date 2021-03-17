@@ -96,7 +96,7 @@ left: 10px;
   margin-bottom: 0 !important;
  }
  .plan-card-action-div{
-     width: 400px;
+     width: 333px;
      justify-content: space-between;
  }
  .deactivated_plan{
@@ -117,3 +117,58 @@ left: 10px;
  .plan-points-div div:nth-child(1){
      min-width: 125px;
  }
+.perfomace-button{
+    width: 180px !important;
+}
+.active-btn{
+
+    border: 1px solid green;
+}
+
+
+ 
+  .ribbon {
+    height: 0px;
+    position: absolute;
+    color: white;
+    width: 200px;
+    left: 1.9%;
+    margin-top: -25px;
+    font-size: 12px;
+  }
+  .ribbon3 span{
+    top: 0px;
+    position: relative;
+  }
+  
+  .ribbon3 {
+    width: 100px;
+    height: 20px;
+    /* line-height: px; */
+    padding-left: 15px;
+    position: absolute;
+    left: -7px;
+    top: 9px;
+    background: #f33b3b;
+  }
+  .ribbon3:before, .ribbon3:after {
+    content: "";
+    position: absolute;
+  }
+  .ribbon3:before {
+    height: 0;
+    width: 0;
+    top: -8.5px;
+    left: 0.1px;
+    border-bottom: 9px solid black;
+    border-left: 9px solid transparent;
+  }
+  .ribbon3:after {
+    height: 0;
+    width: 0;
+    right: -14.5px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 15px solid #f33b3b;
+  }
+  

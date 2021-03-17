@@ -767,7 +767,7 @@ border-radius: 5px;
     font-family: 'SF-Bold';
     font-weight: 300;
     cursor: pointer;
-    width: 180px;
+    width: 140px;
 }
 .Modal-heading{
     font-size: 22px;
@@ -1261,9 +1261,8 @@ table.dataTable>thead .sorting:after, table.dataTable>thead .sorting_asc:after, 
    cursor: pointer;
  }
  .shadow-box:hover{
-   transform: scale(1.01);
    transition: .3s;
-   box-shadow: 0px 0px 20px #00000014;
+   box-shadow: 0px 3px 12px grey;
  }
  .trial-section{
     width: 167px;

@@ -10,6 +10,7 @@ import { NgxDateRangeModule } from 'ngx-daterange';
 
 import Swal from 'sweetalert2';
 import { concatAll } from 'rxjs/operators';
+import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 declare var $: any;
 
@@ -289,7 +290,7 @@ export class SubscriptionComponent implements OnInit {
       if (this.createPlanFormError.hasOwnProperty(field)) {
         this.createPlanFormError[field] = '';
         const control = form.get(field);
-        if (control && control.dirty && !control.valid) {
+        if (control && control.dirty && !control.valid || control.touched) {
           const messages = this.createPlanvalidationMessages[field];
           for (const key in control.errors) {
             if (control.errors.hasOwnProperty(key)) {
@@ -302,6 +303,10 @@ export class SubscriptionComponent implements OnInit {
   }
   // 
   savePlan() {
+    this.createPlanForm.markAllAsTouched()
+    this.onValueChanges();
+    if(this.createPlanForm.valid){
+    console.log('Form valid', this.createPlanForm.valid)
     this.spinner.show();
     let body = {
       planName: this.createPlanForm.value.planName,
@@ -322,9 +327,9 @@ export class SubscriptionComponent implements OnInit {
         this.spinner.hide();
         // alert("something went wrong")
         Swal.fire("something went wrong!!");
-
       }
     })
+  }
   }
 
   somethingChanged(event) {
@@ -453,14 +458,51 @@ export class SubscriptionComponent implements OnInit {
         if (willDelete.value) {
           this.onDeletePlan()
         } else {
-          Swal.fire("Fail");
+          // Swal.fire("Fail");
+        }
+      });
+  } 
+  onActivePlan(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "",
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Active  it!'
+    })
+      .then((willDelete) => {
+        if (willDelete.value) { 
+          this.spinner.show();
+          let  body: any= {
+            planId:id,
+            status:true,
+          }
+          this.commonService.put('deleteSubscription', body).subscribe((data: any) => {
+            if (data.status == 200) {
+              this.spinner.hide();
+              this.getPlans()
+              Swal.fire('Activated!',
+                'Your Plan has been Activated.',
+                'success');
+            }
+            else {
+              this.spinner.hide();
+              Swal.fire("Fail!");
+            }
+          })
+        } else {
+          // Swal.fire("Fail");
         }
       });
   } 
   onDeletePlan() {
     document.getElementById("EditPlan").click();
     this.spinner.show();
-    this.commonService.delete('deleteSubscription', this.planId).subscribe((data: any) => {
+    let  body: any= {
+      planId:this.planId, 
+      status:false
+    }
+    this.commonService.put('deleteSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
         this.spinner.hide();
         this.getPlans()
