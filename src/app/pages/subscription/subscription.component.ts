@@ -233,7 +233,8 @@ export class SubscriptionComponent implements OnInit {
       subjectUsage: this.UpdatePlanForm.value.subjectUsage,
       dataUsage: this.UpdatePlanForm.value.dataUsage,
       noteUsage: this.UpdatePlanForm.value.noteUsage,
-      description: this.UpdatePlanForm.value.description
+      description: this.UpdatePlanForm.value.description,
+      specification:this.UpdatePlanForm.value.spec
     }
     console.log("update plan data", body)
     this.commonService.put('updateSubscription', body).subscribe((data: any) => {
