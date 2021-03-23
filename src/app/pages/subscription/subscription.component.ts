@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from '../../core/services/common.service';
 import SlimSelect from 'slim-select'
@@ -63,6 +63,8 @@ export class SubscriptionComponent implements OnInit {
     "noteUsage": "",
   }
   planData:any 
+  specification: any =[]
+  deActivePlans:any
   // 
   constructor(private commonService: CommonService, private fb: FormBuilder, private _router: Router, private spinner: NgxSpinnerService) {
     this.createPlans()
@@ -111,6 +113,7 @@ export class SubscriptionComponent implements OnInit {
       console.log("datda plans",data.result)
       if (data.result.length > 0) {
         this.plans = data.result
+       this.deActivePlans = data.result.filter(plan => plan.isActive===false);
         this.spinner.hide();
 
       } else {
@@ -140,6 +143,12 @@ export class SubscriptionComponent implements OnInit {
         this.UpdatePlanForm.value.dataUsage = data.data.configration.dataUsage ? data.data.configration.dataUsage : '';
         this.UpdatePlanForm.value.noteUsage = data.data.configration.dataUsage ? data.data.configration.noteUsage : ''
         this.UpdatePlanForm.value.description = data.data.description;
+        let specification= data.data.specification
+        specification.map(itme =>{
+          (<FormArray>this.UpdatePlanForm.controls.spec).push(new FormControl(itme, Validators.required));
+
+        })
+
       } else {
         this.plans = '';
       }
@@ -173,8 +182,10 @@ export class SubscriptionComponent implements OnInit {
       'required': 'Notes Usage is required',
     }
   }
+  AddMoreInputUpdate(){
+    (<FormArray>this.UpdatePlanForm.controls.spec).push(new FormControl('', Validators.required));
+  }
   updatePlans() {
-    // alert("hello")
     this.UpdatePlanForm = this.fb.group({
       planName: [this.planData?this.planData.planName:'', [Validators.required, Validators.minLength(3)]],
       planPrice: [this.planData?this.planData.planPrice:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
@@ -183,10 +194,12 @@ export class SubscriptionComponent implements OnInit {
       dataUsage: [this.planData?this.planData.configration.dataUsage:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
       subjectUsage: [this.planData?this.planData.configration.subjectUsage:'', [Validators.required]],
       noteUsage: [this.planData?this.planData.configration.noteUsage:'', [Validators.required]],
+      spec: this.fb.array([])
     })
     this.UpdatePlanForm.valueChanges.subscribe(data => this.onValueChangesUpdatePlan(data))
   }
   // 
+ 
   onValueChangesUpdatePlan(data?: any) {
     if (!this.UpdatePlanForm)
       return
@@ -253,7 +266,7 @@ export class SubscriptionComponent implements OnInit {
       'minlength': 'minimum 3 characters required'
     },
     'planPrice': {
-      // 'required': 'Price is required',
+      'required': 'Price is required',
       'pattern': 'Only Numbers are Allowed',
     },
     'duration': {
@@ -272,20 +285,32 @@ export class SubscriptionComponent implements OnInit {
     },
     'noteUsage': {
       'required': 'Notes Usage is required',
+    },
+    'specification':{
+      "required":"Features is required"
     }
   }
+
   // 
   createPlans() {
+   
     this.createPlanForm = this.fb.group({
       planName: ['', [Validators.required, Validators.minLength(3)]],
-      planPrice: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      planPrice: ['', [Validators.required, Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
       duration: ['', [Validators.required]],
       description: ['', [Validators.required]],
       dataUsage: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       subjectUsage: ['', [Validators.required]],
       noteUsage: ['', [Validators.required]],
+      spec: this.fb.array([new FormControl('', Validators.required)])
     })
     this.createPlanForm.valueChanges.subscribe(data => this.onValueChanges(data))
+  }
+
+  AddMoreInput(){
+    console.log("add");
+    console.log(this.createPlanForm.value);
+    (<FormArray>this.createPlanForm.controls.spec).push(new FormControl('', Validators.required));
   }
   // 
   onValueChanges(data?: any) {
@@ -313,7 +338,6 @@ export class SubscriptionComponent implements OnInit {
     this.createPlanForm.markAllAsTouched()
     this.onValueChanges();
     if(this.createPlanForm.valid){
-    console.log('Form valid', this.createPlanForm.valid)
     this.spinner.show();
     let body = {
       planName: this.createPlanForm.value.planName,
@@ -322,27 +346,14 @@ export class SubscriptionComponent implements OnInit {
       subjectUsage: this.createPlanForm.value.subjectUsage,
       dataUsage: this.createPlanForm.value.dataUsage,
       noteUsage: this.createPlanForm.value.noteUsage,
-      description: this.createPlanForm.value.description
+      description: this.createPlanForm.value.description,
+      specification:this.createPlanForm.value.spec
     }
     this.commonService.post('createSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
         $('#CreatePlan').modal('hide');
         this.getPlans()
         this.spinner.hide();
-        // Swal.fire({
-        //   title: "Plan Successfully Created!",
-        //   text: "",
-        //   showConfirmButton: false,
-        //   showCancelButton: false,
-        // });
-        // Swal.fire("Plan successfully Created!!");
-
-        // Swal.fire('Plan Successfully Created!',
-        //             'success');
-
-        // Swal.fire('Created!!',
-        //         'Your Plan has been Created!.',
-        //         'success');
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -400,6 +411,8 @@ export class SubscriptionComponent implements OnInit {
 
   getSubscribers() {
     this.commonService.get(`getSubscribers`).subscribe((data: any) => {
+      this.spinner.hide();
+
       if (data.data.length > 0) {
         this.isSubHistory = data.data
         this.isSubscriptionHistory = this.isSubHistory
@@ -418,16 +431,7 @@ export class SubscriptionComponent implements OnInit {
       if (this.filter === 'All users') {
         this.isSubscriptionHistory = this.isSubHistory
       }
-      // if (this.filter === 'Expired') {
-      //   this.isSubscriptionHistory = this.isSubHistory
-      //   const result = this.isSubscriptionHistoryList.filter(item => item.Status === 'Expired');
-      //   this.SubscriptionHistoryList = result
-      // }
-      // if (this.filter === 'Active') {
-      //   this.isSubscriptionHistory = this.isSubHistory
-      //   const result = this.isSubscriptionHistoryList.filter(item => item.Status === 'Active');
-      //   this.SubscriptionHistoryList = result
-      // }
+      
     })
   }
   onChangeHistory(event) {
@@ -454,6 +458,8 @@ export class SubscriptionComponent implements OnInit {
   }
   getSubscriptionPlanList() {
     this.commonService.get('getSubscriptionPlan').subscribe((data: any) => {
+      this.spinner.hide();
+
       if (data.status == 200) {
         this.planList = data.result
       } else {
