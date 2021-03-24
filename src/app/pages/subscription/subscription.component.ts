@@ -188,7 +188,7 @@ export class SubscriptionComponent implements OnInit {
   updatePlans() {
     this.UpdatePlanForm = this.fb.group({
       planName: [this.planData?this.planData.planName:'', [Validators.required, Validators.minLength(3)]],
-      planPrice: [this.planData?this.planData.planPrice:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      planPrice: [this.planData?this.planData.planPrice:'', [Validators.required, Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
       duration: [this.planData?this.planData.duration:'', [Validators.required]],
       description: [this.planData?this.planData.description:'', [Validators.required]],
       dataUsage: [this.planData?this.planData.configration.dataUsage:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
@@ -225,6 +225,7 @@ export class SubscriptionComponent implements OnInit {
   update() {
     // alert("hello")
     this.spinner.show();
+    this.UpdatePlanForm.value.spec = this.UpdatePlanForm.value.spec.filter(item=>item !=='')
     let body = {
       subscriptionId: this.planId,
       planName: this.UpdatePlanForm.value.planName,
@@ -239,6 +240,7 @@ export class SubscriptionComponent implements OnInit {
     console.log("update plan data", body)
     this.commonService.put('updateSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
+
         // Swal.fire('Plan Updated!',
         // 'Your Plan has been Updated.',
         // 'success');
@@ -337,6 +339,8 @@ export class SubscriptionComponent implements OnInit {
   // 
   savePlan() {
     this.createPlanForm.markAllAsTouched()
+    this.createPlanForm.value.spec = this.createPlanForm.value.spec.filter(item=>item !=='')
+
     this.onValueChanges();
     if(this.createPlanForm.valid){
     this.spinner.show();
@@ -350,6 +354,7 @@ export class SubscriptionComponent implements OnInit {
       description: this.createPlanForm.value.description,
       specification:this.createPlanForm.value.spec
     }
+    
     this.commonService.post('createSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
         $('#CreatePlan').modal('hide');
