@@ -5,6 +5,13 @@ form {
 .form-row {
     padding: 5px 10px;
 }
+/*  */
+.col-md-6.col-sm-12.px-4.text-right.mb-3 {
+    left: 360px !important;
+}
+
+
+/*  */
 label {
     display: block;
     margin: 3px 0;

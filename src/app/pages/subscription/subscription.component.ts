@@ -52,6 +52,20 @@ export class SubscriptionComponent implements OnInit {
     "subjectUsage": "",
     "noteUsage": "",
   }
+  isDuration:''
+  Durations = [{
+    Id: '30',
+    name: "Monthly"
+  },
+  {
+    Id: '90',
+    name: "Quaterly"
+  },
+  {
+    Id: '365',
+    name: "Yearly"
+  }
+]
   UpdatePlanForm: FormGroup
   updatePlanFormError = {
     "planName": '',
@@ -62,9 +76,10 @@ export class SubscriptionComponent implements OnInit {
     "subjectUsage": "",
     "noteUsage": "",
   }
-  planData:any 
-  specification: any =[]
-  deActivePlans:any
+  planData: any
+  specification: any = []
+  deActivePlans: any
+  ActivePlans:any
   // 
   constructor(private commonService: CommonService, private fb: FormBuilder, private _router: Router, private spinner: NgxSpinnerService) {
     this.createPlans()
@@ -77,7 +92,9 @@ export class SubscriptionComponent implements OnInit {
     this.getSubscribers()
     this.getSubscriptionPlanList()
     this.getSubscriptionHistory()
-
+    this.UpdatePlanForm.patchValue({
+      duration: "30"
+    });
     new SlimSelect({
       select: '#Subscription-filter',
       showSearch: false,
@@ -90,13 +107,17 @@ export class SubscriptionComponent implements OnInit {
       select: '#plan-duration',
       showSearch: false,
     })
-   
+
     // update form
     // 
-    new SlimSelect({
+  var select1 =  new SlimSelect({
       select: '#plan-durationupdate',
       showSearch: false,
+      placeholder:"this.isDuration"
+      // selected:true,
+      // setSelected
     })
+    select1.selected()
     new SlimSelect({
       select: '#Subject-Usage-update',
       showSearch: false,
@@ -110,10 +131,12 @@ export class SubscriptionComponent implements OnInit {
   getPlans() {
     this.spinner.show();
     this.commonService.get(`getSubscriptionPlan`).subscribe((data: any) => {
-      console.log("datda plans",data.result)
+      console.log("datda plans", data.result)
       if (data.result.length > 0) {
         this.plans = data.result
-       this.deActivePlans = data.result.filter(plan => plan.isActive===false);
+        this.deActivePlans = data.result.filter(plan => plan.isActive === false);
+        this.ActivePlans = data.result.filter(plan => plan.isActive === true);
+
         this.spinner.hide();
 
       } else {
@@ -128,7 +151,7 @@ export class SubscriptionComponent implements OnInit {
   editplan(id) {
     this.planId = id;
     let body = {
-      plan_id: id 
+      plan_id: id
     }
     this.commonService.patch('getPlanDetails', body).subscribe((data: any) => {
       console.log(data)
@@ -137,14 +160,15 @@ export class SubscriptionComponent implements OnInit {
         this.updatePlans()
         this.UpdatePlanForm.value.planName = data.data.planName ? data.data.planName : '';
         this.UpdatePlanForm.value.planPrice = data.data.planPrice;
-        this.planDuration =data.data.planDuration ? data.data.planDuration : '';
+        this.planDuration = data.data.planDuration ? data.data.planDuration : '';
         this.UpdatePlanForm.value.duration = data.data.planDuration ? data.data.planDuration : '';
+        this.isDuration= data.data.planDuration
         this.UpdatePlanForm.value.subjectUsage = data.data.configration.subjectUsage ? data.data.configration.subjectUsage : '';
         this.UpdatePlanForm.value.dataUsage = data.data.configration.dataUsage ? data.data.configration.dataUsage : '';
         this.UpdatePlanForm.value.noteUsage = data.data.configration.dataUsage ? data.data.configration.noteUsage : ''
         this.UpdatePlanForm.value.description = data.data.description;
-        let specification= data.data.specification
-        specification.map(itme =>{
+        let specification = data.data.specification
+        specification.map(itme => {
           (<FormArray>this.UpdatePlanForm.controls.spec).push(new FormControl(itme, Validators.required));
 
         })
@@ -182,24 +206,24 @@ export class SubscriptionComponent implements OnInit {
       'required': 'Notes Usage is required',
     }
   }
-  AddMoreInputUpdate(){
+  AddMoreInputUpdate() {
     (<FormArray>this.UpdatePlanForm.controls.spec).push(new FormControl('', Validators.required));
   }
   updatePlans() {
     this.UpdatePlanForm = this.fb.group({
-      planName: [this.planData?this.planData.planName:'', [Validators.required, Validators.minLength(3)]],
-      planPrice: [this.planData?this.planData.planPrice:'', [Validators.required, Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
-      duration: [this.planData?this.planData.duration:'', [Validators.required]],
-      description: [this.planData?this.planData.description:'', [Validators.required]],
-      dataUsage: [this.planData?this.planData.configration.dataUsage:'', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      subjectUsage: [this.planData?this.planData.configration.subjectUsage:'', [Validators.required]],
-      noteUsage: [this.planData?this.planData.configration.noteUsage:'', [Validators.required]],
+      planName: [this.planData ? this.planData.planName : '', [Validators.required, Validators.minLength(3)]],
+      planPrice: [this.planData ? this.planData.planPrice : '', [Validators.required, Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
+      duration: [this.planData ? this.planData.planDuration : '', [Validators.required]],
+      description: [this.planData ? this.planData.description : '', [Validators.required]],
+      dataUsage: [this.planData ? this.planData.configration.dataUsage : '', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      subjectUsage: [this.planData ? this.planData.configration.subjectUsage : '', [Validators.required]],
+      noteUsage: [this.planData ? this.planData.configration.noteUsage : '', [Validators.required]],
       spec: this.fb.array([])
     })
     this.UpdatePlanForm.valueChanges.subscribe(data => this.onValueChangesUpdatePlan(data))
   }
   // 
- 
+
   onValueChangesUpdatePlan(data?: any) {
     if (!this.UpdatePlanForm)
       return
@@ -225,7 +249,7 @@ export class SubscriptionComponent implements OnInit {
   update() {
     // alert("hello")
     this.spinner.show();
-    this.UpdatePlanForm.value.spec = this.UpdatePlanForm.value.spec.filter(item=>item !=='')
+    this.UpdatePlanForm.value.spec = this.UpdatePlanForm.value.spec.filter(item => item !== '')
     let body = {
       subscriptionId: this.planId,
       planName: this.UpdatePlanForm.value.planName,
@@ -235,7 +259,7 @@ export class SubscriptionComponent implements OnInit {
       dataUsage: this.UpdatePlanForm.value.dataUsage,
       noteUsage: this.UpdatePlanForm.value.noteUsage,
       description: this.UpdatePlanForm.value.description,
-      specification:this.UpdatePlanForm.value.spec
+      specification: this.UpdatePlanForm.value.spec
     }
     console.log("update plan data", body)
     this.commonService.put('updateSubscription', body).subscribe((data: any) => {
@@ -289,14 +313,14 @@ export class SubscriptionComponent implements OnInit {
     'noteUsage': {
       'required': 'Notes Usage is required',
     },
-    'specification':{
-      "required":"Features is required"
+    'specification': {
+      "required": "Features is required"
     }
   }
 
   // 
   createPlans() {
-   
+
     this.createPlanForm = this.fb.group({
       planName: ['', [Validators.required, Validators.minLength(3)]],
       planPrice: ['', [Validators.required, Validators.pattern("[0-9]+(\.[0-9][0-9]?)?")]],
@@ -310,7 +334,7 @@ export class SubscriptionComponent implements OnInit {
     this.createPlanForm.valueChanges.subscribe(data => this.onValueChanges(data))
   }
 
-  AddMoreInput(){
+  AddMoreInput() {
     console.log("add");
     console.log(this.createPlanForm.value);
     (<FormArray>this.createPlanForm.controls.spec).push(new FormControl('', Validators.required));
@@ -339,41 +363,41 @@ export class SubscriptionComponent implements OnInit {
   // 
   savePlan() {
     this.createPlanForm.markAllAsTouched()
-    this.createPlanForm.value.spec = this.createPlanForm.value.spec.filter(item=>item !=='')
+    this.createPlanForm.value.spec = this.createPlanForm.value.spec.filter(item => item !== '')
 
     this.onValueChanges();
-    if(this.createPlanForm.valid){
-    this.spinner.show();
-    let body = {
-      planName: this.createPlanForm.value.planName,
-      planDuration: this.createPlanForm.value.duration,
-      planPrice: this.createPlanForm.value.planPrice,
-      subjectUsage: this.createPlanForm.value.subjectUsage,
-      dataUsage: this.createPlanForm.value.dataUsage,
-      noteUsage: this.createPlanForm.value.noteUsage,
-      description: this.createPlanForm.value.description,
-      specification:this.createPlanForm.value.spec
-    }
-    
-    this.commonService.post('createSubscription', body).subscribe((data: any) => {
-      if (data.status == 200) {
-        $('#CreatePlan').modal('hide');
-        this.getPlans()
-        this.spinner.hide();
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Your Plan has been Created !',
-          showConfirmButton: false,
-          timer: 2000
-        })
-      } else {
-        this.spinner.hide();
-        // alert("something went wrong")
-        Swal.fire("something went wrong!!");
+    if (this.createPlanForm.valid) {
+      this.spinner.show();
+      let body = {
+        planName: this.createPlanForm.value.planName,
+        planDuration: this.createPlanForm.value.duration,
+        planPrice: this.createPlanForm.value.planPrice,
+        subjectUsage: this.createPlanForm.value.subjectUsage,
+        dataUsage: this.createPlanForm.value.dataUsage,
+        noteUsage: this.createPlanForm.value.noteUsage,
+        description: this.createPlanForm.value.description,
+        specification: this.createPlanForm.value.spec
       }
-    })
-  }
+
+      this.commonService.post('createSubscription', body).subscribe((data: any) => {
+        if (data.status == 200) {
+          $('#CreatePlan').modal('hide');
+          this.getPlans()
+          this.spinner.hide();
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your Plan has been Created !',
+            showConfirmButton: false,
+            timer: 2000
+          })
+        } else {
+          this.spinner.hide();
+          // alert("something went wrong")
+          Swal.fire("something went wrong!!");
+        }
+      })
+    }
   }
 
   somethingChanged(event) {
@@ -437,7 +461,7 @@ export class SubscriptionComponent implements OnInit {
       if (this.filter === 'All users') {
         this.isSubscriptionHistory = this.isSubHistory
       }
-      
+
     })
   }
   onChangeHistory(event) {
@@ -500,7 +524,7 @@ export class SubscriptionComponent implements OnInit {
           // Swal.fire("Fail");
         }
       });
-  } 
+  }
   onActivePlan(id) {
     Swal.fire({
       title: "Are you sure?",
@@ -510,11 +534,11 @@ export class SubscriptionComponent implements OnInit {
       confirmButtonText: 'Yes, Activate  it!'
     })
       .then((willDelete) => {
-        if (willDelete.value) { 
+        if (willDelete.value) {
           this.spinner.show();
-          let  body: any= {
-            planId:id,
-            status:true,
+          let body: any = {
+            planId: id,
+            status: true,
           }
           this.commonService.put('deleteSubscription', body).subscribe((data: any) => {
             if (data.status == 200) {
@@ -537,13 +561,13 @@ export class SubscriptionComponent implements OnInit {
           // Swal.fire("Fail");
         }
       });
-  } 
+  }
   onDeletePlan() {
     document.getElementById("EditPlan").click();
     this.spinner.show();
-    let  body: any= {
-      planId:this.planId, 
-      status:false
+    let body: any = {
+      planId: this.planId,
+      status: false
     }
     this.commonService.put('deleteSubscription', body).subscribe((data: any) => {
       if (data.status == 200) {
@@ -553,13 +577,13 @@ export class SubscriptionComponent implements OnInit {
         //   'Your Plan has been Deactivated.',
         //   'success');
 
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Your Plan has been Deactivated !',
-            showConfirmButton: false,
-            timer: 2000
-          })
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Your Plan has been Deactivated !',
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
       else {
         this.spinner.hide();
@@ -605,7 +629,7 @@ export class SubscriptionComponent implements OnInit {
     this.SubscriptionHistoryList = []
     this.SubscriptionHistoryList = this.isSubscriptionHistoryList
   }
-  onViewPerfomance(id){
+  onViewPerfomance(id) {
     // View-Perfomance
     console.log(id)
     this._router.navigate([`view-Perfomance/${id}`])
