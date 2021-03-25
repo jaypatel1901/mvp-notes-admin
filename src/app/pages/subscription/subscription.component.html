@@ -71,129 +71,129 @@
                     </a>
                   </li>
                   <li>
-                    <a data-toggle="tab" href="#DeactivatedPlans"   class="toggle-header">
+                    <a data-toggle="tab" href="#DeactivatedPlans" class="toggle-header">
                       <p class="subs-light-heading mb-0">Deactivated Plans</p>
                     </a>
                   </li>
-                    <div class="col-md-6 col-sm-12 px-4 text-right mb-3">
-                      <button class="color-button" data-toggle="modal" data-target="#CreatePlan">Create new
-                        plan</button>
-                    </div>
+                  <div class="col-md-6 col-sm-12 px-4 text-right mb-3">
+                    <button class="color-button" data-toggle="modal" data-target="#CreatePlan">Create new
+                      plan</button>
+                  </div>
                 </ul>
                 <div class="tab-content">
-                <div id ="activePlans" class="tab-pane fade show active">
-                  <div class="row">
-                    <!-- <div class="col-md-6 col-sm-12 px-4">
+                  <div id="activePlans" class="tab-pane fade show active">
+                    <div class="row">
+                      <!-- <div class="col-md-6 col-sm-12 px-4">
                       <p class="subs-light-heading mb-0">All Plans</p>
                     </div> -->
-                   
-                    <div class="col-md-12 px-4 mb-2 subs-card-div">
-                      <div class="" *ngFor="let plan of ActivePlans">
-                        <div class="d-flex justify-content-around shadow-box align-items-center plan-cards py-3"
-                          *ngIf="plan.isActive==true">
-                          <div class="trial-section">
-                            <p class="subs-bold-text">{{plan.planName}}</p>
-                          </div>
-                          <div class="text-left" style="width: 200px;">
-                            <p class="subs-bold-text plan-price-text">${{plan.planPrice}}
 
-                              <span class="subs-month p-0 m-0" *ngIf="plan.planDuration==='30'">/month</span>
-                              <span class="subs-month p-0 m-0" *ngIf="plan.planDuration==='90'">/Quaterly</span>
-                              <span class="subs-month p-0 m-0" *ngIf="plan.planDuration==='365'">/Yearly</span>
+                      <div class="col-md-12 px-4 mb-2 subs-card-div">
+                        <div class="" *ngFor="let plan of ActivePlans">
+                          <div class="d-flex justify-content-around shadow-box align-items-center plan-cards py-3"
+                            *ngIf="plan.isActive==true">
+                            <div class="trial-section">
+                              <p class="subs-bold-text">{{plan.planName}}</p>
+                            </div>
+                            <div class="text-left" style="width: 200px;">
+                              <p class="subs-bold-text plan-price-text">${{plan.planPrice}}
 
-                            </p>
-                          </div>
-                          <!-- <div>
+                                <span class="subs-month p-0 m-0" *ngIf="plan.planDuration==='30'">/month</span>
+                                <span class="subs-month p-0 m-0" *ngIf="plan.planDuration==='90'">/Quaterly</span>
+                                <span class="subs-month p-0 m-0" *ngIf="plan.planDuration==='365'">/Yearly</span>
+
+                              </p>
+                            </div>
+                            <!-- <div>
                             <p class="subs-para-light">{{plan.description}}</p>
                           </div> -->
-                          <div class="plan-points-div">
-                            <div class="">
-                              <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
-                                    class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
-                              <p class="content-text"><span><img src="assets/images/Group 4652.png"
-                                    class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
-                            </div>
-                            <div>
-                              <p class="content-text"><span><img src="assets/images/Group 4652.png"
-                                    class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
-                            </div>
-                          </div>
-                          <div class="d-flex plan-card-action-div">
-                            <button (click)="onViewPerfomance(plan._id)" class="edit-button perfomace-button">View
-                              Performance</button>
-                            <div *ngIf="plan.isActive === true;else other_content">
-                              <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
-                                data-target="#EditPlan">Edit</button>
-                            </div>
-                            <ng-template #other_content>
-                              <div class="ribbon">
-                                <span class="ribbon3"><span>Deactivated</span></span>
+                            <div class="plan-points-div">
+                              <div class="">
+                                <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
+                                      class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
+                                <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                      class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
                               </div>
-                              <button (click)="onActivePlan(plan._id)"
-                                class="edit-button btn active-btn">Active</button>
-                            </ng-template>
+                              <div>
+                                <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                      class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
+                              </div>
+                            </div>
+                            <div class="d-flex plan-card-action-div">
+                              <button (click)="onViewPerfomance(plan._id)" class="edit-button perfomace-button">View
+                                Performance</button>
+                              <div *ngIf="plan.isActive === true;else other_content">
+                                <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
+                                  data-target="#EditPlan">Edit</button>
+                              </div>
+                              <ng-template #other_content>
+                                <div class="ribbon">
+                                  <span class="ribbon3"><span>Deactivated</span></span>
+                                </div>
+                                <button (click)="onActivePlan(plan._id)"
+                                  class="edit-button btn active-btn">Active</button>
+                              </ng-template>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div class="tab-pane fade" id="DeactivatedPlans">
-                  <div class="row">
-                    <!-- <div class="col-md-6 col-sm-12 px-4">
+                  <div class="tab-pane fade" id="DeactivatedPlans">
+                    <div class="row">
+                      <!-- <div class="col-md-6 col-sm-12 px-4">
                       <p class="subs-light-heading mb-0">All Plans</p>
                     </div> -->
-                    <!-- <div class="col-md-6 col-sm-12 px-4 text-right mb-3">
+                      <!-- <div class="col-md-6 col-sm-12 px-4 text-right mb-3">
                       <button class="color-button" data-toggle="modal" data-target="#CreatePlan">Create new
                         plan</button>
                     </div> -->
-                    <div class="col-md-12 px-4 mb-2 subs-card-div">
-                    
-                      <div class="" *ngFor="let plan of deActivePlans">
-                        <div class="d-flex justify-content-around shadow-box align-items-center plan-cards py-3">
-                          <div class="trial-section">
-                            <p class="subs-bold-text">{{plan.planName}}</p>
-                          </div>
-                          <div class="text-left" style="width: 200px;">
-                            <p class="subs-bold-text plan-price-text">${{plan.planPrice}} <span
-                                class="subs-month p-0 m-0"> /month</span>
-                            </p>
-                          </div>
-                          <!-- <div>
+                      <div class="col-md-12 px-4 mb-2 subs-card-div">
+
+                        <div class="" *ngFor="let plan of deActivePlans">
+                          <div class="d-flex justify-content-around shadow-box align-items-center plan-cards py-3">
+                            <div class="trial-section">
+                              <p class="subs-bold-text">{{plan.planName}}</p>
+                            </div>
+                            <div class="text-left" style="width: 200px;">
+                              <p class="subs-bold-text plan-price-text">${{plan.planPrice}} <span
+                                  class="subs-month p-0 m-0"> /month</span>
+                              </p>
+                            </div>
+                            <!-- <div>
                             <p class="subs-para-light">{{plan.description}}</p>
                           </div> -->
-                          <div class="plan-points-div">
-                            <div class="">
-                              <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
-                                    class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
-                              <p class="content-text"><span><img src="assets/images/Group 4652.png"
-                                    class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
-                            </div>
-                            <div>
-                              <p class="content-text"><span><img src="assets/images/Group 4652.png"
-                                    class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
-                            </div>
-                          </div>
-                          <div class="d-flex plan-card-action-div">
-                            <button (click)="onViewPerfomance(plan._id)" class="edit-button perfomace-button">View
-                              Performance</button>
-                            <div *ngIf="plan.isActive === true;else other_content">
-                              <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
-                                data-target="#EditPlan">Edit</button>
-                            </div>
-                            <ng-template #other_content>
-                              <div class="ribbon">
-                                <span class="ribbon3"><span>Deactivated</span></span>
+                            <div class="plan-points-div">
+                              <div class="">
+                                <p class="content-text mb-0"><span><img src="assets/images/Group 4652.png"
+                                      class="px-2 mb-1"></span>{{plan.configration.dataUsage}} MB Data</p>
+                                <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                      class="px-2"></span>{{plan.configration.subjectUsage}} Subjects</p>
                               </div>
-                              <button (click)="onActivePlan(plan._id)"
-                                class="edit-button btn active-btn">Active</button>
-                            </ng-template>
+                              <div>
+                                <p class="content-text"><span><img src="assets/images/Group 4652.png"
+                                      class="px-2"></span>{{plan.configration.noteUsage}} Notes</p>
+                              </div>
+                            </div>
+                            <div class="d-flex plan-card-action-div">
+                              <button (click)="onViewPerfomance(plan._id)" class="edit-button perfomace-button">View
+                                Performance</button>
+                              <div *ngIf="plan.isActive === true;else other_content">
+                                <button (click)="editplan(plan._id)" class="edit-button" data-toggle="modal"
+                                  data-target="#EditPlan">Edit</button>
+                              </div>
+                              <ng-template #other_content>
+                                <div class="ribbon">
+                                  <span class="ribbon3"><span>Deactivated</span></span>
+                                </div>
+                                <button (click)="onActivePlan(plan._id)"
+                                  class="edit-button btn active-btn">Active</button>
+                              </ng-template>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 </div>
               </div>
 
@@ -521,12 +521,9 @@
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
                 <div class="">
-                  <ng-select [items]="Durations" 
-                  [clearable]="false"
-           bindLabel="name" 
-           bindValue="Id" 
-           formControlName='duration'>
-</ng-select>
+                  <ng-select [items]="Durations" [clearable]="false" bindLabel="name" bindValue="Id"
+                    formControlName='duration'>
+                  </ng-select>
                   <!-- <select formControlName='duration' >
                     <option *ngFor="let data of Durations" [value]="data.Id">{{data.name}}</option>
                   </select> -->
