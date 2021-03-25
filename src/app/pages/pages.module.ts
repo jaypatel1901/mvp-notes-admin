@@ -23,7 +23,7 @@ import { FilterPipe} from './filter.pipe';
 import { Daterangepicker } from 'ng2-daterangepicker';
 import{HeaderComponent} from '../shared'
 // import { Daterangepicker } from 'ng2-daterangepicker';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 // import * as ChartAnnotation from 'chartjs-plugin-annotation';
 @NgModule({
   declarations: [
@@ -52,7 +52,8 @@ import{HeaderComponent} from '../shared'
     NgxSpinnerModule,
     RandomcolorModule,
     SweetAlert2Module,
-    Daterangepicker
+    Daterangepicker,
+    NgSelectModule
   ]
 })
 export class PagesModule { }

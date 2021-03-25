@@ -520,11 +520,16 @@
             <div class="col">
               <p class="plan-form-label">Plan Duration</p>
               <div class="form-group dash-form">
-                <div class="slim-form-div px-0">
-                  <select formControlName='duration' >
-                    <!-- <option [selected]="duration" [ngValue]="duration">{{duration}}</option> -->
+                <div class="">
+                  <ng-select [items]="Durations" 
+                  [clearable]="false"
+           bindLabel="name" 
+           bindValue="Id" 
+           formControlName='duration'>
+</ng-select>
+                  <!-- <select formControlName='duration' >
                     <option *ngFor="let data of Durations" [value]="data.Id">{{data.name}}</option>
-                  </select>
+                  </select> -->
                 </div>
                 <!-- {{isDuration}}l -->
                 <div *ngIf='updatePlanFormError.duration' class="alert- mt-2">{{updatePlanFormError.duration}}</div>

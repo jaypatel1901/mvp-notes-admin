@@ -1,0 +1,87 @@
+0000000000000000000000000000000000000000 6e229e05a68fd6facb094193605a3d7b1597c871 jaypatel1901 <j.patel@braininventory.com> 1609310396 +0530	commit (initial): bashboard and users pages
+6e229e05a68fd6facb094193605a3d7b1597c871 0000000000000000000000000000000000000000 jaypatel1901 <j.patel@braininventory.com> 1609310428 +0530	Branch: renamed refs/heads/master to refs/heads/main
+0000000000000000000000000000000000000000 6e229e05a68fd6facb094193605a3d7b1597c871 jaypatel1901 <j.patel@braininventory.com> 1609310428 +0530	Branch: renamed refs/heads/master to refs/heads/main
+6e229e05a68fd6facb094193605a3d7b1597c871 49cb9509a0d452856e2350ac732d5823a63f65f2 jaypatel1901 <j.patel@braininventory.com> 1609310824 +0530	commit: fixed
+49cb9509a0d452856e2350ac732d5823a63f65f2 e9256e4d81110fc2a60dc64769d57cfc15b0db78 jaypatel1901 <j.patel@braininventory.com> 1609313885 +0530	commit: add .env
+e9256e4d81110fc2a60dc64769d57cfc15b0db78 a58b3cba338ceb8a81715899b23018dda8950549 jaypatel1901 <j.patel@braininventory.com> 1609323094 +0530	commit: call by nodejs
+a58b3cba338ceb8a81715899b23018dda8950549 7360811504480d082050e78a6a41cff9bcd1d83d jaypatel1901 <j.patel@braininventory.com> 1609323261 +0530	commit: remove nodejs
+7360811504480d082050e78a6a41cff9bcd1d83d 97e6cf0df17f432ddd1de95e867742e299ec56f3 jaypatel1901 <j.patel@braininventory.com> 1609325053 +0530	commit: add expresss in package.json
+97e6cf0df17f432ddd1de95e867742e299ec56f3 a0f96af0756e032029f84319fc320d5d5d3c287a jaypatel1901 <j.patel@braininventory.com> 1609327431 +0530	commit: add .env file
+a0f96af0756e032029f84319fc320d5d5d3c287a 6238de021e25d287627fc2efd87e7faebf2fc618 jaypatel1901 <j.patel@braininventory.com> 1609328165 +0530	commit: add .env file
+6238de021e25d287627fc2efd87e7faebf2fc618 620c5e999a8515003638a56d142ff4d8e5fffa3f jaypatel1901 <j.patel@braininventory.com> 1609329053 +0530	commit: changr base url
+620c5e999a8515003638a56d142ff4d8e5fffa3f 5af30740111e8b4d4e674d5a20143bf4a7ca15dd jaypatel1901 <j.patel@braininventory.com> 1609334118 +0530	commit: remove alert()
+5af30740111e8b4d4e674d5a20143bf4a7ca15dd ec58011ee51e8d803d3d43c0d6e9f6b8e9ff0dca jaypatel1901 <j.patel@braininventory.com> 1609334574 +0530	commit: fixed
+ec58011ee51e8d803d3d43c0d6e9f6b8e9ff0dca 3b8742a83acf2d39c9874eb589ee967786dd5ba9 jaypatel1901 <j.patel@braininventory.com> 1609746236 +0530	commit: sub
+3b8742a83acf2d39c9874eb589ee967786dd5ba9 dae43ad29276bb9efc502f363970085b2c4273f9 jaypatel1901 <j.patel@braininventory.com> 1609746702 +0530	commit: change baseurl
+dae43ad29276bb9efc502f363970085b2c4273f9 8b902da5652a02fb2d2b2c28b481a218d20a5a5d jaypatel1901 <j.patel@braininventory.com> 1609874522 +0530	commit: fixed css and dashboard
+8b902da5652a02fb2d2b2c28b481a218d20a5a5d 0000000000000000000000000000000000000000 jaypatel1901 <j.patel@braininventory.com> 1609874741 +0530	Branch: renamed refs/heads/main to refs/heads/main
+8b902da5652a02fb2d2b2c28b481a218d20a5a5d 8b902da5652a02fb2d2b2c28b481a218d20a5a5d jaypatel1901 <j.patel@braininventory.com> 1609874741 +0530	Branch: renamed refs/heads/main to refs/heads/main
+8b902da5652a02fb2d2b2c28b481a218d20a5a5d 8b902da5652a02fb2d2b2c28b481a218d20a5a5d jaypatel1901 <j.patel@braininventory.com> 1609875009 +0530	pull: updating HEAD
+8b902da5652a02fb2d2b2c28b481a218d20a5a5d e2484eaca37479b58bb84ff14a9855ed7a7996af jaypatel1901 <j.patel@braininventory.com> 1609875009 +0530	pull: checkout e2484eaca37479b58bb84ff14a9855ed7a7996af
+e2484eaca37479b58bb84ff14a9855ed7a7996af 3eb28b9bc40665a3bbdfbd45a4b9e337a97aa411 jaypatel1901 <j.patel@braininventory.com> 1609875010 +0530	pull: fixed css and dashboard
+3eb28b9bc40665a3bbdfbd45a4b9e337a97aa411 3eb28b9bc40665a3bbdfbd45a4b9e337a97aa411 jaypatel1901 <j.patel@braininventory.com> 1609875010 +0530	rebase finished: returning to refs/heads/main
+3eb28b9bc40665a3bbdfbd45a4b9e337a97aa411 2abfdda44c68bcac98b4cf384ddf22b2f27edf77 jaypatel1901 <j.patel@braininventory.com> 1609942479 +0530	commit: fixed invitation api and bar chart api
+2abfdda44c68bcac98b4cf384ddf22b2f27edf77 e27d1b1fa5c7191d9dd46ea82c57a3d96838e320 jaypatel1901 <j.patel@braininventory.com> 1609942518 +0530	pull: checkout e27d1b1fa5c7191d9dd46ea82c57a3d96838e320
+e27d1b1fa5c7191d9dd46ea82c57a3d96838e320 174605dd0e8dd72cd3a9f2b0d3a097c191471d4e jaypatel1901 <j.patel@braininventory.com> 1609943378 +0530	commit: fixed css
+174605dd0e8dd72cd3a9f2b0d3a097c191471d4e 2abfdda44c68bcac98b4cf384ddf22b2f27edf77 jaypatel1901 <j.patel@braininventory.com> 1609943396 +0530	checkout: moving from 174605dd0e8dd72cd3a9f2b0d3a097c191471d4e to main
+2abfdda44c68bcac98b4cf384ddf22b2f27edf77 ad4ec6de9dd71846803cd02ef0fa6556b2f262e8 jaypatel1901 <j.patel@braininventory.com> 1609962468 +0530	commit: fixed css
+ad4ec6de9dd71846803cd02ef0fa6556b2f262e8 1312a7657ed24618524bbb7391650084f66c5421 jaypatel1901 <j.patel@braininventory.com> 1609962979 +0530	commit: change url
+1312a7657ed24618524bbb7391650084f66c5421 2db7c96e4343933e873003402baaafe690147007 jaypatel1901 <j.patel@braininventory.com> 1609964106 +0530	commit: npm change
+2db7c96e4343933e873003402baaafe690147007 a42dad84728f9d0c451f814d5e7a08fd525069f6 jaypatel1901 <j.patel@braininventory.com> 1609998134 +0530	commit: fixed slim select
+a42dad84728f9d0c451f814d5e7a08fd525069f6 ddb50fe6d02da13e539f69da4148868c4c5046ce jaypatel1901 <j.patel@braininventory.com> 1610195611 +0530	commit: add filters
+ddb50fe6d02da13e539f69da4148868c4c5046ce e27d1b1fa5c7191d9dd46ea82c57a3d96838e320 jaypatel1901 <j.patel@braininventory.com> 1610195715 +0530	pull: checkout e27d1b1fa5c7191d9dd46ea82c57a3d96838e320
+e27d1b1fa5c7191d9dd46ea82c57a3d96838e320 ddb50fe6d02da13e539f69da4148868c4c5046ce jaypatel1901 <j.patel@braininventory.com> 1610198030 +0530	rebase: aborting
+ddb50fe6d02da13e539f69da4148868c4c5046ce ddb50fe6d02da13e539f69da4148868c4c5046ce jaypatel1901 <j.patel@braininventory.com> 1610198030 +0530	rebase: updating HEAD
+ddb50fe6d02da13e539f69da4148868c4c5046ce ee665ee75dafdfdf44f7385c5082b093588c04a9 jaypatel1901 <j.patel@braininventory.com> 1610199131 +0530	checkout: moving from main to master
+ee665ee75dafdfdf44f7385c5082b093588c04a9 ee665ee75dafdfdf44f7385c5082b093588c04a9 jaypatel1901 <j.patel@braininventory.com> 1610199141 +0530	checkout: moving from master to master
+ee665ee75dafdfdf44f7385c5082b093588c04a9 ee665ee75dafdfdf44f7385c5082b093588c04a9 jaypatel1901 <j.patel@braininventory.com> 1610199152 +0530	checkout: moving from master to origin/master
+ee665ee75dafdfdf44f7385c5082b093588c04a9 ee665ee75dafdfdf44f7385c5082b093588c04a9 jaypatel1901 <j.patel@braininventory.com> 1610199321 +0530	checkout: moving from ee665ee75dafdfdf44f7385c5082b093588c04a9 to master
+ee665ee75dafdfdf44f7385c5082b093588c04a9 ddb50fe6d02da13e539f69da4148868c4c5046ce jaypatel1901 <j.patel@braininventory.com> 1610199458 +0530	checkout: moving from master to main
+ddb50fe6d02da13e539f69da4148868c4c5046ce 98122c73cbc9bb75f26985cdb4dcc4196fc43521 jaypatel1901 <j.patel@braininventory.com> 1610200160 +0530	commit: change npm start
+98122c73cbc9bb75f26985cdb4dcc4196fc43521 bd1ae3ae307232c1bf5bff98bbb95821e4d8640b jaypatel1901 <j.patel@braininventory.com> 1610232829 +0530	commit: change npm start
+bd1ae3ae307232c1bf5bff98bbb95821e4d8640b 9476fcbbede58964257201b4975c14b436701fb7 jaypatel1901 <j.patel@braininventory.com> 1610232876 +0530	commit: change npm start
+9476fcbbede58964257201b4975c14b436701fb7 3ff451d3d15a38ef1d35e5a714ef389e9f0a7194 jaypatel1901 <j.patel@braininventory.com> 1610346358 +0530	commit: fixed user invitation
+3ff451d3d15a38ef1d35e5a714ef389e9f0a7194 ce2aec93c41d1ac239c546fad9f28cd0d45db8ba jaypatel1901 <j.patel@braininventory.com> 1610347548 +0530	commit: fixed
+ce2aec93c41d1ac239c546fad9f28cd0d45db8ba 34158085b14be1660e02aaa123f586c8837e0077 jaypatel1901 <j.patel@braininventory.com> 1610347568 +0530	commit: fixed
+34158085b14be1660e02aaa123f586c8837e0077 747f630594713dab26d7dbdb2899eda3eeac5f2c jaypatel1901 <j.patel@braininventory.com> 1610356802 +0530	commit: fixed subscriptions
+747f630594713dab26d7dbdb2899eda3eeac5f2c 53ec880eff21a1f0aefadd924d987b352548e633 jaypatel1901 <j.patel@braininventory.com> 1610356965 +0530	commit: fixed subscriptions
+53ec880eff21a1f0aefadd924d987b352548e633 d9a510a310dcbc1b7316cbb00a9100b9924ec9fc jaypatel1901 <j.patel@braininventory.com> 1610366580 +0530	commit: remove console
+d9a510a310dcbc1b7316cbb00a9100b9924ec9fc 40a35bccf37b8ace88668417482712e50595ba50 jaypatel1901 <j.patel@braininventory.com> 1610374208 +0530	commit: add block user
+40a35bccf37b8ace88668417482712e50595ba50 46e7d67d9f24584f4c777bdd8eb353adc12136e4 jaypatel1901 <j.patel@braininventory.com> 1610430224 +0530	commit: add block key in user api
+46e7d67d9f24584f4c777bdd8eb353adc12136e4 7b7b6f8ae0dc465e679b35f56d3e062a61313168 jaypatel1901 <j.patel@braininventory.com> 1610445541 +0530	commit: add sweet alert
+7b7b6f8ae0dc465e679b35f56d3e062a61313168 7f02044d0a2bfc7e971e541a67d2284c938a1145 jaypatel1901 <j.patel@braininventory.com> 1610548163 +0530	commit: fixed login routing
+7f02044d0a2bfc7e971e541a67d2284c938a1145 ecee320f9e2e935d293d384130564e7753a96581 jaypatel1901 <j.patel@braininventory.com> 1610632524 +0530	commit: fixed create and edit plan
+ecee320f9e2e935d293d384130564e7753a96581 66ef650eed54c20c763eb81502f0f9c079584c0a jaypatel1901 <j.patel@braininventory.com> 1610964171 +0530	commit: ui fixed by shimon
+66ef650eed54c20c763eb81502f0f9c079584c0a c5e8b2a8198e5fdfb8ce5e5ea0635341e9921427 jaypatel1901 <j.patel@braininventory.com> 1611073910 +0530	commit: payment
+c5e8b2a8198e5fdfb8ce5e5ea0635341e9921427 45ee5a03d62e9e1518d7b9319b4f59b29e2ee43e jaypatel1901 <j.patel@braininventory.com> 1611693977 +0530	commit: admin profile
+45ee5a03d62e9e1518d7b9319b4f59b29e2ee43e 9f83ac5721281dd1112784dac3e0a0e57989ca80 jaypatel1901 <j.patel@braininventory.com> 1611747560 +0530	commit: profile
+9f83ac5721281dd1112784dac3e0a0e57989ca80 4df834c6ce11e7795803be4840cc68577f4b42ac jaypatel1901 <j.patel@braininventory.com> 1611957068 +0530	commit: note update and user sub history api
+4df834c6ce11e7795803be4840cc68577f4b42ac 4df834c6ce11e7795803be4840cc68577f4b42ac jaypatel1901 <j.patel@braininventory.com> 1612025588 +0530	pull https://github.com/jaypatel1901/mvp-notes-admin.git main: updating HEAD
+4df834c6ce11e7795803be4840cc68577f4b42ac d25c6059a142de622aa95e6ab2a43360ae9c5988 jaypatel1901 <j.patel@braininventory.com> 1612025589 +0530	pull https://github.com/jaypatel1901/mvp-notes-admin.git main: checkout d25c6059a142de622aa95e6ab2a43360ae9c5988
+d25c6059a142de622aa95e6ab2a43360ae9c5988 d25c6059a142de622aa95e6ab2a43360ae9c5988 jaypatel1901 <j.patel@braininventory.com> 1612025589 +0530	rebase finished: returning to refs/heads/main
+d25c6059a142de622aa95e6ab2a43360ae9c5988 d25c6059a142de622aa95e6ab2a43360ae9c5988 jaypatel1901 <j.patel@braininventory.com> 1612025621 +0530	pull https://github.com/jaypatel1901/mvp-notes-admin.git main: updating HEAD
+d25c6059a142de622aa95e6ab2a43360ae9c5988 d25c6059a142de622aa95e6ab2a43360ae9c5988 jaypatel1901 <j.patel@braininventory.com> 1612025697 +0530	pull https://github.com/jaypatel1901/mvp-notes-admin.git main: updating HEAD
+d25c6059a142de622aa95e6ab2a43360ae9c5988 1038a40b9b3745ffcec857c911ecbabdad25e0b1 jaypatel1901 <j.patel@braininventory.com> 1612446992 +0530	commit: fixed
+1038a40b9b3745ffcec857c911ecbabdad25e0b1 89a07a482df4a3a7ef92c80b94d1a334958c2a05 jaypatel1901 <j.patel@braininventory.com> 1612447379 +0530	commit: fixed
+89a07a482df4a3a7ef92c80b94d1a334958c2a05 c9662ee8ad308db4b8e2429abbfeae89b833295f jaypatel1901 <j.patel@braininventory.com> 1612469838 +0530	commit: fixed bugs
+c9662ee8ad308db4b8e2429abbfeae89b833295f 981d2da2d0d0c2adf16eda6bca944639a046d271 jaypatel1901 <j.patel@braininventory.com> 1612470531 +0530	pull origin main: checkout 981d2da2d0d0c2adf16eda6bca944639a046d271
+981d2da2d0d0c2adf16eda6bca944639a046d271 981d2da2d0d0c2adf16eda6bca944639a046d271 jaypatel1901 <j.patel@braininventory.com> 1612470531 +0530	rebase finished: returning to refs/heads/main
+981d2da2d0d0c2adf16eda6bca944639a046d271 b00c0422a4d9dc14a2eb0309aa648d933472cb5e jaypatel1901 <j.patel@braininventory.com> 1613979943 +0530	commit: fixed chart
+b00c0422a4d9dc14a2eb0309aa648d933472cb5e f4ad78ca3431f1e7fde6bbae8cdae3894d21b13d jaypatel1901 <j.patel@braininventory.com> 1614089027 +0530	commit: view perfomance page
+f4ad78ca3431f1e7fde6bbae8cdae3894d21b13d 0549307618d70afd5c7930635581d8566c1ef75d jaypatel1901 <j.patel@braininventory.com> 1614089907 +0530	checkout: moving from main to NEW-Updated-admin
+0549307618d70afd5c7930635581d8566c1ef75d f4ad78ca3431f1e7fde6bbae8cdae3894d21b13d jaypatel1901 <j.patel@braininventory.com> 1614089951 +0530	checkout: moving from NEW-Updated-admin to main
+f4ad78ca3431f1e7fde6bbae8cdae3894d21b13d a548c801349e8e82e55893fd9ec9d72b735c1fb2 jay7557 <jaypatel7557@email.com> 1615448139 +0530	commit: fixed subscriptio
+a548c801349e8e82e55893fd9ec9d72b735c1fb2 7a385995504f550c65997c2fcf2e8c9216537fea jay7557 <jaypatel7557@email.com> 1615642253 +0530	commit: fixed plan
+7a385995504f550c65997c2fcf2e8c9216537fea d51bdea504a1a947f7771fc37a76de50b80e3457 jay7557 <jaypatel7557@email.com> 1615893481 +0530	commit: fixed ui and edit issue
+d51bdea504a1a947f7771fc37a76de50b80e3457 d401cdd29dc3ca4817ddcb64a7e72559c5083e03 jay7557 <jaypatel7557@email.com> 1615893498 +0530	commit: fixed ui and edit issue
+d401cdd29dc3ca4817ddcb64a7e72559c5083e03 2c0732b0e5984ff897186af135199c688f62c7ff jay7557 <jaypatel7557@email.com> 1615898720 +0530	commit: fixed css subcription
+2c0732b0e5984ff897186af135199c688f62c7ff 4075a167ccf3ccae7a56b063ff19fcbdd4bd6fc8 jay7557 <jaypatel7557@email.com> 1615898989 +0530	commit: fixed css subcription
+4075a167ccf3ccae7a56b063ff19fcbdd4bd6fc8 c65ee5b8e22e4387b6cc9aba9cad32b2dd52a856 jay7557 <jaypatel7557@email.com> 1615902169 +0530	commit: fixed css
+c65ee5b8e22e4387b6cc9aba9cad32b2dd52a856 688bc23349e1923f147b7b00ae9f4250417cfbef jay7557 <jaypatel7557@email.com> 1615967730 +0530	commit: fixed css of subscription page
+688bc23349e1923f147b7b00ae9f4250417cfbef 25619fb3bfe70cb49f8bfd69534ad806bcd081f7 jay7557 <jaypatel7557@email.com> 1615980309 +0530	commit: fixed alert pop-up
+25619fb3bfe70cb49f8bfd69534ad806bcd081f7 2748d768631784b3d1d7a5b5f3a9b4bd4baed45f jay7557 <jaypatel7557@email.com> 1615989311 +0530	commit: fixed css
+2748d768631784b3d1d7a5b5f3a9b4bd4baed45f 42727a484dccee0ff8d6fa6dd05aad171aecf69a jay7557 <jaypatel7557@email.com> 1616503775 +0530	commit: fixed scriptiomms
+42727a484dccee0ff8d6fa6dd05aad171aecf69a e9c66e2b0d3595fe6313ede1eed079f98797867b jay7557 <jaypatel7557@email.com> 1616505906 +0530	commit: fixed
+e9c66e2b0d3595fe6313ede1eed079f98797867b 8d64aec03adf293518a03aa3e3fceae1a3acd7e6 jay7557 <jaypatel7557@email.com> 1616595395 +0530	commit: fixed
+8d64aec03adf293518a03aa3e3fceae1a3acd7e6 86a71e1851980ba16b5ad4c0064cf22fd8e90f9e jay7557 <jaypatel7557@email.com> 1616616276 +0530	commit: fixed sub
+                                                                                                                                                

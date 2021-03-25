@@ -1,0 +1,15 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[branch "main"]
+[remote "origin"]
+	url = https://github.com/jaypatel1901/mvp-notes-admin.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[branch "NEW-Updated-admin"]
+	remote = origin
+	merge = refs/heads/NEW-Updated-admin
